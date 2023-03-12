@@ -15,6 +15,7 @@ public class TestJUnit4AndJUnit5 {
 	}
 	
 	@org.junit.Test // JUnit 4
+
 	public void junit4Test() {
 		System.out.println("JUnit 4");
 		org.junit.Assert.assertTrue(true); // JUnit 4

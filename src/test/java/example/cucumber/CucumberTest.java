@@ -17,7 +17,7 @@ For example, the class name CucumberTests (Test with an s) will be ignored by Ma
 @CucumberOptions(plugin="summary"
 		 ,features={"features"}
 		 ,snippets = SnippetType.CAMELCASE
-		 ,publish= false
-		 )
+		 ,publish = false
+)
 public class CucumberTest {
 }
