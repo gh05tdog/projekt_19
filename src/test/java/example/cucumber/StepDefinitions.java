@@ -13,6 +13,6 @@ public class StepDefinitions {
 
 	@Then("everything is okay")
 	public void everythingIsOkay() {
-		assertTrue(true);
+		assertTrue(false);
 	}
 }
