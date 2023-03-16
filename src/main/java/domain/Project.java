@@ -16,6 +16,8 @@ public class Project {
 
     private List<User> workersList = new ArrayList<>();
 
+    private List<Activities> ActivityList = new ArrayList<>();
+
     public Project(String ProjectName) {
 
         this.ProjectName = ProjectName;
@@ -58,6 +60,52 @@ public class Project {
 
     public User getProjectManager() {
         return ProjectManager;
+    }
+
+    public void addActivity(String name, String timebudget, String weeks, String startWeek) {
+        Activities activity = new Activities(name, timebudget, weeks, startWeek);
+        ActivityList.add(activity);
+    }
+
+    public List<Activities> getActivityList() {
+        return ActivityList;
+    }
+
+    public class Activities extends Project {
+        private String ActivityName;
+        private String ActivityId;
+        private String TimeBudget;
+        private String Weeks;
+        private String StartWeek;
+
+        public Activities(String ActivityName, String TimeBudget, String Weeks, String StartWeek) {
+            super(ProjectName);
+            this.ActivityName = ActivityName;
+            this.TimeBudget = TimeBudget;
+            this.Weeks = Weeks;
+            this.StartWeek = StartWeek;
+            this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
+        }
+
+        public String getActivityName() {
+            return ActivityName;
+        }
+
+        public String getActivityId() {
+            return ActivityId;
+        }
+
+        public String getTimeBudget() {
+            return TimeBudget;
+        }
+
+        public String getWeeks() {
+            return Weeks;
+        }
+
+        public String getStartWeek() {
+            return StartWeek;
+        }
     }
 }
 

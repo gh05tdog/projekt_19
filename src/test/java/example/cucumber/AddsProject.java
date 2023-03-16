@@ -48,11 +48,11 @@ public class AddsProject {
     }
 
     @Then("there is a project named {string} the project has an id {string}")
-    public void thereIsAProjectNamedTheProjectHasAnId(String arg0, String arg1) {
+    public void thereIsAProjectNamedTheProjectHasAnId(String name, String ProjectID) {
         // Check that the project is added to the list of projects
         assertEquals(SoftwareApp.getNumberOfProject(), 1);
-        assertEquals(SoftwareApp.projectList.get(0).getProjectName(), arg0);
-        assertEquals(SoftwareApp.projectList.get(0).getProjectId(), arg1);
+        assertEquals(SoftwareApp.projectList.get(0).getProjectName(), name);
+        assertEquals(SoftwareApp.projectList.get(0).getProjectId(), ProjectID);
 
     }
     @Given("there is a project with the id {string}")
@@ -93,5 +93,20 @@ public class AddsProject {
 
     }
 
-
+    @When("the user adds an activity To the project with a name {string}, timebudget {string}, weeks {string}, start week {string} to the project with the id {string}")
+    public void theUserAddsAnActivityToTheProjectWithANameTimebudgetWeeksStartWeekToTheProjectWithTheId(String name, String timebudget, String weeks, String startWeek, String projectId) {
+        
+        SoftwareApp.addActivity(name, timebudget, weeks, startWeek, projectId);
+        
+    }
+    @Then("the project with the id {string} has an activiy with the name {string}, timebudget {string}, weeks {string}, start week {string}")
+    public void theProjectWithTheIdHasAnActiviyWithTheNameTimebudgetWeeksStartWeek(String projectId, String name, String timebudget, String weeks, String startWeek) {
+        // Write code here that turns the phrase above into concrete actions
+        Project project = SoftwareApp.getProject(projectId);
+        assert project != null;
+        assertEquals(project.getActivityList().get(0).getActivityName(), name);
+        assertEquals(project.getActivityList().get(0).getTimeBudget(), timebudget);
+        assertEquals(project.getActivityList().get(0).getWeeks(), weeks);
+        assertEquals(project.getActivityList().get(0).getStartWeek(), startWeek);
+    }
 }

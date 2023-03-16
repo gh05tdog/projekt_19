@@ -49,5 +49,12 @@ public class SoftwareApp {
         }
         return null;
     }
+
+    public static void addActivity(String name, String timebudget, String weeks, String startWeek, String projectId) {
+        Project project = getProject(projectId);
+        if (project != null) {
+            project.addActivity(name, timebudget, weeks, startWeek);
+        }
+    }
 }
 
