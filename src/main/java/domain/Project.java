@@ -9,14 +9,11 @@ import java.util.List;
 public class Project {
 
 
-    private String ProjectName;
-    private String ProjectId;
-
+    private final String ProjectName;
+    private final String ProjectId;
+    private final List<User> workersList = new ArrayList<>();
+    private final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
-
-    private List<User> workersList = new ArrayList<>();
-
-    private List<Activities> ActivityList = new ArrayList<>();
 
     public Project(String ProjectName) {
 
@@ -31,7 +28,7 @@ public class Project {
         if (SoftwareApp.getNumberOfProject() < 10) {
             this.ProjectId = Year + "00" + (SoftwareApp.getNumberOfProject() + 1);
         } else if (SoftwareApp.getNumberOfProject() < 100) {
-            this.ProjectId =Year + "0" + (SoftwareApp.getNumberOfProject() + 1);
+            this.ProjectId = Year + "0" + (SoftwareApp.getNumberOfProject() + 1);
         } else {
             this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
         }
@@ -53,13 +50,12 @@ public class Project {
         return workersList;
     }
 
-
-    public void setProjectManager(User user) {
-            ProjectManager = user;
-    }
-
     public User getProjectManager() {
         return ProjectManager;
+    }
+
+    public void setProjectManager(User user) {
+        ProjectManager = user;
     }
 
     public void addActivity(String name, String timebudget, String weeks, String startWeek) {
@@ -72,11 +68,11 @@ public class Project {
     }
 
     public class Activities extends Project {
-        private String ActivityName;
-        private String ActivityId;
-        private String TimeBudget;
-        private String Weeks;
-        private String StartWeek;
+        private final String ActivityName;
+        private final String ActivityId;
+        private final String TimeBudget;
+        private final String Weeks;
+        private final String StartWeek;
 
         public Activities(String ActivityName, String TimeBudget, String Weeks, String StartWeek) {
             super(ProjectName);

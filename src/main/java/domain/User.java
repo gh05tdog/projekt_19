@@ -1,9 +1,9 @@
 package domain;
 
 public class User {
-    private String name;
+    private final String name;
 
-    private String userId;
+    private final String userId;
 
 
 
