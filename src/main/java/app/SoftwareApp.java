@@ -11,7 +11,6 @@ public class SoftwareApp {
     public static List<Project> projectList = new ArrayList<>();
     public static List<User> UserList = new ArrayList<>();
 
-
     public static String CurrentUser;
 
     public static void addProject(String projectName) {

@@ -12,8 +12,9 @@ public class Project {
     private final String ProjectName;
     private final String ProjectId;
     private final List<User> workersList = new ArrayList<>();
-    private final List<Activities> ActivityList = new ArrayList<>();
+    public static final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
+
 
     public Project(String ProjectName) {
 
@@ -71,9 +72,18 @@ public class Project {
 
         for (Activities activity : ActivityList) {
             if (activity.getActivityId().equals(activityID)) {
-                    activity.addWorkerToActivity(SoftwareApp.getUserFromID(userID));
+                activity.addWorkerToActivity(SoftwareApp.getUserFromID(userID));
             }
         }
+    }
+
+    public Activities getActivity(String s) {
+        for (Activities activity : ActivityList) {
+            if (activity.getActivityId().equals(s)) {
+                return activity;
+            }
+        }
+        return null;
     }
 
     public class Activities extends Project {
@@ -84,6 +94,7 @@ public class Project {
         private final String TimeBudget;
         private final String Weeks;
         private final String StartWeek;
+        private int LoggedTime;
 
         public Activities(String ActivityName, String TimeBudget, String Weeks, String StartWeek) {
             super(ProjectName);
@@ -92,13 +103,14 @@ public class Project {
             this.Weeks = Weeks;
             this.StartWeek = StartWeek;
             this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
+
         }
-        public void addWorkerToActivity(User user){
 
+        public void addWorkerToActivity(User user) {
             UserAssignedActivities.add(user);
-
             User.UserActivityList.add(Activities.this);
         }
+
         public String getActivityName() {
             return ActivityName;
         }
@@ -118,9 +130,14 @@ public class Project {
         public String getStartWeek() {
             return StartWeek;
         }
+        public void logHours(User user, int hours) {
+                LoggedTime += hours;
+                user.updateTimeSheet(ActivityId, hours);
+        }
+
+        public Integer getUsedTime() {
+            return LoggedTime;
+        }
     }
-
-
 }
-
 

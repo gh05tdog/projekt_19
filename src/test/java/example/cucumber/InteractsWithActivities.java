@@ -8,6 +8,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.Objects;
+import java.util.Optional;
+
+import static app.SoftwareApp.CurrentUser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -60,5 +64,17 @@ public class InteractsWithActivities {
     @Then("the user is assigned the activity")
     public void the_user_is_assigned_the_activity() {
         assertEquals(SoftwareApp.getUserFromID("abcd").getAssignedActivitiesNumber(), 11);
+    }
+    @When("the user logs {int} hours on activity {string}")
+    public void theUserLogsHoursOnActivity(int hours, String activityId) {
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity(activityId).logHours(SoftwareApp.getUserFromID(CurrentUser), hours);
+    }
+    @Then("the used time on activity is {int}")
+    public void theUsedTimeOnActivityIs(Integer int1) {
+        assertEquals(SoftwareApp.getProject("23001").getActivity("23001A1").getUsedTime(), int1);
+    }
+    @Then("the user timesheet should be updated with the logged time")
+    public void theUserTimesheetShouldBeUpdatedWithTheLoggedTime() {
+        assert SoftwareApp.getUserFromID(CurrentUser).getTimeSpentOnActivity("23001A1") == 2;
     }
 }
