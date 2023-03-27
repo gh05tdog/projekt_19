@@ -1,5 +1,5 @@
 Feature: User adds project
-  Description: A user adds a project to the software. The User chooses a project manager. The user also adds an activity to an existing projekt.
+  Description: A user adds a project to the software. The User chooses a project manager. The user also adds an activity to an existing project.
   Actors: User
 
   Scenario: Add a project successfully

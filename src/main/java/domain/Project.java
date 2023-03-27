@@ -67,7 +67,18 @@ public class Project {
         return ActivityList;
     }
 
+    public void assignActivityToUser(String userID, String activityID) {
+
+        for (Activities activity : ActivityList) {
+            if (activity.getActivityId().equals(activityID)) {
+                    activity.addWorkerToActivity(SoftwareApp.getUserFromID(userID));
+            }
+        }
+    }
+
     public class Activities extends Project {
+
+        private final List<User> UserAssignedActivities = new ArrayList<>();
         private final String ActivityName;
         private final String ActivityId;
         private final String TimeBudget;
@@ -82,7 +93,12 @@ public class Project {
             this.StartWeek = StartWeek;
             this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
         }
+        public void addWorkerToActivity(User user){
 
+            UserAssignedActivities.add(user);
+
+            User.UserActivityList.add(Activities.this);
+        }
         public String getActivityName() {
             return ActivityName;
         }
@@ -103,6 +119,8 @@ public class Project {
             return StartWeek;
         }
     }
+
+
 }
 
 

@@ -24,6 +24,10 @@ public class SoftwareApp {
         return projectList.size();
     }
 
+    public static User getUserFromID(String id){
+        return UserList.stream().filter(user -> user.getUserId().equals(id)).findFirst().orElse(null);
+    }
+
 
     public static void addCoWorker(String userId, String projectId) {
         for (Project project : projectList) {
@@ -56,5 +60,17 @@ public class SoftwareApp {
             project.addActivity(name, timebudget, weeks, startWeek);
         }
     }
+
+    public static void assignActivityToUser(String userID, String projectID, String activityID) throws  TooManyActivities {
+        Project project = getProject(projectID);
+        if (project != null) {
+            if (getUserFromID(userID).getAssignedActivitiesNumber() >= 10) {
+                project.assignActivityToUser(userID, activityID);
+                throw new TooManyActivities("This user has more than 10 activities assigned");
+            }
+            project.assignActivityToUser(userID, activityID);
+        }
+    }
+
 }
 

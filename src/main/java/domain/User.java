@@ -1,10 +1,13 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private final String name;
-
     private final String userId;
 
+    public static List<Project.Activities> UserActivityList = new ArrayList<>();
 
 
     public User(String name, String userId) {
@@ -20,5 +23,7 @@ public class User {
         return userId;
     }
 
-
+    public int getAssignedActivitiesNumber(){
+        return UserActivityList.size();
+    }
 }

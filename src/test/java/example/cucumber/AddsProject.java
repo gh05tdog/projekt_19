@@ -29,8 +29,6 @@ public class AddsProject {
 
         SoftwareApp.CurrentUser = user.getUserId();
 
-        System.out.println(SoftwareApp.CurrentUser);
-
         assertEquals(SoftwareApp.CurrentUser, userID);
 
     }
