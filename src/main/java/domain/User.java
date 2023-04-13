@@ -29,6 +29,7 @@ public class User {
     public int getAssignedActivitiesNumber(){
         return UserActivityList.size();
     }
+
     public void updateTimeSheet(String activityId, int hours) {
         for (ActivityTimeSheet activity : timeSheet) {
             if (activity.getActivityId().equals(activityId)) {

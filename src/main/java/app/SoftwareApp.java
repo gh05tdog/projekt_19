@@ -71,5 +71,17 @@ public class SoftwareApp {
         }
     }
 
+    public static Project.Activities getActivity(String projectId, String activityId) {
+        Project project = getProject(projectId);
+        assert project != null;
+        return project.getActivity(activityId);
+
+    }
+
+    //Get all users
+    public static List<User> getAllUsers() {
+        return UserList;
+    }
+
 }
 

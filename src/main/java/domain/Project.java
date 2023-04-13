@@ -64,12 +64,12 @@ public class Project {
         ActivityList.add(activity);
     }
 
+
     public List<Activities> getActivityList() {
         return ActivityList;
     }
 
     public void assignActivityToUser(String userID, String activityID) {
-
         for (Activities activity : ActivityList) {
             if (activity.getActivityId().equals(activityID)) {
                 activity.addWorkerToActivity(SoftwareApp.getUserFromID(userID));
@@ -111,6 +111,7 @@ public class Project {
             User.UserActivityList.add(Activities.this);
         }
 
+
         public String getActivityName() {
             return ActivityName;
         }
@@ -138,6 +139,8 @@ public class Project {
         public Integer getUsedTime() {
             return LoggedTime;
         }
+
+
     }
 }
 

@@ -9,7 +9,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.Objects;
-import java.util.Optional;
 
 import static app.SoftwareApp.CurrentUser;
 import static org.junit.Assert.assertEquals;
@@ -71,10 +70,33 @@ public class InteractsWithActivities {
     }
     @Then("the used time on activity is {int}")
     public void theUsedTimeOnActivityIs(Integer int1) {
-        assertEquals(SoftwareApp.getProject("23001").getActivity("23001A1").getUsedTime(), int1);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUsedTime(), int1);
     }
     @Then("the user timesheet should be updated with the logged time")
     public void theUserTimesheetShouldBeUpdatedWithTheLoggedTime() {
         assert SoftwareApp.getUserFromID(CurrentUser).getTimeSpentOnActivity("23001A1") == 2;
+    }
+
+    @Given("there are employees registered in the system")
+    public void thereAreEmployeesRegisteredInTheSystem() {
+        User user = new User("Amanda", "test");
+        SoftwareApp.addUser(user);
+        User user1 = new User("Amanda", "tesl");
+        SoftwareApp.addUser(user1);
+    }
+    @When("the user navigates to the resource allocation page")
+    public void theUserNavigatesToTheResourceAllocationPage() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("the user should see a list of available employees for each project")
+    public void theUserShouldSeeAListOfAvailableEmployeesForEachProject() {
+        //Find all employees that are not assigned to any project
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("I should be able to filter employees by availability")
+    public void iShouldBeAbleToFilterEmployeesByAvailability() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 }

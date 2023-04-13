@@ -18,12 +18,3 @@ Feature: User interacts with activities
     When the user logs 2 hours on activity "23001A1"
     Then the used time on activity is 2
     And the user timesheet should be updated with the logged time
-
-#  Scenario: View availability of employees
-#    Given the projekt manager with the id "mang" is logged in
-#    And there are employees registered in the system
-#    And there is a project with the id "23001"
-#    And there is an activity with a name "Make diagram", timebudget "100", weeks "3", start week "10"
-#    When the user navigates to the resource allocation page
-#    Then the user should see a list of available employees for each project
-#    And I should be able to filter employees by availability
