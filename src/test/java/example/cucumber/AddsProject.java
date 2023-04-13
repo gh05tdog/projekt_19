@@ -1,7 +1,6 @@
 package example.cucumber;
 
 import app.SoftwareApp;
-import app.TooManyActivities;
 import domain.Project;
 import domain.User;
 
@@ -107,27 +106,5 @@ public class AddsProject {
         assertEquals(project.getActivityList().get(0).getTimeBudget(), timebudget);
         assertEquals(project.getActivityList().get(0).getWeeks(), weeks);
         assertEquals(project.getActivityList().get(0).getStartWeek(), startWeek);
-    }
-
-    @Given("there is a user with the id {string}")
-    public void thereIsAUserWithTheId(String userId) {
-        System.out.println(SoftwareApp.getAllUsers());
-        user = new User(userId, userId);
-        SoftwareApp.addUser(user);
-        assertSame(user.getUserId(), userId);
-
-    }
-    @When("The user assign employees {string} and {string} to activity {string} in project {string}")
-    public void the_user_assign_employees_and_to_activity_in_project(String userID1, String userID2, String activityID, String projectID) throws TooManyActivities {
-        SoftwareApp.assignActivityToUser(userID1, activityID, projectID);
-        SoftwareApp.assignActivityToUser(userID2, activityID, projectID);
-    }
-    @Then("employees {string} and {string} should be assigned to activity {string} in project {string}")
-    public void employees_and_should_be_assigned_to_activity_in_project(String userID1, String userID2, String activityID, String projectID) {
-        Project project = SoftwareApp.getProject(projectID);
-        assert project != null;
-
-        System.out.println(SoftwareApp.getActivity(activityID, projectID).getActivityId());
-
     }
 }
