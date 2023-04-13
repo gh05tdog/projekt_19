@@ -29,7 +29,6 @@ Feature: User adds project
     And there is a user with the id "emma"
     And there is a user with the id "john"
     And there is a project with the id "23001"
-    And the user adds an activity To the project with a name "Make diagram", timebudget "100", weeks "3", start week "10" to the project with the id "23001"
+   # And the user adds an activity To the project with a name "Make diagram", timebudget "100", weeks "3", start week "10" to the project with the id "23001"
     When The user assign employees "emma" and "john" to activity "23001A1" in project "23001"
     Then employees "emma" and "john" should be assigned to activity "23001A1" in project "23001"
-

@@ -18,3 +18,4 @@ Feature: User interacts with activities
     When the user logs 2 hours on activity "23001A1"
     Then the used time on activity is 2
     And the user timesheet should be updated with the logged time
+
