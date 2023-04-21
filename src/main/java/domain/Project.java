@@ -6,18 +6,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+
+
 public class Project {
-
-
     private final String ProjectName;
     private final String ProjectId;
-    private final List<User> workersList = new ArrayList<>();
+    public static List<User> workersList = new ArrayList<>();
     public static final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
 
 
     public Project(String ProjectName) {
-
         this.ProjectName = ProjectName;
 
         //Count all projects in the system
@@ -42,13 +41,12 @@ public class Project {
     public String getProjectId() {
         return ProjectId;
     }
-
     public void addWorker(User user) {
         workersList.add(user);
     }
 
-    public List<User> getWorkersList() {
-        return workersList;
+    public User getWorkersList(String id) {
+        return workersList.stream().filter(user -> user.getUserId().equals(id)).findFirst().orElse(null);
     }
 
     public User getProjectManager() {
@@ -87,7 +85,6 @@ public class Project {
     }
 
     public class Activities extends Project {
-
         private final List<User> UserAssignedActivities = new ArrayList<>();
         private final String ActivityName;
         private final String ActivityId;
@@ -111,6 +108,10 @@ public class Project {
             User.UserActivityList.add(Activities.this);
         }
 
+        //return the list of users assigned to the activity
+        public List<User> getUserAssignedActivities() {
+            return UserAssignedActivities;
+        }
 
         public String getActivityName() {
             return ActivityName;
@@ -139,8 +140,6 @@ public class Project {
         public Integer getUsedTime() {
             return LoggedTime;
         }
-
-
     }
 }
 

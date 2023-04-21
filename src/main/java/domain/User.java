@@ -1,13 +1,15 @@
 package domain;
 
+import app.SoftwareApp;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private final String name;
     private final String userId;
-    public static List<Project.Activities> UserActivityList = new ArrayList<>();
 
+    public static List<Project.Activities> UserActivityList = new ArrayList<>();
     private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
 
 
@@ -15,7 +17,17 @@ public class User {
     public User(String name, String userId) {
         this.name = name;
         this.userId = userId;
+    }
 
+    public static User createUser(String name, String userId) {
+        //Check if username is already in use
+        //If it is, throw an exception
+        if (SoftwareApp.getUserFromID(userId) != null) {
+            return SoftwareApp.getUserFromID(userId);
+        }
+        User newUser = new User(name, userId);
+        SoftwareApp.UserList.add(newUser);
+        return newUser;
     }
 
     public String getName() {
@@ -26,10 +38,10 @@ public class User {
         return userId;
     }
 
+
     public int getAssignedActivitiesNumber(){
         return UserActivityList.size();
     }
-
     public void updateTimeSheet(String activityId, int hours) {
         for (ActivityTimeSheet activity : timeSheet) {
             if (activity.getActivityId().equals(activityId)) {
@@ -52,5 +64,10 @@ public class User {
         }
         // If the activity is not in the timesheet, return 0
         return 0;
+    }
+
+    //Get Assigned Activities
+    public List<Project.Activities> getAssignedActivities(){
+        return UserActivityList;
     }
 }
