@@ -68,8 +68,11 @@ public class Project {
     }
 
     public void assignActivityToUser(String userID, String activityID) {
+        //Loop through the list of activities
         for (Activities activity : ActivityList) {
+            //If the activityID matches the activityID of the activity in the list
             if (activity.getActivityId().equals(activityID)) {
+                //Add the user to the activity
                 activity.addWorkerToActivity(SoftwareApp.getUserFromID(userID));
             }
         }
@@ -104,8 +107,10 @@ public class Project {
         }
 
         public void addWorkerToActivity(User user) {
+            //Add the user to the list of users assigned to the activity
             UserAssignedActivities.add(user);
-            User.UserActivityList.add(Activities.this);
+            //Add the activity to the list of activities assigned to the user
+            User.addActivityToUser(this, user);
         }
 
         //return the list of users assigned to the activity

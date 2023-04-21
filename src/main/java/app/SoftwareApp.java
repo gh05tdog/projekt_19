@@ -39,7 +39,6 @@ public class SoftwareApp {
     }
 
 
-
     public static Project getProject(String projectId) {
         for (Project project : projectList) {
             if (project.getProjectId().equals(projectId)) {
@@ -58,28 +57,17 @@ public class SoftwareApp {
 
     public static void assignActivityToUser(String userID, String projectID, String activityID) throws TooManyActivities {
         Project project = getProject(projectID);
+
         if (project != null) {
             if (getUserFromID(userID).getAssignedActivitiesNumber() >= 10) {
                 project.assignActivityToUser(userID, activityID);
-               // throw new TooManyActivities("This user has more than 10 activities assigned");
+                throw new TooManyActivities("This user has more than 10 activities assigned");
             }
+
             project.assignActivityToUser(userID, activityID);
         }
     }
 
-    public static Project.Activities getActivity(String projectId, String activityId) {
-        Project project = getProject(projectId);
-        assert project != null;
-        return project.getActivity(activityId);
-
-    }
-
-    //Make Userlist to a string
-    public static void  getUserList() {
-        for (User user : UserList) {
-            System.out.println(user.getUserId());
-        }
-    }
 
     public static void addUser(User user) {
         UserList.add(user);

@@ -110,20 +110,22 @@ public class AddsProject {
     }
 
     @When("The user assign employees {string} and {string} to activity {string} in project {string}")
-    public void theUserAssignEmployeesAndToActivityInProject(String string, String string2, String string3, String string4) throws TooManyActivities {
+    public void theUserAssignEmployeesAndToActivityInProject(String user1, String user2, String activityID, String projectID) throws TooManyActivities {
         // Write code here that turns the phrase above into concrete actions
-        System.out.println(SoftwareApp.UserList);
-        SoftwareApp.assignActivityToUser(string,string4, string3);
-        SoftwareApp.assignActivityToUser(string2, string4,string3);
-        //Make sure that both employees are added to workersList based on the userID
-
+        //System.out.println(SoftwareApp.UserList);
+        SoftwareApp.assignActivityToUser(user1, projectID, activityID);
+        SoftwareApp.assignActivityToUser(user2, projectID, activityID);
     }
 
     @Then("employees {string} and {string} should be assigned to activity {string} in project {string}")
-    public void employeesAndShouldBeAssignedToActivityInProject(String string, String string2, String string3, String string4) {
+    public void employeesAndShouldBeAssignedToActivityInProject(String User1, String User2, String activityId, String projectId) {
         // Write code here that turns the phrase above into concrete actions
-        //go through UserActivityList and check if emma and john is in it
-        throw new io.cucumber.java.PendingException();
+        Project project = SoftwareApp.getProject(projectId);
+        assert project != null;
+
+        assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(0).getUserId(), User1);
+        assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(1).getUserId(), User2);
+
     }
 }
 

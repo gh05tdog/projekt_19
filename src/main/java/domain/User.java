@@ -9,14 +9,15 @@ public class User {
     private final String name;
     private final String userId;
 
-    public static List<Project.Activities> UserActivityList = new ArrayList<>();
+   // public static List<Project.Activities> UserActivityList = new ArrayList<>();
     private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
-
+    private final List<Project.Activities> UserActivityList;
 
 
     public User(String name, String userId) {
         this.name = name;
         this.userId = userId;
+        this.UserActivityList = new ArrayList<>();
     }
 
     public static User createUser(String name, String userId) {
@@ -27,8 +28,14 @@ public class User {
         }
         User newUser = new User(name, userId);
         SoftwareApp.UserList.add(newUser);
+        System.out.println("User " + name + " created");
         return newUser;
     }
+
+    public static void addActivityToUser(Project.Activities activities, User user){
+        user.UserActivityList.add(activities);
+    }
+
 
     public String getName() {
         return name;
@@ -66,8 +73,5 @@ public class User {
         return 0;
     }
 
-    //Get Assigned Activities
-    public List<Project.Activities> getAssignedActivities(){
-        return UserActivityList;
-    }
+
 }

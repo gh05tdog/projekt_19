@@ -8,6 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.List;
 import java.util.Objects;
 
 import static app.SoftwareApp.CurrentUser;
@@ -44,32 +45,50 @@ public class InteractsWithActivities {
         assertEquals(project.getProjectManager().getUserId(), "mang");
     }
 
-    @Given("if the user with an id {string} is assigned {int} activities")
-    public void if_the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception {
+    @Given("the user with an id {string} is assigned {int} activities")
+    public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception {
         // Add activities to the project
         User.createUser("tejs",userID);
+
         for (int i = 1; i <= nbOfActivities; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23001");
             SoftwareApp.assignActivityToUser(userID, "23001", "23001" + "A" + i);
         }
 
-        // Check that the user is assigned the correct number of activities
-        System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
-        System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivities());
-
-        //For each activity in the list of assigned activities print the activity id
-        for(Project.Activities activity : SoftwareApp.getUserFromID(userID).getAssignedActivities()){
-            System.out.println(activity.getActivityId());
-        }
-
         assert SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber() == nbOfActivities;
+        List<User> list1 = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUserAssignedActivities();
+        for (User user : list1) {
+
+            System.out.println(user.getUserId());
+        }
+        for(int i = 1; i <= nbOfActivities; i++) {
+            System.out.println("23001A" + i);
+            List<User> list = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A" + i).getUserAssignedActivities();
+            //Loop through the list and check if the user is assigned to the activity if not throw an exception
+            boolean isAssigned = false;
+            for (User user : list) {
+                if (user.getUserId().equals(userID)) {
+                    isAssigned = true;
+                    break;
+                }
+            }
+            if (!isAssigned) {
+                throw new Exception("User is not assigned to the activity");
+            }
+
+
+
+
+
+
+
+        }
     }
 
     @When("the user with an id {string} is assigned the activity")
     public void the_user_with_an_id_is_assigned_the_activity(String string) {
         User user = SoftwareApp.getUserFromID(string);
         try {
-            System.out.println(SoftwareApp.getUserFromID("abcd").getAssignedActivitiesNumber());
             SoftwareApp.addActivity("TOO-MANY", "10", "1", "1", "23001");
             SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
         } catch (TooManyActivities e) {
@@ -84,7 +103,7 @@ public class InteractsWithActivities {
 
     @Then("the user is assigned the activity")
     public void the_user_is_assigned_the_activity() {
-        assertEquals(SoftwareApp.getUserFromID("abcd").getAssignedActivitiesNumber(), 11);
+        assertEquals(SoftwareApp.getUserFromID("test").getAssignedActivitiesNumber(), 11);
     }
 
     @When("the user logs {int} hours on activity {string}")
