@@ -91,8 +91,8 @@ public class AddsProject {
 
     }
 
-    @Then("the project with the id {string} has an activiy with the name {string}, timebudget {string}, weeks {string}, start week {string}")
-    public void theProjectWithTheIdHasAnActiviyWithTheNameTimebudgetWeeksStartWeek(String projectId, String name, String timebudget, String weeks, String startWeek) {
+    @Then("the project with the id {string} has an activity with the name {string}, timebudget {string}, weeks {string}, start week {string}")
+    public void theProjectWithTheIdHasAnActivityWithTheNameTimebudgetWeeksStartWeek(String projectId, String name, String timebudget, String weeks, String startWeek) {
         // Write code here that turns the phrase above into concrete actions
         Project project = SoftwareApp.getProject(projectId);
         assert project != null;
@@ -125,7 +125,6 @@ public class AddsProject {
 
         assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(0).getUserId(), User1);
         assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(1).getUserId(), User2);
-
     }
 }
 

@@ -22,8 +22,8 @@ public class InteractsWithActivities {
         this.errorMessage = errorMessage;
     }
 
-    @Given("the projekt manager with the id {string} is logged in")
-    public void theProjektManagerWithTheIdIsLoggedIn(String userId) {
+    @Given("the project manager with the id {string} is logged in")
+    public void theProjectManagerWithTheIdIsLoggedIn(String userId) {
         if (SoftwareApp.getUserFromID(userId) == null) {
             User user = new User("Amanda", userId);
             SoftwareApp.addUser(user);

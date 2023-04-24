@@ -21,7 +21,7 @@ Feature: User adds project
     And that the user with the id "abcd" is logged in
     And there is a project with the id "23001"
     When the user adds an activity To the project with a name "Make diagram", timebudget "100", weeks "3", start week "10" to the project with the id "23001"
-    Then the project with the id "23001" has an activiy with the name "Make diagram", timebudget "100", weeks "3", start week "10"
+    Then the project with the id "23001" has an activity with the name "Make diagram", timebudget "100", weeks "3", start week "10"
 
   Scenario: Assign multiple employees to an activity
     Given that there is a user with the id "abcd"

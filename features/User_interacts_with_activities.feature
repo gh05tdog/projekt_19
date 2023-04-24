@@ -3,7 +3,7 @@ Feature: User interacts with activities
 
   Scenario: User is more than 10 activities
     Given there is a project with the id "23001"
-    And the projekt manager with the id "mang" is logged in
+    And the project manager with the id "mang" is logged in
     When the user adds an activity To the project with a name "Make diagram", timebudget "100", weeks "3", start week "10" to the project with the id "23001"
     And the user with an id "test" is assigned 10 activities
     When the user with an id "test" is assigned the activity
