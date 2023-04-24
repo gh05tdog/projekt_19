@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.util.Calendar;
 
 public class HelloFX extends Application {
 

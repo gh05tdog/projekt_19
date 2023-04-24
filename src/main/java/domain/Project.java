@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+
+
 public class Project {
-
-
     private final String ProjectName;
     private final String ProjectId;
-    private final List<User> workersList = new ArrayList<>();
-    private final List<Activities> ActivityList = new ArrayList<>();
+    public static List<User> workersList = new ArrayList<>();
+    public static final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
 
-    public Project(String ProjectName) {
 
+    public Project(String ProjectName) {
         this.ProjectName = ProjectName;
 
         //Count all projects in the system
@@ -41,13 +41,12 @@ public class Project {
     public String getProjectId() {
         return ProjectId;
     }
-
     public void addWorker(User user) {
         workersList.add(user);
     }
 
-    public List<User> getWorkersList() {
-        return workersList;
+    public User getWorkersList(String id) {
+        return workersList.stream().filter(user -> user.getUserId().equals(id)).findFirst().orElse(null);
     }
 
     public User getProjectManager() {
@@ -63,16 +62,39 @@ public class Project {
         ActivityList.add(activity);
     }
 
+
     public List<Activities> getActivityList() {
         return ActivityList;
     }
 
+    public void assignActivityToUser(String userID, String activityID) {
+        //Loop through the list of activities
+        for (Activities activity : ActivityList) {
+            //If the activityID matches the activityID of the activity in the list
+            if (activity.getActivityId().equals(activityID)) {
+                //Add the user to the activity
+                activity.addWorkerToActivity(SoftwareApp.getUserFromID(userID));
+            }
+        }
+    }
+
+    public Activities getActivity(String s) {
+        for (Activities activity : ActivityList) {
+            if (activity.getActivityId().equals(s)) {
+                return activity;
+            }
+        }
+        return null;
+    }
+
     public class Activities extends Project {
+        private final List<User> UserAssignedActivities = new ArrayList<>();
         private final String ActivityName;
         private final String ActivityId;
         private final String TimeBudget;
         private final String Weeks;
         private final String StartWeek;
+        private int LoggedTime;
 
         public Activities(String ActivityName, String TimeBudget, String Weeks, String StartWeek) {
             super(ProjectName);
@@ -81,6 +103,19 @@ public class Project {
             this.Weeks = Weeks;
             this.StartWeek = StartWeek;
             this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
+
+        }
+
+        public void addWorkerToActivity(User user) {
+            //Add the user to the list of users assigned to the activity
+            UserAssignedActivities.add(user);
+            //Add the activity to the list of activities assigned to the user
+            User.addActivityToUser(this, user);
+        }
+
+        //return the list of users assigned to the activity
+        public List<User> getUserAssignedActivities() {
+            return UserAssignedActivities;
         }
 
         public String getActivityName() {
@@ -102,7 +137,14 @@ public class Project {
         public String getStartWeek() {
             return StartWeek;
         }
+        public void logHours(User user, int hours) {
+                LoggedTime += hours;
+                user.updateTimeSheet(ActivityId, hours);
+        }
+
+        public Integer getUsedTime() {
+            return LoggedTime;
+        }
     }
 }
-
 
