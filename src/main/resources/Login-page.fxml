@@ -6,14 +6,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.loginController">
-   <children>
-      <Text layoutX="155.0" layoutY="148.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter username" textAlignment="CENTER" wrappingWidth="290.70806884765625">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Text>
-      <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="188.0" />
-      <Button layoutX="256.0" layoutY="233.0" mnemonicParsing="false" onAction="#LoginButtonPressed" prefHeight="25.0" prefWidth="87.0" text="Log-in" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="application.loginController">
+   <Text layoutX="155.0" layoutY="148.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter username"
+         textAlignment="CENTER" wrappingWidth="290.70806884765625">
+      <font>
+         <Font size="40.0"/>
+      </font>
+   </Text>
+   <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="188.0"/>
+   <Button layoutX="256.0" fx:id="loginButton" layoutY="233.0" mnemonicParsing="false" onAction="#LoginButtonPressed"
+           prefHeight="25.0" prefWidth="87.0" text="Log-in"/>
 </AnchorPane>

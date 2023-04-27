@@ -56,11 +56,13 @@ public class InteractsWithActivities {
         }
 
         assert SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber() == nbOfActivities;
+
         List<User> list1 = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUserAssignedActivities();
         for (User user : list1) {
 
             System.out.println(user.getUserId());
         }
+
         for(int i = 1; i <= nbOfActivities; i++) {
             System.out.println("23001A" + i);
             List<User> list = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A" + i).getUserAssignedActivities();
@@ -75,12 +77,6 @@ public class InteractsWithActivities {
             if (!isAssigned) {
                 throw new Exception("User is not assigned to the activity");
             }
-
-
-
-
-
-
 
         }
     }

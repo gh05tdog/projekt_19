@@ -1,11 +1,15 @@
 package application;
 
+import domain.User;
+
 public class Model {
-    private View view;
+    private final View view;
 
 
     public Model(View view) {
         this.view = view;
+        // Add a user to the database
+        User.createUser("Test", "test");
     }
 
     public void login(String name) {
