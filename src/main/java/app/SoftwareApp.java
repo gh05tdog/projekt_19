@@ -22,7 +22,10 @@ public class SoftwareApp {
     public static int getNumberOfProject() {
         return projectList.size();
     }
+
     public static User getUserFromID(String id) {
+        // Check if the user with the id is in UserList and return the user if it is
+        // else return null
         return UserList.stream().filter(user -> user.getUserId().equals(id)).findFirst().orElse(null);
     }
 

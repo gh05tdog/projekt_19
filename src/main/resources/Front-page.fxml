@@ -3,9 +3,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
    <children>
-      <Label layoutX="227.0" layoutY="192.0" text="YOU ARE NOW LOGGED IN" />
+      <Label layoutX="195.0" layoutY="192.0" text="YOU ARE NOW LOGGED IN, WELCOME:" />
+      <Label fx:id="userNameLabel" layoutX="273.0" layoutY="216.0" text="userName" />
    </children>
 </AnchorPane>

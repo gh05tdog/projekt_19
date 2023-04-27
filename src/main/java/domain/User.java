@@ -72,6 +72,4 @@ public class User {
         // If the activity is not in the timesheet, return 0
         return 0;
     }
-
-
 }
