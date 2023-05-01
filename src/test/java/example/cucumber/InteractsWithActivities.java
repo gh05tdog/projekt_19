@@ -34,7 +34,6 @@ public class InteractsWithActivities {
             assert project != null;
             assertEquals(project.getProjectManager().getUserId(), "mang");
             return;
-
         }
         User user = SoftwareApp.getUserFromID(userId);
 

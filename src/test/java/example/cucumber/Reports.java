@@ -1,10 +1,14 @@
 package example.cucumber;
 
 
+import app.SoftwareApp;
+import domain.Project;
+import domain.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.junit.Assert.assertEquals;
 
 
 public class Reports {
@@ -13,6 +17,8 @@ public class Reports {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+
     @Given("there are completed activities")
     public void thereAreCompletedActivities() {
         // Write code here that turns the phrase above into concrete actions
