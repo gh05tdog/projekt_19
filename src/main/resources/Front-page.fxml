@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
    <children>
       <Label layoutX="195.0" layoutY="192.0" text="YOU ARE NOW LOGGED IN, WELCOME:" />
-      <Label fx:id="userNameLabel" layoutX="273.0" layoutY="216.0" text="userName" />
+      <Label fx:id="userNameLabel" layoutX="99.0" layoutY="27.0" prefHeight="41.0" prefWidth="96.0" text="userName" textAlignment="CENTER">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
    </children>
 </AnchorPane>

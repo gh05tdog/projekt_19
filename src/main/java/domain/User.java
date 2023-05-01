@@ -2,7 +2,9 @@ package domain;
 
 import app.SoftwareApp;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -49,15 +51,16 @@ public class User {
     public int getAssignedActivitiesNumber(){
         return UserActivityList.size();
     }
-    public void updateTimeSheet(String activityId, int hours) {
+    public void updateTimeSheet(String activityId, int hours, LocalDate date) {
         for (ActivityTimeSheet activity : timeSheet) {
             if (activity.getActivityId().equals(activityId)) {
-                activity.addHours(hours);
+                activity.addHours(hours, date);
                 return;
             }
         }
         // If the activity is not already in the timesheet, add it
-        ActivityTimeSheet newActivity = new ActivityTimeSheet(activityId, hours);
+
+        ActivityTimeSheet newActivity = new ActivityTimeSheet(activityId, hours, date);
         timeSheet.add(newActivity);
     }
 

@@ -2,8 +2,10 @@ package domain;
 
 import app.SoftwareApp;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,8 +18,8 @@ public class Project {
     private User ProjectManager;
 
 
-    public Project(String ProjectName) {
-        this.ProjectName = ProjectName;
+    public Project(String projectName) {
+        this.ProjectName = projectName;
 
         //Count all projects in the system
         //Add 1 to the count
@@ -32,6 +34,7 @@ public class Project {
         } else {
             this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
         }
+
     }
 
     public String getProjectName() {
@@ -95,6 +98,7 @@ public class Project {
         private final String Weeks;
         private final String StartWeek;
         private int LoggedTime;
+        private Boolean isCompleted;
 
         public Activities(String ActivityName, String TimeBudget, String Weeks, String StartWeek) {
             super(ProjectName);
@@ -103,6 +107,7 @@ public class Project {
             this.Weeks = Weeks;
             this.StartWeek = StartWeek;
             this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
+            this.isCompleted = false;
 
         }
 
@@ -137,13 +142,23 @@ public class Project {
         public String getStartWeek() {
             return StartWeek;
         }
-        public void logHours(User user, int hours) {
+        public void logHours(User user, int hours, LocalDate date) {
                 LoggedTime += hours;
-                user.updateTimeSheet(ActivityId, hours);
+                user.updateTimeSheet(ActivityId, hours, date);
         }
 
         public Integer getUsedTime() {
             return LoggedTime;
+        }
+
+        public void setCompleted() {
+            //set the activity to completed
+            isCompleted = true;
+
+        }
+
+        public boolean isCompleted() {
+            return isCompleted;
         }
     }
 }

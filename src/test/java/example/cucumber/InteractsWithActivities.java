@@ -8,6 +8,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -103,7 +105,9 @@ public class InteractsWithActivities {
 
     @When("the user logs {int} hours on activity {string}")
     public void theUserLogsHoursOnActivity(int hours, String activityId) {
-        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity(activityId).logHours(SoftwareApp.getUserFromID(CurrentUser), hours);
+        //Get today's date
+        LocalDate date = LocalDate.now();
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity(activityId).logHours(SoftwareApp.getUserFromID(CurrentUser), hours, date);
     }
 
     @Then("the used time on activity is {int}")

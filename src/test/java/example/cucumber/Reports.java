@@ -2,32 +2,52 @@ package example.cucumber;
 
 
 import app.SoftwareApp;
-import domain.Project;
 import domain.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Objects;
+
+import static app.SoftwareApp.CurrentUser;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class Reports {
     @Given("there is an activity with a name {string}, timebudget {string}, weeks {string}, start week {string}")
-    public void thereIsAnActivityWithANameTimebudgetWeeksStartWeek(String string, String string2, String string3, String string4) {
+    public void thereIsAnActivityWithANameTimebudgetWeeksStartWeek(String Name, String timebudget, String weeks, String startweek) {
         // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        SoftwareApp.addActivity(Name, timebudget, weeks, startweek, "23001");
+        SoftwareApp.addActivity(Name, timebudget, weeks, startweek, "23001");
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getActivityName(), Name);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getTimeBudget(), timebudget);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getWeeks(), weeks);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getStartWeek(), startweek);
     }
 
 
     @Given("there are completed activities")
     public void thereAreCompletedActivities() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        User newuser = new User("Amanda", "aman");
+        SoftwareApp.addUser(newuser);
+
+        //get today's date
+        LocalDate date = LocalDate.now();
+        // make sure that the activity is completed
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").logHours(SoftwareApp.getUserFromID("aman"), 10, date);
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").setCompleted();
+
+        assertTrue(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").isCompleted());
+        assert SoftwareApp.getUserFromID("aman").getTimeSpentOnActivity("23001A2") == 10;
+
     }
     @When("I generate a report for the project")
     public void iGenerateAReportForTheProject() {
         // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
     @Then("the report shows the hours worked on each activity and the total time for the project")
     public void theReportShowsTheHoursWorkedOnEachActivityAndTheTotalTimeForTheProject() {
