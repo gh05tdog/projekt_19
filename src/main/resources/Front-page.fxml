@@ -2,10 +2,64 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
    <children>
-      <Label layoutX="195.0" layoutY="192.0" text="YOU ARE NOW LOGGED IN, WELCOME:" />
-      <Label fx:id="userNameLabel" layoutX="273.0" layoutY="216.0" text="userName" />
+      <Label fx:id="userNameLabel" layoutX="128.0" layoutY="56.0" prefHeight="48.0" prefWidth="115.0" text="userName">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Text layoutX="27.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User:" wrappingWidth="100.67046737670898">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Text>
+      <Text layoutX="379.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="General" wrappingWidth="133.24187850952148">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Text>
+      <Text layoutX="27.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projects:" wrappingWidth="100.67046737670898">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="27.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activities:" wrappingWidth="86.95611190795898">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="371.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projects" wrappingWidth="74.95623397827148">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Label fx:id="userProjectCount" layoutX="115.0" layoutY="181.0" prefHeight="48.0" prefWidth="115.0" text="number">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="userActivityCount" layoutX="115.0" layoutY="220.0" prefHeight="48.0" prefWidth="115.0" text="number">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="generalProjectCount" layoutX="454.0" layoutY="181.0" prefHeight="48.0" prefWidth="115.0" text="number">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="generalActivityCount" layoutX="454.0" layoutY="220.0" prefHeight="48.0" prefWidth="115.0" text="number">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="365.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activities:" wrappingWidth="86.95611190795898">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

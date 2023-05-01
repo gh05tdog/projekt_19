@@ -1,6 +1,7 @@
 package domain;
 
 import app.SoftwareApp;
+import app.TooManyActivities;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -63,8 +64,12 @@ public class Project {
     }
 
 
-    public List<Activities> getActivityList() {
+    public static List<Activities> getActivityList() {
+        System.out.println(ActivityList);
         return ActivityList;
+    }
+    public static int getNumberOfActivities() {
+        return getActivityList().size();
     }
 
     public void assignActivityToUser(String userID, String activityID) {
@@ -137,6 +142,7 @@ public class Project {
         public String getStartWeek() {
             return StartWeek;
         }
+
         public void logHours(User user, int hours) {
                 LoggedTime += hours;
                 user.updateTimeSheet(ActivityId, hours);
@@ -146,5 +152,6 @@ public class Project {
             return LoggedTime;
         }
     }
+
 }
 
