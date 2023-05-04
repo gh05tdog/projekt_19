@@ -36,7 +36,9 @@ public class User {
         user.UserActivityList.add(activities);
     }
 
-    public static int getUser
+    public static int getUser () {
+        return 0;
+    }
 
 
     public String getName() {
