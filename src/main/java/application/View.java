@@ -56,7 +56,7 @@ public class View extends Application {
                 // Close the login window
                 frontPageController.setUserActivityCount(" ");
 
-                frontPageController.setUserProjectCount("uno");
+                frontPageController.setUserProjectCount("uno dos");
 
                 frontPageController.setGeneralActivityCount(""+ Project.getNumberOfActivities());
 
