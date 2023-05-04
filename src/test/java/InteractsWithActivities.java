@@ -1,5 +1,3 @@
-package example.cucumber;
-
 import app.SoftwareApp;
 import app.TooManyActivities;
 import domain.Project;
@@ -9,7 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 

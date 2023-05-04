@@ -1,5 +1,3 @@
-package example.cucumber;
-
 import app.SoftwareApp;
 import app.TooManyActivities;
 import domain.Project;
