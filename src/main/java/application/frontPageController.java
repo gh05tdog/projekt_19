@@ -1,17 +1,20 @@
 package application;
 
+import app.SoftwareApp;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
-
-import java.awt.*;
 
 
 public class frontPageController {
-
-    public void setModelAndView(Model theModel, View view) {
-    }
+    public void setModelAndView(Model theModel, View view) {}
     @FXML
     private Label userNameLabel;
+
+    public Model theModel;
     public void setUserNameLabel(String name) {
         userNameLabel.setText(name);
     }
@@ -35,5 +38,11 @@ public class frontPageController {
     private Label generalProjectCount;
 
     public void setGeneralProjectCount(String string) {generalProjectCount.setText(string); }
-}
+
+    @FXML
+    protected void createUserPressed()
+    { theModel.createUser(" ");
+        }
+    }
+
 
