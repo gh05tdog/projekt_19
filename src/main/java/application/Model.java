@@ -26,4 +26,8 @@ public class Model {
         view.showMainPage(name);
     }
 
+    public void createUser(String name){
+        view.showMainPage(name);
+    }
+
 }

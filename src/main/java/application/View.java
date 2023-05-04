@@ -40,6 +40,7 @@ public class View extends Application {
         }
     }
 
+
         public void showMainPage(String name) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front-page.fxml"));
@@ -58,9 +59,9 @@ public class View extends Application {
 
                 frontPageController.setUserProjectCount("uno");
 
-                frontPageController.setGeneralActivityCount(""+ Project.getNumberOfActivities());
+                frontPageController.setGeneralActivityCount("" + Project.getNumberOfActivities());
 
-                frontPageController.setGeneralProjectCount(""+ SoftwareApp.getNumberOfProject());
+                frontPageController.setGeneralProjectCount("" + SoftwareApp.getNumberOfProject());
 
                 login.close();
                 frontpage.show();
@@ -70,10 +71,30 @@ public class View extends Application {
                 e.printStackTrace();
             }
         }
+    public void showAddUser (String name){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-User.fxml"));
+            AnchorPane root = loader.load();
+            Stage AddUser = new Stage();
+            AddUser.setScene(new Scene(root));
+
+            // Get the new controller instance for the Front-page.fxml file
+            AddUserController addUserController = loader.getController();
+            // Set the model and view for the new controller instance
+            addUserController.setModelAndView(theModel, this);
+            // Set the username label for the new controller instance
+
+            login.close();
+            AddUser.show();
 
 
-    public static void main(String[] args){
-        launch(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-}
+                public static void main (String[]args){
+                    launch(args);
+                }
+
+            }
