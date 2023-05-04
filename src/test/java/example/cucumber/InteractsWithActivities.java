@@ -1,3 +1,4 @@
+
 import app.SoftwareApp;
 import app.TooManyActivities;
 import domain.Project;
@@ -9,6 +10,7 @@ import io.cucumber.java.en.When;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+
 
 import static app.SoftwareApp.CurrentUser;
 import static org.junit.Assert.assertEquals;
@@ -24,7 +26,7 @@ public class InteractsWithActivities {
     @Given("the project manager with the id {string} is logged in")
     public void theProjectManagerWithTheIdIsLoggedIn(String userId) {
         if (SoftwareApp.getUserFromID(userId) == null) {
-            User user = new User("Amanda", userId);
+            User user = new User("Amanda", userId, true);
             SoftwareApp.addUser(user);
             assertSame(user.getUserId(), userId);
 
@@ -46,11 +48,16 @@ public class InteractsWithActivities {
     @Given("the user with an id {string} is assigned {int} activities")
     public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception {
         // Add activities to the project
-        User.createUser("tejs",userID);
+        User.createUser("tejs",userID,true);
 
         for (int i = 1; i <= nbOfActivities; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23001");
-            SoftwareApp.assignActivityToUser(userID, "23001", "23001" + "A" + i);
+            if(SoftwareApp.getUserFromID(userID).getAvailability()){
+                SoftwareApp.assignActivityToUser(userID, "23001", "23001" + "A" + i);
+            }else{
+                throw new Exception("User is not available");
+            }
+
         }
 
         assert SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber() == nbOfActivities;
@@ -84,8 +91,12 @@ public class InteractsWithActivities {
         User user = SoftwareApp.getUserFromID(string);
         try {
             SoftwareApp.addActivity("TOO-MANY", "10", "1", "1", "23001");
-            SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
-        } catch (TooManyActivities e) {
+            if(SoftwareApp.getUserFromID(string).getAvailability()) {
+                SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
+            }else{
+                throw new Exception("User is not available");
+            }
+        } catch (Exception e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -109,7 +120,8 @@ public class InteractsWithActivities {
 
     @Then("the used time on activity is {int}")
     public void theUsedTimeOnActivityIs(Integer int1) {
-        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUsedTime(), int1);
+        int time = int1;
+        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A1").getUsedTime()), time);
     }
 
     @Then("the user timesheet should be updated with the logged time")
@@ -119,9 +131,9 @@ public class InteractsWithActivities {
 
     @Given("there are employees registered in the system")
     public void thereAreEmployeesRegisteredInTheSystem() {
-        User user = new User("Amanda", "test");
+        User user = new User("Amanda", "test",true);
         SoftwareApp.addUser(user);
-        User user1 = new User("Amanda", "tesl");
+        User user1 = new User("Amanda", "tesl",true);
         SoftwareApp.addUser(user1);
     }
 }

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fadca5cf-cfe1-4a8a-8509-3d2d2e72f7cb" name="Changes" comment="Næsten lavet næste feature færdig">
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/ActivityTimeSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/ActivityTimeSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/example/cucumber/InteractsWithActivities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/example/cucumber/InteractsWithActivities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/example/cucumber/Reports.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/example/cucumber/Reports.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2NBU8dCPiYCfL5TrQP12LoppDbv" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "GUI---interface",
+    "last_opened_file_path": "C:/Users/Bruger/OneDrive - Danmarks Tekniske Universitet/DTU/1. semester/Januar kursus/3-ugers/Januar-Projekt-",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.updates",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="CucumberTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="projekt_16" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="example.cucumber.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="example.cucumber" />
+      <option name="MAIN_CLASS_NAME" value="example.cucumber.CucumberTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CucumberTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fadca5cf-cfe1-4a8a-8509-3d2d2e72f7cb" name="Changes" comment="" />
+      <created>1679136814060</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679136814060</updated>
+      <workItem from="1679136814428" duration="514000" />
+      <workItem from="1679137339707" duration="280000" />
+      <workItem from="1679137631038" duration="3077000" />
+      <workItem from="1679315177891" duration="916000" />
+      <workItem from="1679316190546" duration="1192000" />
+      <workItem from="1679916975823" duration="4609000" />
+      <workItem from="1680006468408" duration="42000" />
+      <workItem from="1681373455793" duration="7657000" />
+      <workItem from="1681819276981" duration="127000" />
+      <workItem from="1681918162495" duration="12338000" />
+      <workItem from="1682943818530" duration="249000" />
+      <workItem from="1682944126379" duration="3749000" />
+    </task>
+    <task id="LOCAL-00001" summary="Næsten lavet næste feature færdig">
+      <created>1682067509386</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682067509389</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Næsten lavet næste feature færdig" />
+    <option name="LAST_COMMIT_MESSAGE" value="Næsten lavet næste feature færdig" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

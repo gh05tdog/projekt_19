@@ -3,6 +3,8 @@ package app;
 import domain.Project;
 import domain.User;
 
+import java.time.LocalDate;
+import java.time.temporal.IsoFields;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +75,13 @@ public class SoftwareApp {
     }
 
 
+
     public static void addUser(User user) {
         UserList.add(user);
+    }
+
+    public static String getCurrentWeek() {
+        LocalDate date = LocalDate.now();
+        return String.valueOf(date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR));
     }
 }
