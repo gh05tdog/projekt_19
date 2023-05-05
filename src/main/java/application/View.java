@@ -18,6 +18,8 @@ public class View extends Application {
 
     private Stage frontpage;
 
+    private Stage AddUser;
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -44,7 +46,6 @@ public class View extends Application {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front-page.fxml"));
                 AnchorPane root = loader.load();
-                Stage frontpage = new Stage();
                 this.frontpage = new Stage();
                 frontpage.setScene(new Scene(root));
 
@@ -75,8 +76,8 @@ public class View extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-User.fxml"));
             Pane root = loader.load();
-            Stage AddUser = new Stage();
-            AddUser.setScene(new Scene(root));
+            Stage addUser = new Stage();
+            addUser.setScene(new Scene(root));
 
             // Get the new controller instance for the Front-page.fxml file
             addUserController addUserController = loader.getController();
@@ -85,7 +86,7 @@ public class View extends Application {
             // Set the username label for the new controller instance
 
             frontpage.close();
-            AddUser.show();
+            addUser.show();
 
 
         } catch (Exception e) {
