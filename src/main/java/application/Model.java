@@ -31,4 +31,13 @@ public class Model {
     public void addUser(String name, String userId) throws UserAlreadyExistsException {
         User.createUser(name, userId);
     }
+
+
+    public void addProjectPage() {
+        view.showAddProject();
+    }
+
+    public void addProject(String projectName) {
+        SoftwareApp.addProject(projectName);
+    }
 }

@@ -127,7 +127,4 @@ public class InteractsWithActivities {
         User user1 = new User("Amanda", "tesl");
         SoftwareApp.addUser(user1);
     }
-
-
-
 }
