@@ -61,11 +61,8 @@ public class Model {
         return SoftwareApp.projectList;
     }
 
-    @FXML
-    protected void returnFrontPage() {
-        view.showMainPage(getCurrentUser());
-
-
+    public void projectPagePage(String string) {
 
     }
+
 }

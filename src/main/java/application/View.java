@@ -1,5 +1,7 @@
 package application;
 
+import app.SoftwareApp;
+import domain.Project;
 import domain.UserAlreadyExistsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,8 @@ public class View extends Application {
     private Stage addUser;
 
     private Stage addProject;
+
+    private Stage projectPage;
 
 
     @Override
@@ -118,6 +122,31 @@ public class View extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void showProjectPage (String projectID) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Project-page.fxml"));
+            AnchorPane root = loader.load();
+            this.projectPage = new Stage();
+            projectPage.setScene(new Scene(root));
+
+            // Get the new controller instance for the Front-page.fxml file
+            projectPageController projectPageController = loader.getController();
+            // Set the model and view for the new controller instance
+            projectPageController.setModelAndView(theModel);
+            // Set the username label for the new controller instance
+            projectPageController.setProjectIDLabel(projectID);
+            // Close the login window
+
+            frontpage.close();
+
+            projectPage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

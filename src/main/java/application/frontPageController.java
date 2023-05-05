@@ -54,14 +54,10 @@ public class frontPageController {
             projectButton.setOnAction(event -> {
 
                 String buttonText = projectButton.getText();
-                int splitPosition = buttonText.indexOf("-");
-                if (splitPosition != -1) {
-                    String nameExtract = buttonText.substring(0,splitPosition-1);
-                    String IDExtract = buttonText.substring(splitPosition+2);
-                    System.out.println(nameExtract);
+
+                    String IDExtract = buttonText.substring(buttonText.length()-5);
                     System.out.println(IDExtract);
 
-                }
 
             });
             projectVBoxUser.getChildren().add(projectButton);
