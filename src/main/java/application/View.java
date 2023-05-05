@@ -71,7 +71,7 @@ public class View extends Application {
                 e.printStackTrace();
             }
         }
-    public void showAddUser (String name){
+    public void showAddUser (){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-User.fxml"));
             AnchorPane root = loader.load();
