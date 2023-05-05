@@ -1,10 +1,16 @@
 package application;
 
+import app.SoftwareApp;
+import domain.Project;
+import domain.User;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 
 public class View extends Application {
@@ -34,6 +40,7 @@ public class View extends Application {
         }
     }
 
+
         public void showMainPage(String name) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front-page.fxml"));
@@ -48,6 +55,14 @@ public class View extends Application {
                 // Set the username label for the new controller instance
                 frontPageController.setUserNameLabel(name);
                 // Close the login window
+                frontPageController.setUserActivityCount(" ");
+
+                frontPageController.setUserProjectCount("uno");
+
+                frontPageController.setGeneralActivityCount("" + Project.getNumberOfActivities());
+
+                frontPageController.setGeneralProjectCount("" + SoftwareApp.getNumberOfProject());
+
                 login.close();
                 frontpage.show();
 
@@ -56,9 +71,30 @@ public class View extends Application {
                 e.printStackTrace();
             }
         }
+    public void showAddUser (String name){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-User.fxml"));
+            AnchorPane root = loader.load();
+            Stage AddUser = new Stage();
+            AddUser.setScene(new Scene(root));
 
-    public static void main(String[] args){
-        launch(args);
+            // Get the new controller instance for the Front-page.fxml file
+            AddUserController addUserController = loader.getController();
+            // Set the model and view for the new controller instance
+            addUserController.setModelAndView(theModel, this);
+            // Set the username label for the new controller instance
+
+            login.close();
+            AddUser.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-}
+                public static void main (String[]args){
+                    launch(args);
+                }
+
+            }
