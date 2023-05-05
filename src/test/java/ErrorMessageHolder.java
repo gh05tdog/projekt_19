@@ -1,5 +1,3 @@
-package example.cucumber;
-
 public class ErrorMessageHolder {
     private String errorMessage = "";
 

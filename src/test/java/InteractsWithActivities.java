@@ -1,17 +1,15 @@
-package example.cucumber;
-
 import app.SoftwareApp;
-import app.TooManyActivities;
 import domain.Project;
 import domain.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-import static app.SoftwareApp.CurrentUser;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -51,7 +49,9 @@ public class InteractsWithActivities {
 
         for (int i = 1; i <= nbOfActivities; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23001");
-            SoftwareApp.assignActivityToUser(userID, "23001", "23001" + "A" + i);
+
+                SoftwareApp.assignActivityToUser(userID, "23001", "23001" + "A" + i);
+
         }
 
         assert SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber() == nbOfActivities;
@@ -85,8 +85,9 @@ public class InteractsWithActivities {
         User user = SoftwareApp.getUserFromID(string);
         try {
             SoftwareApp.addActivity("TOO-MANY", "10", "1", "1", "23001");
-            SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
-        } catch (TooManyActivities e) {
+                SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
+
+        } catch (Exception e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -101,19 +102,21 @@ public class InteractsWithActivities {
         assertEquals(SoftwareApp.getUserFromID("test").getAssignedActivitiesNumber(), 11);
     }
 
-    @When("the user logs {int} hours on activity {string}")
-    public void theUserLogsHoursOnActivity(int hours, String activityId) {
-        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity(activityId).logHours(SoftwareApp.getUserFromID(CurrentUser), hours);
+    @When("the user with the id {string} logs {int} hours on activity {string}")
+    public void theUserWithTheIdLogsHoursOnActivity(String arg0, int arg1, String arg2) {
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity(arg2).logHours(SoftwareApp.getUserFromID(arg0), arg1, LocalDate.now());
     }
 
     @Then("the used time on activity is {int}")
     public void theUsedTimeOnActivityIs(Integer int1) {
-        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUsedTime(), int1);
+        int time = int1;
+        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A1").getUsedTime()), time);
     }
+
 
     @Then("the user timesheet should be updated with the logged time")
     public void theUserTimesheetShouldBeUpdatedWithTheLoggedTime() {
-        assert SoftwareApp.getUserFromID(CurrentUser).getTimeSpentOnActivity("23001A1") == 2;
+        assertEquals(SoftwareApp.getUserFromID("abcd").getTimeSpentOnActivity("23001A1"),2);
     }
 
     @Given("there are employees registered in the system")
@@ -123,4 +126,7 @@ public class InteractsWithActivities {
         User user1 = new User("Amanda", "tesl");
         SoftwareApp.addUser(user1);
     }
+
+
+
 }
