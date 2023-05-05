@@ -2,8 +2,11 @@ package application;
 
 import app.SoftwareApp;
 import app.TooManyActivities;
+import domain.Project;
 import domain.User;
 import domain.UserAlreadyExistsException;
+
+import java.util.List;
 
 
 public class Model {
@@ -17,6 +20,8 @@ public class Model {
         // Add a user to the database
         User.createUser("Roberto", "test");
         SoftwareApp.addProject("Project101");
+        SoftwareApp.addProject("Project102");
+        SoftwareApp.addProject("Project103");
         SoftwareApp.addActivity("name","100","10","02/02/2024","23001");
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
 
@@ -49,5 +54,9 @@ public class Model {
     }
     public void setCurrentUser(String string) {
         this.currentUser = string;
+    }
+
+    public List<Project> getProjects() {
+        return SoftwareApp.projectList;
     }
 }

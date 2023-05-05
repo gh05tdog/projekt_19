@@ -7,12 +7,16 @@ import javafx.scene.control.TextField;
 public class addProjectController {
     Model theModel;
 
+
     public void initialize(){
         projectAddInfoLabel.setText("");
     }
     public void setModelAndView(Model theModel) {
         this.theModel = theModel;
     }
+
+
+
     @FXML
     TextField projectNameField;
 
