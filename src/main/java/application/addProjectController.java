@@ -7,12 +7,16 @@ import javafx.scene.control.TextField;
 public class addProjectController {
     Model theModel;
 
+    View view;
+
 
     public void initialize(){
         projectAddInfoLabel.setText("");
     }
-    public void setModelAndView(Model theModel) {
+    public void setModelAndView(Model theModel, View theView) {
+
         this.theModel = theModel;
+        this.view = theView;
     }
 
 
@@ -32,5 +36,12 @@ public class addProjectController {
         else{
             projectAddInfoLabel.setText("Please enter a project name");
         }
+    }
+    @FXML
+    protected void returnFrontPage() {
+        view.showMainPage(theModel.getCurrentUser());
+
+
+
     }
 }

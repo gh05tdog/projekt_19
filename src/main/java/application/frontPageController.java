@@ -15,12 +15,15 @@ import javafx.beans.value.ObservableValue;
 public class frontPageController {
 
     @FXML
-    private ScrollPane scrollPane;
+    private ScrollPane scrollPaneUser;
 
     @FXML
-    private VBox projectVBox;
+    private VBox projectVBoxUser;
 
     private Model theModel;
+
+    @FXML
+    private VBox projectVboxGlobal;
 
 
 
@@ -29,29 +32,39 @@ public class frontPageController {
 
         // Add a ChangeListener to the ScrollPane's widthProperty
         // This code was created with the help of https://stackoverflow.com/questions/16606162/javafx-how-to-get-the-scrollbars-of-a-scrollpane
-        scrollPane.widthProperty().addListener(new ChangeListener<>() {
+        scrollPaneUser.widthProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 // Call initializeComponents() when the ScrollPane's width changes
                 initializeComponents();
 
                 // Remove the listener after the first layout pass to avoid multiple calls
-                scrollPane.widthProperty().removeListener(this);
+                scrollPaneUser.widthProperty().removeListener(this);
             }
         });
     }
 
-
+// The code seen below is created by chatGPT our lord and saviour
     private void initializeComponents(){
         //Loop through all projects and add a button for each project
         for(Project project : theModel.getProjects()){
-            Button projectButton = new Button(project.getProjectName());
-            projectButton.setMinWidth(scrollPane.getWidth());
-            projectButton.maxWidthProperty().bind(scrollPane.widthProperty());
+            Button projectButton = new Button(project.getProjectName() + " - " + project.getProjectId());
+            projectButton.setMinWidth(scrollPaneUser.getWidth());
+            projectButton.maxWidthProperty().bind(scrollPaneUser.widthProperty());
             projectButton.setOnAction(event -> {
-                // Handle project button click here
+
+                String buttonText = projectButton.getText();
+                int splitPosition = buttonText.indexOf("-");
+                if (splitPosition != -1) {
+                    String nameExtract = buttonText.substring(0,splitPosition-1);
+                    String IDExtract = buttonText.substring(splitPosition+2);
+                    System.out.println(nameExtract);
+                    System.out.println(IDExtract);
+
+                }
+
             });
-            projectVBox.getChildren().add(projectButton);
+            projectVBoxUser.getChildren().add(projectButton);
         }
     }
 

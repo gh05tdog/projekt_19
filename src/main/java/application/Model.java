@@ -5,6 +5,7 @@ import app.TooManyActivities;
 import domain.Project;
 import domain.User;
 import domain.UserAlreadyExistsException;
+import javafx.fxml.FXML;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Model {
         this.view = view;
         // Add a user to the database
         User.createUser("Roberto", "test");
-        SoftwareApp.addProject("Project101");
+        SoftwareApp.addProject("din mor");
         SoftwareApp.addProject("Project102");
         SoftwareApp.addProject("Project103");
         SoftwareApp.addActivity("name","100","10","02/02/2024","23001");
@@ -58,5 +59,13 @@ public class Model {
 
     public List<Project> getProjects() {
         return SoftwareApp.projectList;
+    }
+
+    @FXML
+    protected void returnFrontPage() {
+        view.showMainPage(getCurrentUser());
+
+
+
     }
 }

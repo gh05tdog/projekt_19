@@ -108,7 +108,7 @@ public class View extends Application {
             // Get the new controller instance for the Front-page.fxml file
             addProjectController addProjectController = loader.getController();
             // Set the model and view for the new controller instance
-            addProjectController.setModelAndView(theModel);
+            addProjectController.setModelAndView(theModel, this);
             // Set the username label for the new controller instance
 
             frontpage.close();

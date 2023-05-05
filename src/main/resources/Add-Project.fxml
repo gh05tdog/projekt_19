@@ -25,5 +25,5 @@
          <Font size="16.0" />
       </font>
    </Label>
-   <Button id="ReturnFrontPage" fx:id="createProjectReturn" layoutX="237.0" layoutY="311.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" text="Return to front page" />
+   <Button id="ReturnFrontPage" fx:id="createProjectReturn" layoutX="237.0" layoutY="311.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" text="Return to front page" onAction="#returnFrontPage" />
 </AnchorPane>
