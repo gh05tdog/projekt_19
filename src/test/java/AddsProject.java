@@ -21,8 +21,6 @@ public class AddsProject {
             User.createUser("abcd", userId);
             //Check if the user with the id is in UserList
             assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
-
-
     }
 
     @And("that the user with the id {string} is logged in")
@@ -35,6 +33,7 @@ public class AddsProject {
     @When("the user adds a project with the name {string}")
     public void theUserAddsAProjectWithTheName(String projectName) {
         SoftwareApp.addProject(projectName);
+
     }
 
 
@@ -79,14 +78,11 @@ public class AddsProject {
         assert project != null;
         assertEquals(project.getWorkersList(coWorkerId).getUserId(), coWorkerId);
         assertEquals(project.getProjectManager().getUserId(), MangID);
-
     }
 
     @When("the user adds an activity To the project with a name {string}, timebudget {string}, weeks {string}, start week {string} to the project with the id {string}")
     public void theUserAddsAnActivityToTheProjectWithANameTimebudgetWeeksStartWeekToTheProjectWithTheId(String name, String timebudget, String weeks, String startWeek, String projectId) {
-
         SoftwareApp.addActivity(name, timebudget, weeks, startWeek, projectId);
-
     }
 
     @Then("the project with the id {string} has an activity with the name {string}, timebudget {string}, weeks {string}, start week {string}")
@@ -111,8 +107,9 @@ public class AddsProject {
     public void theUserAssignEmployeesAndToActivityInProject(String user1, String user2, String activityID, String projectID) throws TooManyActivities {
         // Write code here that turns the phrase above into concrete actions
         //System.out.println(SoftwareApp.UserList);
-        SoftwareApp.assignActivityToUser(user1, projectID, activityID);
-        SoftwareApp.assignActivityToUser(user2, projectID, activityID);
+            SoftwareApp.assignActivityToUser(user1, projectID, activityID);
+            SoftwareApp.assignActivityToUser(user2, projectID, activityID);
+
     }
 
     @Then("employees {string} and {string} should be assigned to activity {string} in project {string}")
