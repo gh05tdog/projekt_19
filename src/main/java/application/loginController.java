@@ -39,8 +39,8 @@ public class loginController {
 
 
 
-    public void setModelAndView(Model model)
-    {this.theModel = model;
+    public void setModelAndView(Model model) {
+        this.theModel = model;
     }
 
 }

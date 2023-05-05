@@ -4,23 +4,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
-   <children>
-      <Label fx:id="userNameLabel" layoutX="185.0" layoutY="35.0" prefHeight="48.0" prefWidth="233.0" text="userName">
-         <font>
-            <Font size="30.0" />
-         </font></Label>
-      <Text layoutX="39.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="133.24187850952148">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <Button layoutX="449.0" layoutY="200.0" mnemonicParsing="false" onAction="#createUserPressed" text="Add User to system" />
-      <Button layoutX="449.0" layoutY="260.0" mnemonicParsing="false" onAction="#createProjectPressed" prefHeight="25.0" prefWidth="120.0" text="Create project" />
-      <ScrollPane layoutX="39.0" layoutY="125.0" prefHeight="200.0" prefWidth="200.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
+   <Label fx:id="userNameLabel" layoutX="185.0" layoutY="35.0" prefHeight="48.0" prefWidth="233.0" text="userName">
+      <font>
+         <Font size="30.0"/>
+      </font>
+   </Label>
+   <Text layoutX="39.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome"
+         wrappingWidth="133.24187850952148">
+      <font>
+         <Font size="30.0"/>
+      </font>
+   </Text>
+   <Button layoutX="449.0" layoutY="200.0" mnemonicParsing="false" onAction="#createUserPressed"
+           text="Add User to system"/>
+   <Button layoutX="449.0" layoutY="260.0" mnemonicParsing="false" onAction="#createProjectPressed" prefHeight="25.0"
+           prefWidth="120.0" text="Create project"/>
+   <ScrollPane fx:id="scrollPane" layoutX="39.0" layoutY="125.0" prefHeight="200.0" prefWidth="200.0">
+      <VBox fx:id="projectVBox" prefHeight="200.0" prefWidth="100.0"/>
+   </ScrollPane>
 </AnchorPane>
