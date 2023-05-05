@@ -9,6 +9,8 @@ import domain.UserAlreadyExistsException;
 public class Model {
     private final View view;
 
+    private String currentUser;
+
 
     public Model(View view) throws TooManyActivities, UserAlreadyExistsException {
         this.view = view;
@@ -20,7 +22,7 @@ public class Model {
 
     }
 
-    public void login(String name) {
+    public void frontPagePage(String name) {
         view.showMainPage(name);
     }
 
@@ -39,5 +41,13 @@ public class Model {
 
     public void addProject(String projectName) {
         SoftwareApp.addProject(projectName);
+    }
+
+    public String getCurrentUser () {
+        return currentUser;
+
+    }
+    public void setCurrentUser(String string) {
+        this.currentUser = string;
     }
 }

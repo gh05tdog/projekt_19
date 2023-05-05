@@ -19,7 +19,7 @@ public class loginController {
     }
 
     @FXML
-    protected void LoginButtonPressed()
+    protected String LoginButtonPressed()
     {
         // Check if the user exists with the function getUserFromID
         // if the user exists, then login
@@ -27,14 +27,15 @@ public class loginController {
 
         if(SoftwareApp.getUserFromID(passwordField.getText()) != null)
         {
-            theModel.login(SoftwareApp.getUserFromID(passwordField.getText()).getName());
+            theModel.setCurrentUser(SoftwareApp.getUserFromID(passwordField.getText()).getName());
+            theModel.frontPagePage(theModel.getCurrentUser());
         }else
         {
             System.out.println("User does not exist");
         }
+        return SoftwareApp.getUserFromID(passwordField.getText()).getName();
     }
-    @FXML
-    protected void ReturnButton
+
 
 
 

@@ -30,6 +30,7 @@ public class frontPageController {
         theModel.addProjectPage();
     }
 
+
 }
 
 

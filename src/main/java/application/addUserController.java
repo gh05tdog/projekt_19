@@ -1,6 +1,7 @@
 package application;
 
 
+import app.SoftwareApp;
 import domain.UserAlreadyExistsException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,12 +14,15 @@ public class addUserController {
     public Button addUserButton;
     private Model theModel;
 
+    private View view;
 
 
 
 
-    public void setModelAndView(Model theModel) {
+
+    public void setModelAndView(Model theModel, View theView) {
         this.theModel = theModel;
+        this.view = theView;
     }
 
     @FXML
@@ -47,6 +51,13 @@ public class addUserController {
         else {
             setUserNameLabel("Please enter a name and ID");
         }
+    }
+    @FXML
+    protected void returnFrontPage() {
+        view.showMainPage(theModel.getCurrentUser());
+
+
+
     }
 }
 

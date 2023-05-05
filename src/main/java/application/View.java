@@ -17,6 +17,8 @@ public class View extends Application {
 
     private Stage frontpage;
 
+    private Stage addUser;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -58,6 +60,11 @@ public class View extends Application {
                 // Close the login window
 
                 login.close();
+
+                if (addUser != null) {
+                    addUser.close();
+                }
+
                 frontpage.show();
 
             } catch (Exception e) {
@@ -68,13 +75,13 @@ public class View extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-User.fxml"));
             Pane root = loader.load();
-            Stage addUser = new Stage();
+            this.addUser = new Stage();
             addUser.setScene(new Scene(root));
 
             // Get the new controller instance for the Front-page.fxml file
             addUserController addUserController = loader.getController();
             // Set the model and view for the new controller instance
-            addUserController.setModelAndView(theModel);
+            addUserController.setModelAndView(theModel, this);
             // Set the username label for the new controller instance
 
             frontpage.close();
@@ -86,7 +93,7 @@ public class View extends Application {
         }
     }
 
-    public void showAddProject(){
+    public void showAddProject() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-Project.fxml"));
             Pane root = loader.load();
@@ -106,7 +113,6 @@ public class View extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 
