@@ -32,7 +32,7 @@ public class frontPageController {
     @FXML
     private Label generalActivityCount;
 
-    public void setGeneralActivityCount(Label label) {generalActivityCount = (" "); }
+    public void setGeneralActivityCount(String string) {generalActivityCount.setText(string); }
 
     @FXML
     private Label generalProjectCount;
@@ -41,8 +41,14 @@ public class frontPageController {
 
     @FXML
     protected void createUserPressed()
-    { theModel.createUser();
+    {
+        theModel.createUser();
         }
+
+    public void setModelAndView(Model model)
+    {this.theModel = model;
     }
+
+}
 
 

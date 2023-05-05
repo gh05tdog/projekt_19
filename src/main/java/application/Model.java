@@ -27,6 +27,7 @@ public class Model {
     }
 
     public void createUser(){
+
         view.showAddUser();
     }
 
