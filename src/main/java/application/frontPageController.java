@@ -25,6 +25,10 @@ public class frontPageController {
         theModel.createUser();
     }
 
+    @FXML
+    protected void createProjectPressed() {
+        theModel.addProjectPage();
+    }
 
 }
 

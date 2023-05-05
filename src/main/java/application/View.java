@@ -86,6 +86,30 @@ public class View extends Application {
         }
     }
 
+    public void showAddProject(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-Project.fxml"));
+            Pane root = loader.load();
+            Stage addProject = new Stage();
+            addProject.setScene(new Scene(root));
+
+            // Get the new controller instance for the Front-page.fxml file
+            addProjectController addProjectController = loader.getController();
+            // Set the model and view for the new controller instance
+            addProjectController.setModelAndView(theModel);
+            // Set the username label for the new controller instance
+
+            frontpage.close();
+            addProject.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     public static void main (String[]args){
         launch(args);

@@ -6,7 +6,7 @@
 	<!-- Tip to update to the latest releases: Run "mvn versions:use-latest-releases" -->
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>group 16</groupId>
+	<groupId>dtu</groupId>
 	<artifactId>projekt_16</artifactId>
 	<name>projekt_16</name>
 	<version>SNAPSHOT 0.0.1</version>
