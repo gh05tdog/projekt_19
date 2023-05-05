@@ -68,6 +68,7 @@ public class User {
     public ArrayList<Date> getUnAvailableDates() {
         return UnAvailableDates;
     }
+
     public void setVacation(String startDate, String endDate) {
         LocalDate start = LocalDate.parse(startDate);
         LocalDate end = LocalDate.parse(endDate);

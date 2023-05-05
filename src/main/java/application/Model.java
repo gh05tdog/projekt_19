@@ -2,11 +2,8 @@ package application;
 
 import app.SoftwareApp;
 import app.TooManyActivities;
-import domain.ActivityTimeSheet;
-import domain.Project;
 import domain.User;
 
-import java.util.List;
 
 public class Model {
     private final View view;
@@ -27,7 +24,6 @@ public class Model {
     }
 
     public void createUser(){
-
         view.showAddUser();
     }
 
