@@ -56,13 +56,13 @@ public class View extends Application {
                 // Set the username label for the new controller instance
                 frontPageController.setUserNameLabel(name);
                 // Close the login window
-                frontPageController.setUserActivityCount(" ");
+        //        frontPageController.setUserActivityCount(" ");
 
-                frontPageController.setUserProjectCount("uno");
+     //           frontPageController.setUserProjectCount("uno");
 
-                frontPageController.setGeneralActivityCount(String.valueOf(Project.getNumberOfActivities()));
+      //          frontPageController.setGeneralActivityCount(String.valueOf(Project.getNumberOfActivities()));
 
-                frontPageController.setGeneralProjectCount(String.valueOf(SoftwareApp.getNumberOfProject()));
+          //      frontPageController.setGeneralProjectCount(String.valueOf(SoftwareApp.getNumberOfProject()));
 
                 login.close();
                 frontpage.show();
