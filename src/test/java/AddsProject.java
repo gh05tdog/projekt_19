@@ -4,6 +4,7 @@ import domain.Project;
 import domain.User;
 
 
+import domain.UserAlreadyExistsException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -18,7 +19,15 @@ public class AddsProject {
     @Given("that there is a user with the id {string}")
     public void that_there_is_a_user_with_the_id(String userId) {
         //If there is a user with the id, do nothing, else create new user
+        try {
             User.createUser("abcd", userId);
+        } catch (UserAlreadyExistsException e){
+            //Check if the user with the id is in UserList
+            assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
+        }
+
+
+
             //Check if the user with the id is in UserList
             assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
     }
@@ -54,7 +63,7 @@ public class AddsProject {
     }
 
     @When("user adds a co-worker with the id {string} to the project with the id {string}")
-    public void userAddsACoWorkerWithTheIdToTheProjectWithTheId(String username, String projectId) {
+    public void userAddsACoWorkerWithTheIdToTheProjectWithTheId(String username, String projectId) throws UserAlreadyExistsException {
         User.createUser("john",username);
         SoftwareApp.addCoWorker(username, projectId);
         assertEquals(SoftwareApp.projectList.get(0).getWorkersList(username).getUserId(), username);
@@ -62,7 +71,7 @@ public class AddsProject {
     }
 
     @When("the users select a project manager with the id {string} for the project with the id {string}")
-    public void theUsersSelectAProjectManagerWithTheIdForTheProjectWithTheId(String projectManID, String ProjectID) {
+    public void theUsersSelectAProjectManagerWithTheIdForTheProjectWithTheId(String projectManID, String ProjectID) throws UserAlreadyExistsException {
         user = User.createUser("Manga", projectManID);
         // Write code here that turns the phrase above into concrete actions
         SoftwareApp.projectList.get(0).setProjectManager(user);
@@ -97,9 +106,14 @@ public class AddsProject {
     }
 
     @Given("there is a user with the id {string}")
-    public void thereIsAUserWithTheId(String string) {
+    public void thereIsAUserWithTheId(String string) throws UserAlreadyExistsException {
         // Write code here that turns the phrase above into concrete actions
-        User.createUser("emma", string);
+        try {
+            User.createUser("emma", string);
+        } catch (UserAlreadyExistsException e){
+            //Check if the user with the id is in UserList
+            assertEquals(SoftwareApp.getUserFromID(string).getUserId(), string);
+        }
         assertEquals(SoftwareApp.getUserFromID(string).getUserId(), string);
     }
 

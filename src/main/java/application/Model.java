@@ -3,13 +3,14 @@ package application;
 import app.SoftwareApp;
 import app.TooManyActivities;
 import domain.User;
+import domain.UserAlreadyExistsException;
 
 
 public class Model {
     private final View view;
 
 
-    public Model(View view) throws TooManyActivities {
+    public Model(View view) throws TooManyActivities, UserAlreadyExistsException {
         this.view = view;
         // Add a user to the database
         User.createUser("Roberto", "test");
@@ -27,4 +28,7 @@ public class Model {
         view.showAddUser();
     }
 
+    public void addUser(String name, String userId) throws UserAlreadyExistsException {
+        User.createUser(name, userId);
+    }
 }

@@ -18,18 +18,20 @@ public class User {
     public ArrayList<Date> UnAvailableDates = new ArrayList<>();
 
 
+
+
     public User(String name, String userId) {
         this.name = name;
         this.userId = userId;
         this.UserActivityList = new ArrayList<>();
     }
 
-    public static User createUser(String name, String userId) {
+    public static User createUser(String name, String userId) throws UserAlreadyExistsException {
         //Check if username is already in use
         //If it is, throw an exception
-        if (SoftwareApp.getUserFromID(userId) != null) {
-            return SoftwareApp.getUserFromID(userId);
-        }
+            if (SoftwareApp.getUserFromID(userId) != null) {
+                throw new UserAlreadyExistsException("User already exists");
+            }
         User newUser = new User(name, userId);
         SoftwareApp.UserList.add(newUser);
         System.out.println("User " + name + " created");

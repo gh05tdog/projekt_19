@@ -1,7 +1,6 @@
 package application;
 
-import app.SoftwareApp;
-import domain.Project;
+import domain.UserAlreadyExistsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +17,6 @@ public class View extends Application {
 
     private Stage frontpage;
 
-    private Stage AddUser;
 
     @Override
     public void start(Stage primaryStage) {
@@ -38,6 +36,8 @@ public class View extends Application {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } catch (UserAlreadyExistsException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -56,17 +56,9 @@ public class View extends Application {
                 // Set the username label for the new controller instance
                 frontPageController.setUserNameLabel(name);
                 // Close the login window
-        //        frontPageController.setUserActivityCount(" ");
-
-     //           frontPageController.setUserProjectCount("uno");
-
-      //          frontPageController.setGeneralActivityCount(String.valueOf(Project.getNumberOfActivities()));
-
-          //      frontPageController.setGeneralProjectCount(String.valueOf(SoftwareApp.getNumberOfProject()));
 
                 login.close();
                 frontpage.show();
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -82,7 +74,7 @@ public class View extends Application {
             // Get the new controller instance for the Front-page.fxml file
             addUserController addUserController = loader.getController();
             // Set the model and view for the new controller instance
-            addUserController.setModelAndView(theModel, this);
+            addUserController.setModelAndView(theModel);
             // Set the username label for the new controller instance
 
             frontpage.close();
@@ -93,8 +85,10 @@ public class View extends Application {
             e.printStackTrace();
         }
     }
+
+
     public static void main (String[]args){
-                    launch(args);
-                }
+        launch(args);
+    }
 
 }
