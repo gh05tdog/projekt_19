@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddProject">
+   <children>
+      <Text layoutX="155.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new Project">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Text layoutX="36.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter project name">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <TextField layoutX="261.0" layoutY="170.0" prefHeight="36.0" prefWidth="297.0" />
+      <Button layoutX="234.0" layoutY="231.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="133.0" text="Add project to system" />
+      <Label alignment="CENTER" layoutX="61.0" layoutY="302.0" prefHeight="17.0" prefWidth="478.0" text="Your mother">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
