@@ -5,7 +5,6 @@ import app.TooManyActivities;
 import domain.Project;
 import domain.User;
 import domain.UserAlreadyExistsException;
-import javafx.fxml.FXML;
 
 import java.util.List;
 
@@ -61,7 +60,8 @@ public class Model {
         return SoftwareApp.projectList;
     }
 
-    public void projectPagePage(String string) {
+    public void projectPagePage(String IDExtract, String nameExtract) {
+        view.showProjectPage(IDExtract, nameExtract);
 
     }
 

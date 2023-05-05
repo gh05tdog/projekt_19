@@ -6,12 +6,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.projectPageController">
    <children>
-      <Label id="projectIDLabel" layoutX="44.0" layoutY="39.0" text="23001">
+      <Label fx:id="projectIDLabel" layoutX="44.0" layoutY="39.0" text="23001">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label id="projectNameLabel" layoutX="129.0" layoutY="39.0" prefHeight="36.0" prefWidth="191.0" text="Label">
+      <Label fx:id="projectNameLabel" layoutX="129.0" layoutY="39.0" prefHeight="36.0" prefWidth="191.0" text="Label">
          <font>
             <Font size="25.0" />
          </font>

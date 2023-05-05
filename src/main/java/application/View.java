@@ -1,7 +1,5 @@
 package application;
 
-import app.SoftwareApp;
-import domain.Project;
 import domain.UserAlreadyExistsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -124,7 +122,7 @@ public class View extends Application {
         }
     }
 
-    public void showProjectPage (String projectID) {
+    public void showProjectPage (String projectID, String nameExtract) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Project-page.fxml"));
             AnchorPane root = loader.load();
@@ -135,6 +133,8 @@ public class View extends Application {
             projectPageController projectPageController = loader.getController();
             // Set the model and view for the new controller instance
             projectPageController.setModelAndView(theModel);
+            // Set the project for the new controller instance
+            projectPageController.setProjectNameLabel(nameExtract);
             // Set the username label for the new controller instance
             projectPageController.setProjectIDLabel(projectID);
             // Close the login window

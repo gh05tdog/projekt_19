@@ -12,20 +12,21 @@ import javafx.beans.value.ObservableValue;
 
 public class projectPageController {
 
+    public Label projectNameLabel;
+
+    public Label projectIDLabel;
     private Model theModel;
 
-    private Label label;
+public void setModelAndView(Model theModel) {
+    this.theModel = theModel;
+}
 
-    public void setModelAndView(Model theModel) {
-
-        this.theModel = theModel;
+    public void setProjectIDLabel (String name) {
+        projectIDLabel.setText(name);
     }
 
-
-@FXML
-    private Label projectIDLabel;
-    public void setProjectIDLabel(String name) {
-        projectIDLabel.setText(name);
+    public void setProjectNameLabel (String name) {
+         projectNameLabel.setText(name);
     }
 
 }

@@ -57,6 +57,8 @@ public class frontPageController {
 
                     String IDExtract = buttonText.substring(buttonText.length()-5);
                     System.out.println(IDExtract);
+                    String nameExtract = buttonText.substring(0,buttonText.length()-8);
+                    theModel.projectPagePage(IDExtract, nameExtract);
 
 
             });
