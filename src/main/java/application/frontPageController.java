@@ -21,34 +21,6 @@ public class frontPageController {
     }
 
     @FXML
-    private Label userActivityCount;
-
-    public void setUserActivityCount(String string) {
-        userActivityCount.setText(string);
-    }
-
-    @FXML
-    private Label userProjectCount;
-
-    public void setUserProjectCount(String string) {
-        userProjectCount.setText(string);
-    }
-
-    @FXML
-    private Label generalActivityCount;
-
-    public void setGeneralActivityCount(String string) {
-        generalActivityCount.setText(string);
-    }
-
-    @FXML
-    private Label generalProjectCount;
-
-    public void setGeneralProjectCount(String string) {
-        generalProjectCount.setText(string);
-    }
-
-    @FXML
     protected void createUserPressed() {
         theModel.createUser();
     }
