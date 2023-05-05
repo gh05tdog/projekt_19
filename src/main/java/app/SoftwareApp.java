@@ -20,8 +20,6 @@ public class SoftwareApp {
         projectList.add(project);
     }
 
-
-
     public static int getNumberOfProject() {
         return projectList.size();
     }
@@ -73,8 +71,6 @@ public class SoftwareApp {
             project.assignActivityToUser(userID, activityID);
         }
     }
-
-
 
     public static void addUser(User user) {
         UserList.add(user);

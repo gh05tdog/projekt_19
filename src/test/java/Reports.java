@@ -1,8 +1,5 @@
-package example.cucumber;
-
 import app.CSVgenerator;
 import app.SoftwareApp;
-import app.TooManyActivities;
 import domain.Project;
 import domain.User;
 import io.cucumber.java.en.Given;
@@ -34,7 +31,7 @@ public class Reports {
 
     @Given("there are completed activities")
     public void thereAreCompletedActivities() {
-        User.createUser("Amanda", "aman",true);
+        User.createUser("Amanda", "aman");
         //get today's date
         LocalDate date = LocalDate.now();
         // make sure that the activity is completed
@@ -46,13 +43,10 @@ public class Reports {
     }
     @When("I generate a report for the project")
     public void iGenerateAReportForTheProject() throws Exception {
-        User.createUser("Phillip", "phil",true);
-        if(SoftwareApp.getUserFromID("phil").getAvailability() || SoftwareApp.getUserFromID("aman").getAvailability()) {
+        User.createUser("Phillip", "phil");
             SoftwareApp.assignActivityToUser("aman", "23001", "23001A2");
             SoftwareApp.assignActivityToUser("phil", "23001", "23001A2");
-        }else{
-            throw new Exception("User is not available");
-        }
+
         System.out.println(Project.workersList);
     }
 

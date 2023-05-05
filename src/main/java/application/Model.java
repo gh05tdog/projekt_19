@@ -9,7 +9,7 @@ public class Model {
     public Model(View view) {
         this.view = view;
         // Add a user to the database
-        User.createUser("Test", "test",true);
+        User.createUser("Test", "test");
     }
 
     public void login(String name) {

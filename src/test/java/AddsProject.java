@@ -1,5 +1,3 @@
-package example.cucumber;
-
 import app.SoftwareApp;
 import app.TooManyActivities;
 import domain.Project;
@@ -20,11 +18,9 @@ public class AddsProject {
     @Given("that there is a user with the id {string}")
     public void that_there_is_a_user_with_the_id(String userId) {
         //If there is a user with the id, do nothing, else create new user
-            User.createUser("abcd", userId,true);
+            User.createUser("abcd", userId);
             //Check if the user with the id is in UserList
             assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
-
-
     }
 
     @And("that the user with the id {string} is logged in")
@@ -37,6 +33,7 @@ public class AddsProject {
     @When("the user adds a project with the name {string}")
     public void theUserAddsAProjectWithTheName(String projectName) {
         SoftwareApp.addProject(projectName);
+
     }
 
 
@@ -58,7 +55,7 @@ public class AddsProject {
 
     @When("user adds a co-worker with the id {string} to the project with the id {string}")
     public void userAddsACoWorkerWithTheIdToTheProjectWithTheId(String username, String projectId) {
-        User.createUser("john",username,true);
+        User.createUser("john",username);
         SoftwareApp.addCoWorker(username, projectId);
         assertEquals(SoftwareApp.projectList.get(0).getWorkersList(username).getUserId(), username);
 
@@ -66,7 +63,7 @@ public class AddsProject {
 
     @When("the users select a project manager with the id {string} for the project with the id {string}")
     public void theUsersSelectAProjectManagerWithTheIdForTheProjectWithTheId(String projectManID, String ProjectID) {
-        user = User.createUser("Manga", projectManID,true);
+        user = User.createUser("Manga", projectManID);
         // Write code here that turns the phrase above into concrete actions
         SoftwareApp.projectList.get(0).setProjectManager(user);
         Project project = SoftwareApp.getProject(ProjectID);
@@ -102,7 +99,7 @@ public class AddsProject {
     @Given("there is a user with the id {string}")
     public void thereIsAUserWithTheId(String string) {
         // Write code here that turns the phrase above into concrete actions
-        User.createUser("emma", string,true);
+        User.createUser("emma", string);
         assertEquals(SoftwareApp.getUserFromID(string).getUserId(), string);
     }
 
@@ -110,13 +107,8 @@ public class AddsProject {
     public void theUserAssignEmployeesAndToActivityInProject(String user1, String user2, String activityID, String projectID) throws TooManyActivities {
         // Write code here that turns the phrase above into concrete actions
         //System.out.println(SoftwareApp.UserList);
-        if(SoftwareApp.getUserFromID(user1).getAvailability() || SoftwareApp.getUserFromID(user2).getAvailability() ) {
             SoftwareApp.assignActivityToUser(user1, projectID, activityID);
             SoftwareApp.assignActivityToUser(user2, projectID, activityID);
-        }
-        else {
-            throw new TooManyActivities("User is not available");
-        }
 
     }
 

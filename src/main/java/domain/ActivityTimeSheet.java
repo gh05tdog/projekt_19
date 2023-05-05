@@ -13,6 +13,7 @@ public class ActivityTimeSheet {
         this.activityId = activityId;
         this.totalHours = 0;
         timeLog = new ArrayList<>();
+        addHours(hours, date);
     }
 
     public void addHours(int hours, LocalDate date) {
