@@ -19,6 +19,8 @@ public class View extends Application {
 
     private Stage addUser;
 
+    private Stage addProject;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -64,6 +66,9 @@ public class View extends Application {
                 if (addUser != null) {
                     addUser.close();
                 }
+                if (addProject != null) {
+                    addProject.close();
+                }
 
                 frontpage.show();
 
@@ -97,7 +102,7 @@ public class View extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-Project.fxml"));
             Pane root = loader.load();
-            Stage addProject = new Stage();
+            this.addProject = new Stage();
             addProject.setScene(new Scene(root));
 
             // Get the new controller instance for the Front-page.fxml file
