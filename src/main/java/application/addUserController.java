@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 public class addUserController {
 
     public Button addUserButton;
-    private Model theModel; d
+    private Model theModel;
 
 
 
