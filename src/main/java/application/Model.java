@@ -77,7 +77,7 @@ public class Model {
         return SoftwareApp.projectList;
     }
 
-    public List<Project.Activities> getActivities(){ return Project.ActivityList; }
+    public List<Project.Activities> getActivities(Project project){ return project.ActivityList; }
 
     public void projectPagePage(String IDExtract, String nameExtract) {
         view.showProjectPage(IDExtract, nameExtract);

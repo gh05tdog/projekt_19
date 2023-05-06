@@ -54,11 +54,13 @@ public class projectPageController {
         currentProject = SoftwareApp.getProject(projectIDLabel.getText());
         System.out.println(projectIDLabel.getText());
         System.out.println(currentProject.getProjectName());
+        System.out.println(currentProject.getNumberOfActivities());
 
 
 
         for (int i = 0; i < currentProject.getActivityList().size(); i++) {
-            Project.Activities activity = theModel.getActivities().get(i);
+
+            Project.Activities activity = currentProject.getActivityList().get(i);
             System.out.println(activity.getActivityName());
             Button activityButtonName = new Button();
             activityButtonName.setMinWidth(vBoxName.getWidth());
@@ -98,7 +100,6 @@ public class projectPageController {
     @FXML
     protected void returnFrontPage() {
         view.showMainPage(theModel.getCurrentUser());
-        System.out.println(theModel.getActivities().size());
     }
 
 }
