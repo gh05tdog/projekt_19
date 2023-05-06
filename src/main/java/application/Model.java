@@ -14,6 +14,8 @@ public class Model {
 
     private String currentUser;
 
+    private String currentUserID;
+
 
     public Model(View view) throws TooManyActivities, UserAlreadyExistsException {
         this.view = view;
@@ -21,10 +23,15 @@ public class Model {
         // Add a user to the database
         User.createUser("Roberto", "test");
         SoftwareApp.addProject("din mor");
+        SoftwareApp.addCoWorker(currentUser,"23001");
         SoftwareApp.addProject("Project102");
         SoftwareApp.addProject("Project103");
         SoftwareApp.addActivity("FirstActivity","100","10","02/02/2024","23001");
+        SoftwareApp.addActivity("secondtActivity","100","10","02/02/2024","23001");
+        SoftwareApp.addActivity("thirdActivity","100","10","02/02/2024","23001");
+        SoftwareApp.addActivity("FourthActivity","100","10","02/02/2024","23001");
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
+
 
     }
 
@@ -58,6 +65,12 @@ public class Model {
     }
     public void setCurrentUser(String string) {
         this.currentUser = string;
+    }
+    public void setCurrentUserID(String string) {
+        this.currentUserID = string;
+    }
+    public String getCurrentUserID () {
+        return currentUser;
     }
 
     public List<Project> getProjects() {

@@ -10,7 +10,7 @@ import java.util.List;
 public class User {
 
     private final String name;
-    private final String userId;
+    private String userId;
 
     // public static List<Project.Activities> UserActivityList = new ArrayList<>();
     private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();

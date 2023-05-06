@@ -53,7 +53,7 @@ public class Project {
 
     public boolean userInProject (User user) {
         boolean a;
-        for (int i = 0; i<= workersList.size(); i++)
+        for (int i = 0; i< workersList.size(); i++)
             if (user == workersList.get(i)); {
                 a = true;
             }
@@ -75,7 +75,6 @@ public class Project {
 
 
     public static List<Activities> getActivityList() {
-        System.out.println(ActivityList);
         return ActivityList;
     }
     public static int getNumberOfActivities() {

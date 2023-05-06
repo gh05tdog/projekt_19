@@ -1,6 +1,7 @@
 package application;
 
 
+import app.SoftwareApp;
 import domain.Project;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,6 +33,8 @@ public class projectPageController {
 
     private View view;
 
+    private Project currentProject;
+
     public void setModelAndView(Model theModel, View view) {
         this.theModel = theModel;
         this.view = view;
@@ -48,8 +51,13 @@ public class projectPageController {
     }
 
     private void initializeComponents() {
-        //Loop through all projects and add a button for each project
-        for (int i = 0; i < theModel.getActivities().size(); i++) {
+        currentProject = SoftwareApp.getProject(projectIDLabel.getText());
+        System.out.println(projectIDLabel.getText());
+        System.out.println(currentProject.getProjectName());
+
+
+
+        for (int i = 0; i < currentProject.getActivityList().size(); i++) {
             Project.Activities activity = theModel.getActivities().get(i);
             System.out.println(activity.getActivityName());
             Button activityButtonName = new Button();

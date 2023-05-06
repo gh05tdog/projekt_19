@@ -6,10 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 
 public class loginController {
+
     public Button loginButton;
     private Model theModel;
     @FXML
     public PasswordField passwordField;
+
 
     // Create initialize function
     public void initialize()
@@ -28,6 +30,7 @@ public class loginController {
         if(SoftwareApp.getUserFromID(passwordField.getText()) != null)
         {
             theModel.setCurrentUser(SoftwareApp.getUserFromID(passwordField.getText()).getUserId());
+            theModel.setCurrentUserID(passwordField.getText());
             theModel.frontPagePage(theModel.getCurrentUser());
         }else
         {
@@ -36,11 +39,10 @@ public class loginController {
         return SoftwareApp.getUserFromID(passwordField.getText()).getName();
     }
 
-
-
-
     public void setModelAndView(Model model) {
         this.theModel = model;
     }
+
+
 
 }
