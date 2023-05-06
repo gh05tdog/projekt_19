@@ -111,6 +111,7 @@ public class Project {
 
 
     public class Activities extends Project {
+        public List<Activities> ActivityList = new ArrayList<>();
         private final List<User> UserAssignedActivities = new ArrayList<>();
         private final String ActivityName;
         private final String ActivityId;

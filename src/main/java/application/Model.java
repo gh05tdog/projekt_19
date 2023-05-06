@@ -17,12 +17,13 @@ public class Model {
 
     public Model(View view) throws TooManyActivities, UserAlreadyExistsException {
         this.view = view;
+
         // Add a user to the database
         User.createUser("Roberto", "test");
         SoftwareApp.addProject("din mor");
         SoftwareApp.addProject("Project102");
         SoftwareApp.addProject("Project103");
-        SoftwareApp.addActivity("name","100","10","02/02/2024","23001");
+        SoftwareApp.addActivity("FirstActivity","100","10","02/02/2024","23001");
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
 
     }
@@ -59,6 +60,8 @@ public class Model {
     public List<Project> getProjects() {
         return SoftwareApp.projectList;
     }
+
+    public List<Project.Activities> getActivities(){ return Project.ActivityList; }
 
     public void projectPagePage(String IDExtract, String nameExtract) {
         view.showProjectPage(IDExtract, nameExtract);

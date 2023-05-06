@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
@@ -17,16 +18,79 @@ public class projectPageController {
     public Label projectIDLabel;
     private Model theModel;
 
-public void setModelAndView(Model theModel) {
-    this.theModel = theModel;
-}
+    @FXML
+    private ScrollPane projectScrollPane;
 
-    public void setProjectIDLabel (String name) {
+    @FXML
+    private VBox vBoxName;
+
+    @FXML
+    private VBox vBoxID;
+
+    @FXML
+    private VBox vBoxTime;
+
+    private View view;
+
+    public void setModelAndView(Model theModel, View view) {
+        this.theModel = theModel;
+        this.view = view;
+        projectScrollPane.widthProperty().addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                // Call initializeComponents() when the ScrollPane's width changes
+                initializeComponents();
+
+                // Remove the listener after the first layout pass to avoid multiple calls
+                projectScrollPane.widthProperty().removeListener(this);
+            }
+        });
+    }
+
+    private void initializeComponents() {
+        //Loop through all projects and add a button for each project
+        for (int i = 0; i < theModel.getActivities().size(); i++) {
+            Project.Activities activity = theModel.getActivities().get(i);
+            System.out.println(activity.getActivityName());
+            Button activityButtonName = new Button();
+            activityButtonName.setMinWidth(vBoxName.getWidth());
+            activityButtonName.maxWidthProperty().bind(vBoxName.widthProperty());
+            activityButtonName.setText(activity.getActivityName());
+
+            Button activityButtonId = new Button();
+            activityButtonId.setMinWidth(vBoxName.getWidth());
+            activityButtonId.maxWidthProperty().bind(vBoxName.widthProperty());
+            activityButtonId.setText(activity.getActivityId());
+
+            Button activityButtonTime = new Button();
+            activityButtonTime.setMinWidth(vBoxName.getWidth());
+            activityButtonTime.maxWidthProperty().bind(vBoxName.widthProperty());
+            activityButtonTime.setText(activity.getTimeBudget());
+            // set button properties
+            vBoxName.getChildren().add(activityButtonName);
+            vBoxID.getChildren().add(activityButtonId);
+            vBoxTime.getChildren().add(activityButtonTime);
+
+        }
+
+
+
+
+
+    }
+
+    public void setProjectIDLabel(String name) {
         projectIDLabel.setText(name);
     }
 
-    public void setProjectNameLabel (String name) {
-         projectNameLabel.setText(name);
+    public void setProjectNameLabel(String name) {
+        projectNameLabel.setText(name);
+    }
+
+    @FXML
+    protected void returnFrontPage() {
+        view.showMainPage(theModel.getCurrentUser());
+        System.out.println(theModel.getActivities().size());
     }
 
 }

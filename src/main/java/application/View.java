@@ -1,5 +1,6 @@
 package application;
 
+import domain.Project;
 import domain.UserAlreadyExistsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,6 @@ public class View extends Application {
     private Stage addProject;
 
     private Stage projectPage;
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -70,6 +70,9 @@ public class View extends Application {
                 }
                 if (addProject != null) {
                     addProject.close();
+                }
+                if (projectPage != null) {
+                    projectPage.close();
                 }
 
                 frontpage.show();
@@ -132,7 +135,7 @@ public class View extends Application {
             // Get the new controller instance for the Front-page.fxml file
             projectPageController projectPageController = loader.getController();
             // Set the model and view for the new controller instance
-            projectPageController.setModelAndView(theModel);
+            projectPageController.setModelAndView(theModel, this);
             // Set the project for the new controller instance
             projectPageController.setProjectNameLabel(nameExtract);
             // Set the username label for the new controller instance
