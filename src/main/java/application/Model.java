@@ -30,7 +30,10 @@ public class Model {
 
     public void frontPagePage(String name) {
         view.showMainPage(name);
+
     }
+
+
 
     public void createUser(){
         view.showAddUser();

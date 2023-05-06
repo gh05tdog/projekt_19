@@ -9,7 +9,7 @@ public class loginController {
     public Button loginButton;
     private Model theModel;
     @FXML
-    private PasswordField passwordField;
+    public PasswordField passwordField;
 
     // Create initialize function
     public void initialize()
@@ -27,7 +27,7 @@ public class loginController {
 
         if(SoftwareApp.getUserFromID(passwordField.getText()) != null)
         {
-            theModel.setCurrentUser(SoftwareApp.getUserFromID(passwordField.getText()).getName());
+            theModel.setCurrentUser(SoftwareApp.getUserFromID(passwordField.getText()).getUserId());
             theModel.frontPagePage(theModel.getCurrentUser());
         }else
         {

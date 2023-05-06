@@ -1,5 +1,6 @@
 package application;
 
+import app.SoftwareApp;
 import domain.Project;
 import domain.UserAlreadyExistsException;
 import javafx.application.Application;
@@ -23,6 +24,7 @@ public class View extends Application {
     private Stage addProject;
 
     private Stage projectPage;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -61,6 +63,8 @@ public class View extends Application {
                 frontPageController.setModelAndView(theModel);
                 // Set the username label for the new controller instance
                 frontPageController.setUserNameLabel(name);
+
+
                 // Close the login window
 
                 login.close();

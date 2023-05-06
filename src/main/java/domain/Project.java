@@ -51,6 +51,15 @@ public class Project {
         return workersList.stream().filter(user -> user.getUserId().equals(id)).findFirst().orElse(null);
     }
 
+    public boolean userInProject (User user) {
+        boolean a;
+        for (int i = 0; i<= workersList.size(); i++)
+            if (user == workersList.get(i)); {
+                a = true;
+            }
+        return a;
+    }
+
     public User getProjectManager() {
         return ProjectManager;
     }
