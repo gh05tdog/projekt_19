@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -53,7 +52,7 @@ public class SickLeaveAndVacation {
     public void theUserWithTheIdIsSickFromTo(String string, String string2, String string3) {
         // Write code here that turns the phrase above into concrete actions
         int days = LocalDate.parse(string3).getDayOfYear() - LocalDate.parse(string2).getDayOfYear();
-        assertEquals(LocalDate.parse(string2), Project.SpecialActivityList.get(0).getTimeLog().get(0).getDate());
+        assertEquals(LocalDate.parse(string2), Project.SpecialActivityList.get(0).getTimeLog().get(ActivityTimeSheet.getTimeLog().size()-1).getDate());
         assertEquals(days, Project.SpecialActivityList.get(0).getUsedTime());
     }
 }

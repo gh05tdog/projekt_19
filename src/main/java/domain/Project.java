@@ -84,26 +84,12 @@ public class Project {
         }
     }
 
-    public Activities getSpecialActivity(String s){
-        for (Activities Specialactivities : SpecialActivityList) {
-            if (Specialactivities.getActivityId().equals(s)) {
-                return Specialactivities;
-            }
-        }
-        return null;
-    }
-
     public Activities getActivity(String s) {
         for (Activities activities : ActivityList) {
             if (activities.getActivityId().equals(s)) {
                 return activities;
             }
         }
-        /*for (Activities activity : ActivityList) {
-            if (activity.getActivityId().equals(s)) {
-                return activity;
-            }
-        }*/
         return null;
     }
 
@@ -114,14 +100,7 @@ public class Project {
         }
         return totalTimeSpentOnProject;
     }
-
-    public int getTimeLeftForProject() {
-        int TimeLeftForProject = 0;
-        for (Activities activity : ActivityList) {
-            TimeLeftForProject += Integer.parseInt(activity.TimeBudget) - activity.LoggedTime;
-        }
-        return TimeLeftForProject;
-    }
+    //get time left for each activity
 
 
     public void changeProjectId(String newId) {
@@ -139,7 +118,7 @@ public class Project {
         private final String TimeBudget;
         private final String Weeks;
         private final String StartWeek;
-        private int LoggedTime;
+        public int LoggedTime;
         private Boolean isCompleted;
         private ActivityTimeSheet activityTimeSheet;
 
@@ -196,12 +175,7 @@ public class Project {
         }
 
         public void setCompleted() {
-            //set the activity to completed
             isCompleted = true;
-
-        }
-        public ActivityTimeSheet getActivityTimeSheet() {
-            return activityTimeSheet;
         }
         public boolean isCompleted() {
             return isCompleted;
