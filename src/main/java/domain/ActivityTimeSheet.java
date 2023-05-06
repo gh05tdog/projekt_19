@@ -9,6 +9,7 @@ public class ActivityTimeSheet {
     private int totalHours;
     private static List<TimeLogEntry> timeLog = new ArrayList<>();
 
+
     public ActivityTimeSheet(String activityId,int hours, LocalDate date) {
         this.activityId = activityId;
         this.totalHours = 0;
@@ -38,6 +39,10 @@ public class ActivityTimeSheet {
         }
         return dateAndHours.toString();
     }
+
+
+
+
 
     public static class TimeLogEntry {
         private final int hours;

@@ -7,34 +7,35 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static app.SoftwareApp.projectList;
+
 
 public class Project {
-    private final String ProjectName;
-    private final String ProjectId;
+    private String ProjectName;
+    private String ProjectId;
     public static List<User> workersList = new ArrayList<>();
     public static final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
+    public static final List<Activities> SpecialActivityList = new ArrayList<>();
 
     public Project(String projectName) {
         this.ProjectName = projectName;
-
-        //Count all projects in the system
-        //Add 1 to the count
-        //Set the ProjectId to the count
-
         int Year = Calendar.getInstance().get(Calendar.YEAR) % 100;
-
-        if (SoftwareApp.getNumberOfProject() < 10) {
-            this.ProjectId = Year + "00" + (SoftwareApp.getNumberOfProject() + 1);
-        } else if (SoftwareApp.getNumberOfProject() < 100) {
-            this.ProjectId = Year + "0" + (SoftwareApp.getNumberOfProject() + 1);
-        } else {
-            this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
+        if(projectList.size() == 1){
+            this.ProjectId = Year + "001";
         }
-
+        else {
+            if (SoftwareApp.getNumberOfProject() < 10) {
+                this.ProjectId = Year + "00" + (SoftwareApp.getNumberOfProject() + 1);
+            } else if (SoftwareApp.getNumberOfProject() < 100) {
+                this.ProjectId = Year + "0" + (SoftwareApp.getNumberOfProject() + 1);
+            } else {
+                this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
+            }
+        }
     }
 
-    public String getProjectName() {
+    public  String getProjectName() {
         return ProjectName;
     }
 
@@ -60,31 +61,49 @@ public class Project {
 
     public void addActivity(String name, String timebudget, String weeks, String startWeek) {
         Activities activity = new Activities(name, timebudget, weeks, startWeek);
-        ActivityList.add(activity);
+        if(activity.getSpecialActivity()){
+            SpecialActivityList.add(activity);
+        }
+        else {
+            ActivityList.add(activity);
+        }
     }
-
-
     public List<Activities> getActivityList() {
         return ActivityList;
     }
 
+
     public void assignActivityToUser(String userID, String activityID) {
         //Loop through the list of activities
         for (Activities activity : ActivityList) {
-            //If the activityID matches the activityID of the activity in the list
             if (activity.getActivityId().equals(activityID)) {
                 //Add the user to the activity
+                //If the activityID matches the activityID of the activity in the list
                 activity.addWorkerToActivity(SoftwareApp.getUserFromID(userID));
             }
         }
     }
 
+    public Activities getSpecialActivity(String s){
+        for (Activities Specialactivities : SpecialActivityList) {
+            if (Specialactivities.getActivityId().equals(s)) {
+                return Specialactivities;
+            }
+        }
+        return null;
+    }
+
     public Activities getActivity(String s) {
-        for (Activities activity : ActivityList) {
+        for (Activities activities : ActivityList) {
+            if (activities.getActivityId().equals(s)) {
+                return activities;
+            }
+        }
+        /*for (Activities activity : ActivityList) {
             if (activity.getActivityId().equals(s)) {
                 return activity;
             }
-        }
+        }*/
         return null;
     }
 
@@ -105,10 +124,18 @@ public class Project {
     }
 
 
+    public void changeProjectId(String newId) {
+        ProjectId = newId;
+    }
+
+    public void changeProjectName(String newName) {
+        ProjectName = newName;
+    }
+
     public class Activities extends Project {
         private final List<User> UserAssignedActivities = new ArrayList<>();
         private final String ActivityName;
-        private final String ActivityId;
+        private String ActivityId;
         private final String TimeBudget;
         private final String Weeks;
         private final String StartWeek;
@@ -184,6 +211,9 @@ public class Project {
             return ActivityTimeSheet.getTimeLog();
         }
 
+        public boolean getSpecialActivity() {
+            return ActivityId.contains("11111A");
+        }
     }
 }
 

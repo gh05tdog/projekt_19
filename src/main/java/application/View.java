@@ -8,9 +8,7 @@ import javafx.stage.Stage;
 
 
 public class View extends Application {
-
     private Model theModel;
-
     private Stage login;
 
     @Override
