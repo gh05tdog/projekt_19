@@ -110,7 +110,7 @@ public class projectPageController {
 
     @FXML
     protected void returnFrontPage() {
-        view.showMainPage(projectName.getText());
+        view.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
     }
 
     @FXML
