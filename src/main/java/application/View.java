@@ -152,7 +152,16 @@ public class View extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public void loginPage() {
+        try {
+            frontpage.close();
+            login.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -30,4 +30,5 @@
    </ScrollPane>
    <Label alignment="CENTER" layoutX="39.0" layoutY="100.0" prefHeight="25.0" prefWidth="151.0" text="Personal Projects" />
    <Label alignment="CENTER" layoutX="212.0" layoutY="104.0" prefHeight="16.0" prefWidth="151.0" text="Global Projects" />
+   <Button fx:id="logOutButton" layoutX="459.0" layoutY="300.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
 </AnchorPane>
