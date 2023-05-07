@@ -181,9 +181,17 @@ public class View extends Application {
             activityPageController.setActivityIDLabel(activityId);
             
             activityPageController.setProjectIDLabel(projectID);
+
+            activityPageController.setProcents();
             // Close the login window
 
-            projectPage.close();
+            if (frontpage != null) {
+                frontpage.close();
+            }
+
+            if (projectPage != null) {
+                projectPage.close();
+            }
             activityPage.show();
 
 

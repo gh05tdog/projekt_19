@@ -82,7 +82,8 @@ public class activityPageController {
         activityNameLabel.setText(activity.getActivityName());
         startWeek.setText(String.valueOf(activity.getStartWeek()));
         endWeek.setText(String.valueOf(activity.getEndWeek()));
-        allocatedTime.setText(String.valueOf(activity.getWeeks()));
+        allocatedTime.setText(String.valueOf(activity.getAllocatedTime()));
+        percentTime.setText(String.format("%.2f%%", activity.getPercentTime()));
 
         for (User user : SoftwareApp.UserList) {
             int timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
@@ -199,25 +200,36 @@ public class activityPageController {
     }
 
     public void registerTimeAction() {
-        //Check if the input is a valid number
+        // Check if the input is a valid number
         if (!model.isNumeric(enterTime.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Please enter a valid number of hours.");
             alert.showAndWait();
-        }else{
-
-        int registeredTime = enterTime.getText().isEmpty() ? 0 : Integer.parseInt(enterTime.getText());
-        if (registeredTime > 0) {
-            SoftwareApp.getUserFromID(model.getCurrentUserID()).updateTimeSheet(activityIDLabel.getText(), registeredTime, LocalDate.now());
-            update();
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Invalid Input");
-            alert.setContentText("Please enter a valid number of hours.");
-            alert.showAndWait();
+            int registeredTime = enterTime.getText().isEmpty() ? 0 : Integer.parseInt(enterTime.getText());
+            if (registeredTime > 0) {
+                User currentUser = SoftwareApp.getUserFromID(model.getCurrentUserID());
+                currentUser.updateTimeSheet(activityIDLabel.getText(), registeredTime, LocalDate.now());
+
+                // Update the percentTime in the corresponding Project.Activities object
+                Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
+                activity.updatePercentTime(currentUser.getUserId(), registeredTime);
+
+                update();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Invalid Input");
+                alert.setContentText("Please enter a valid number of hours.");
+                alert.showAndWait();
+            }
         }
-    }}
+    }
+
+    public void setProcents() {
+        Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
+        percentTime.setText(String.format("%.2f%%", activity.getPercentTime()));
+    }
 }

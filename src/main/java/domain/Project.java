@@ -116,6 +116,7 @@ public class Project {
     }
 
 
+
     public class Activities extends Project {
         public List<Activities> ActivityList = new ArrayList<>();
         private final List<User> UserAssignedActivities = new ArrayList<>();
@@ -217,6 +218,19 @@ public class Project {
 
         public String getAllocatedTime() {
             return TimeBudget;
+        }
+
+        public double getPercentTime() {
+            if (Integer.parseInt(TimeBudget) == 0) {
+                return 0;
+            }
+            return (double) LoggedTime / Integer.parseInt(TimeBudget) * 100;
+        }
+
+        public void updatePercentTime(String userId, int registeredTime) {
+            if (UserAssignedActivities.contains(SoftwareApp.getUserFromID(userId))) {
+                LoggedTime += registeredTime;
+            }
         }
     }
 

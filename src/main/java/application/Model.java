@@ -29,6 +29,8 @@ public class Model {
         SoftwareApp.addProject("Project103");
         SoftwareApp.addCoWorker(currentUser,"23001"); // Assign the user to a specific project
         SoftwareApp.addActivity("Projekt beskrivelse","100","10","4","23001");
+        SoftwareApp.addActivity("Projekt diagram","100","10","4","23002");
+
         // Add time to the activity
         Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").logHours(SoftwareApp.getUserFromID("toom"),1, LocalDate.parse("2021-05-01"));
 
@@ -36,14 +38,17 @@ public class Model {
         SoftwareApp.addActivity("thirdActivity","70","10","4","23001");
         SoftwareApp.addActivity("FourthActivity","50","10","4","23001");
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
-        SoftwareApp.assignActivityToUser("test","23002","23001A2");
+        SoftwareApp.assignActivityToUser("test","23001","23001A2");
+        System.out.println(Objects.requireNonNull(SoftwareApp.getProject("23002")).getActivity("23002A1").getActivityName());
+        SoftwareApp.assignActivityToUser("test","23002","23002A1");
+        SoftwareApp.assignActivityToUser("test","23002","23002A1");
+
     }
 
     public void frontPagePage() {
         view.showMainPage(SoftwareApp.getUserFromID(getCurrentUserID()).getName());
 
     }
-
 
 
     public void createUser(){
@@ -102,6 +107,11 @@ public class Model {
 
     public void changeProjectName(String newProjectName, String projectID) {
         Objects.requireNonNull(SoftwareApp.getProject(projectID)).setProjectName(newProjectName);
+    }
+
+    public void activityPagePage(String idExtract, String nameExtract, String projectId) {
+        System.out.println("Model: " + idExtract + " " + nameExtract + " " + projectId);
+        view.showActivityPage(idExtract, nameExtract, projectId);
     }
 }
 
