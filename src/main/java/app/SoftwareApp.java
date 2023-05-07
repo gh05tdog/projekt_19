@@ -2,7 +2,6 @@ package app;
 
 import domain.Project;
 import domain.User;
-import io.cucumber.java.bs.A;
 
 import java.time.LocalDate;
 import java.time.temporal.IsoFields;
@@ -19,7 +18,7 @@ public class SoftwareApp {
     public static void addProject(String projectName) {
         Project project = new Project(projectName);
         projectList.add(project);
-        System.out.println(project.getProjectId());
+        //System.out.println(project.getProjectId());
     }
 
     public static int getNumberOfProject() {

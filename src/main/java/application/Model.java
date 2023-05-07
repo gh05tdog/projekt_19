@@ -11,28 +11,24 @@ import java.util.List;
 
 public class Model {
     private final View view;
-
     private String currentUser;
-
-    private String currentUserID;
-
 
     public Model(View view) throws TooManyActivities, UserAlreadyExistsException {
         this.view = view;
 
         // Add a user to the database
-        User.createUser("Roberto", "test");
+        User newUser = User.createUser("Roberto", "test");
+        currentUser = newUser.getUserId(); // Set the currentUser variable to the created user's userId
         SoftwareApp.addProject("din mor");
-        SoftwareApp.addCoWorker(currentUser,"23001");
         SoftwareApp.addProject("Project102");
         SoftwareApp.addProject("Project103");
+        SoftwareApp.addCoWorker(currentUser,"23001"); // Assign the user to a specific project
         SoftwareApp.addActivity("FirstActivity","100","10","02/02/2024","23001");
         SoftwareApp.addActivity("secondtActivity","100","10","02/02/2024","23001");
         SoftwareApp.addActivity("thirdActivity","100","10","02/02/2024","23001");
         SoftwareApp.addActivity("FourthActivity","100","10","02/02/2024","23001");
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
-
-
+        SoftwareApp.assignActivityToUser("test","23002","23001A2");
     }
 
     public void frontPagePage(String name) {
@@ -67,7 +63,6 @@ public class Model {
         this.currentUser = string;
     }
     public void setCurrentUserID(String string) {
-        this.currentUserID = string;
     }
     public String getCurrentUserID () {
         return currentUser;

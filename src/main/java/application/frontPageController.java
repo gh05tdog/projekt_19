@@ -59,12 +59,15 @@ public class frontPageController {
 
 // The code seen below is created by chatGPT our lord and saviour
     private void initializeComponentsUser() {
+
         //Loop through all projects and add a button for each project
         for (Project project : theModel.getProjects()) {
+            System.out.println(project.getWorkersList(project.getProjectId()));
+            System.out.println(theModel.getCurrentUserID());
             if (project.userInProject(SoftwareApp.getUserFromID(theModel.getCurrentUserID()))) {
+
                 System.out.println(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getUserId());
-                // Stack all buttons in the user scrollpane
-                //      if (project.userInProject(SoftwareApp.getUserFromID(loginController.passwordField.getText())))
+
                 {
                     Button projectButtonUser = new Button(project.getProjectName() + " - " + project.getProjectId());
                     projectButtonUser.setMinWidth(scrollPaneUser.getWidth());
