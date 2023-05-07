@@ -1,6 +1,7 @@
 package domain;
 
 import app.SoftwareApp;
+import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -98,5 +99,23 @@ public class User {
             }
         }
         return false;
+    }
+
+    public void editTimeSpent(Text activityID, int oldTimeSpent, int newTimeSpent) {
+        for (ActivityTimeSheet activity : timeSheet) {
+            if (activity.getActivityId().equals(activityID.getText())) {
+                activity.editHours(oldTimeSpent, newTimeSpent);
+                return;
+            }
+        }
+    }
+
+    public void removeTimeSpent(Text activityID, int timeSpent) {
+        for (ActivityTimeSheet activity : timeSheet) {
+            if (activity.getActivityId().equals(activityID.getText())) {
+                activity.editHours(timeSpent, 0);
+                return;
+            }
+        }
     }
 }
