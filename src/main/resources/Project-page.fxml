@@ -12,28 +12,24 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.projectPageController">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d3d3" height="134.0" layoutX="341.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbebe" height="97.0" layoutX="22.0" layoutY="18.0" stroke="BLACK" strokeType="INSIDE" width="305.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c3c3c3" height="134.0" layoutX="341.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="221.0" layoutX="370.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" width="198.0" />
-   <Label fx:id="projectIDLabel" layoutX="27.0" layoutY="20.0" text="23001">
+   <Label fx:id="projectIDLabel" layoutX="37.0" layoutY="26.0" text="23001">
       <font>
          <Font size="25.0" />
       </font>
    </Label>
-   <Label fx:id="projectNameLabel" layoutX="101.0" layoutY="20.0" prefHeight="36.0" prefWidth="191.0" text="Label">
-      <font>
-         <Font size="25.0" />
-      </font>
-   </Label>
-   <Button fx:id="manageProject" layoutX="185.0" layoutY="319.0" mnemonicParsing="false" onAction="#manageProjectPagePressed" prefHeight="36.0" prefWidth="100.0" text="Manage Project" />
-   <Button layoutX="413.0" layoutY="328.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Generate report" onAction="#generateReportPressed" />
-   <Button layoutX="34.0" layoutY="319.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
+   <Button fx:id="manageProject" layoutX="185.0" layoutY="350.0" mnemonicParsing="false" onAction="#manageProjectPagePressed" prefHeight="36.0" prefWidth="100.0" text="Manage Project" />
+   <Button layoutX="413.0" layoutY="328.0" mnemonicParsing="false" onAction="#generateReportPressed" prefHeight="27.0" prefWidth="101.0" text="Generate report" />
+   <Button layoutX="34.0" layoutY="350.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
    <Label layoutX="397.0" layoutY="355.0" prefHeight="25.0" prefWidth="134.0" text="Report has been created" />
-   <ScrollPane fx:id="projectScrollPane" layoutX="19.0" layoutY="80.0" prefHeight="200.0" prefWidth="305.0">
+   <ScrollPane fx:id="projectScrollPane" layoutX="22.0" layoutY="145.0" prefHeight="200.0" prefWidth="305.0">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
          <HBox prefHeight="200.0" prefWidth="285.0">
-            <VBox fx:id="vBoxName" prefHeight="200.0" prefWidth="100.0" />
-            <VBox fx:id="vBoxID" prefHeight="200.0" prefWidth="100.0" />
-            <VBox fx:id="vBoxTime" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="vBoxName" prefHeight="200.0" prefWidth="174.0" />
+            <VBox fx:id="vBoxID" prefHeight="200.0" prefWidth="73.0" />
+            <VBox fx:id="vBoxTime" prefHeight="200.0" prefWidth="66.0" />
          </HBox>
       </AnchorPane>
    </ScrollPane>
@@ -55,12 +51,15 @@
    </Text>
    <TextField layoutX="395.0" layoutY="132.0" />
    <Text layoutX="409.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID not found" wrappingWidth="122.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="22.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="116.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="210.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="94.0" />
-   <Text layoutX="30.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID" textAlignment="CENTER" wrappingWidth="78.13671875" />
-   <Text layoutX="124.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" textAlignment="CENTER" wrappingWidth="78.13671875" />
-   <Text layoutX="218.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timebudget" textAlignment="CENTER" wrappingWidth="78.13671875" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="22.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" width="166.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="188.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="251.0" layoutY="124.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
+   <Text layoutX="188.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID" textAlignment="CENTER" wrappingWidth="62.0" />
+   <Text layoutX="66.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" textAlignment="CENTER" wrappingWidth="78.13671875" />
+   <Text layoutX="248.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timebudget" textAlignment="CENTER" wrappingWidth="68.0">
+      <font>
+         <Font size="11.0" />
+      </font></Text>
    <TextField fx:id="getDate" layoutX="473.0" layoutY="293.0" prefHeight="25.0" prefWidth="108.0" promptText="yyyy-mm-dd" />
    <Text layoutX="353.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter report date">
       <font>
@@ -73,4 +72,10 @@
       </font>
    </Text>
    <Button layoutX="409.0" layoutY="168.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="122.0" text="Add registered time" />
+   <TextField fx:id="projectName" layoutX="131.0" layoutY="24.0" prefHeight="40.0" prefWidth="176.0" text="TextField">
+      <font>
+         <Font size="19.0" />
+      </font>
+   </TextField>
+   <Button layoutX="147.0" layoutY="74.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" text="Change project name" />
 </AnchorPane>

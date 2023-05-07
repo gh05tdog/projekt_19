@@ -20,7 +20,7 @@ import java.util.Date;
 
 public class projectPageController {
 
-    public Label projectNameLabel;
+    public TextField projectName;
 
     public Label projectIDLabel;
     private Model theModel;
@@ -104,17 +104,17 @@ public class projectPageController {
     }
 
     public void setProjectNameLabel(String name) {
-        projectNameLabel.setText(name);
+        projectName.setText(name);
     }
 
     @FXML
     protected void returnFrontPage() {
-        view.showMainPage(projectNameLabel.getText());
+        view.showMainPage(projectName.getText());
     }
 
     @FXML
     protected void manageProjectPagePressed() {
-        theModel.manageProject(projectIDLabel.getText(),projectNameLabel.getText());
+        theModel.manageProject(projectIDLabel.getText(),projectName.getText());
 
     }
 
