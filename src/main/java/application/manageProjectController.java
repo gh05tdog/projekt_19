@@ -49,15 +49,41 @@ public class manageProjectController {
 
     public Project project;
 
+    @FXML
+    public ScrollPane scrollPaneAvailableUsers;
 
+    @FXML
+    public VBox vBoxUserList;
+
+    @FXML
+    public Button checkUsers;
 
 
     public void setModelAndView(Model theModel, View view) {
 
         this.model = theModel;
         this.view = view;
-    }
 
+    }
+    public void checkAvailableUsers() {
+        vBoxUserList.getChildren().clear();
+        for (User user : SoftwareApp.UserList) {
+            for (Project.Activities activities : user.getUserActivityList()) {
+                System.out.println(activities.getActivityName());
+
+
+                if (user.getAssignedActivitiesNumber() < 10) {
+                    {
+                        Button projectButtonUser = new Button(user.getName());
+                        projectButtonUser.setMinWidth(vBoxUserList.getWidth());
+                        projectButtonUser.maxWidthProperty().bind(vBoxUserList.widthProperty());
+                        vBoxUserList.getChildren().add(projectButtonUser);
+                    }
+
+                }
+            }
+        }
+    }
     public void setProjectID(String projectID) {
         manageProjectID.setText(projectID);
 
@@ -95,4 +121,6 @@ public class manageProjectController {
             alert.showAndWait();
         }
     }
+
+
 }

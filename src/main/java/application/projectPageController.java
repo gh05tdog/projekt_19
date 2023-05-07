@@ -49,6 +49,7 @@ public class projectPageController {
     public void setModelAndView(Model theModel, View view) {
         this.theModel = theModel;
         this.view = view;
+
         projectScrollPane.widthProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {

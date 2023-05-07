@@ -125,4 +125,7 @@ public class User {
             }
         }
     }
+    public List<Project.Activities> getUserActivityList () {
+        return UserActivityList;
+    }
 }
