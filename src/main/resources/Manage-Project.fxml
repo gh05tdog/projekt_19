@@ -57,15 +57,15 @@
       <Button fx:id="addActivityToProject" layoutX="334.0" layoutY="280.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="136.0" text="Add activity to project" />
       <Text fx:id="activityErrorHandler" layoutX="300.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="errorhandler" textAlignment="CENTER" wrappingWidth="203.0" />
       <Text fx:id="managerErrorHandler" layoutX="18.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="errorhandler" textAlignment="CENTER" wrappingWidth="185.0" />
-      <Label layoutX="29.0" layoutY="6.0" prefHeight="6.0" prefWidth="81.0" text="projID">
+      <Text fx:id="manageProjectID" layoutX="29.0" layoutY="6.0" text="projID">
          <font>
             <Font size="25.0" />
          </font>
-      </Label>
-      <Label layoutX="117.0" layoutY="6.0" prefHeight="36.0" prefWidth="267.0" text="Project name">
+      </Text>
+      <Text fx:id="manageProjectName" layoutX="117.0" layoutY="6.0" text="Project name">
          <font>
             <Font size="25.0" />
          </font>
-      </Label>
+      </Text>
    </children>
 </AnchorPane>
