@@ -23,6 +23,7 @@ public class projectPageController {
     public TextField projectName;
 
     public Label projectIDLabel;
+    public Button manageProject;
     private Model theModel;
 
     @FXML

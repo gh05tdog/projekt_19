@@ -34,16 +34,15 @@
       </font>
    </Text>
    <Button fx:id="returnToFrontPage" layoutX="372.0" layoutY="355.0" mnemonicParsing="false" onAction="#returnProjectPage" prefHeight="31.0" prefWidth="138.0" text="Return to project page" />
-   <ScrollPane layoutX="26.0" layoutY="177.0" prefHeight="200.0" prefWidth="247.0">
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-         <HBox prefHeight="200.0" prefWidth="200.0">
-            <VBox fx:id="vBoxButtons" prefHeight="200.0" prefWidth="100.0" />
+   <ScrollPane layoutX="4.0" layoutY="177.0" prefHeight="200.0" prefWidth="287.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="275.0">
+         <HBox prefHeight="200.0" prefWidth="287.0">
             <VBox fx:id="vBoxUserID" prefHeight="200.0" prefWidth="100.0" />
-            <VBox fx:id="vBoxTimeSpent" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="vBoxTimeSpent" prefHeight="200.0" prefWidth="85.0" />
          </HBox>
       </AnchorPane>
    </ScrollPane>
-   <Text layoutX="26.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID" textAlignment="CENTER" wrappingWidth="92.099609375">
+   <Text layoutX="17.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID" textAlignment="CENTER" wrappingWidth="92.099609375">
       <font>
          <Font size="15.0" />
       </font>
