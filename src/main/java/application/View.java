@@ -24,6 +24,8 @@ public class View extends Application {
     private Stage projectPage;
     private Stage activityPage;
 
+    private Stage manageProject;
+
 
 
     @Override
@@ -187,22 +189,24 @@ public class View extends Application {
 
     }
 
-    public void manageProjectPage () {
+    public void manageProjectPage (String projectID, String projectName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Manage-Project.fxml"));
             AnchorPane root = loader.load();
-            this.projectPage = new Stage();
-            projectPage.setScene(new Scene(root));
+            this.manageProject = new Stage();
+            manageProject.setScene(new Scene(root));
 
             // Get the new controller instance for the Front-page.fxml file
-            projectPageController projectPageController = loader.getController();
+            manageProjectController manageProjectPageController = loader.getController();
             // Set the model and view for the new controller instance
-            projectPageController.setModelAndView(theModel, this);
+            manageProjectPageController.setModelAndView(theModel, this);
             // Set the project for the new controller instance
+            manageProjectPageController.setProjectID(projectID);
+            manageProjectPageController.setProjectName(projectName);
 
-            frontpage.close();
+            projectPage.close();
 
-            projectPage.show();
+            manageProject.show();
 
         } catch (Exception e) {
             e.printStackTrace();

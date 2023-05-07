@@ -106,6 +106,7 @@ public class projectPageController {
 
     @FXML
     protected void manageProjectPagePressed() {
+        theModel.manageProject();
 
     }
 
