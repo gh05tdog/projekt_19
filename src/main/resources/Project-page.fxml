@@ -22,10 +22,10 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="241.0" layoutY="39.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" text="Manage Project" />
-      <Button layoutX="410.0" layoutY="39.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="101.0" text="Generate report" />
+      <Button layoutX="331.0" layoutY="39.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" text="Manage Project" />
+      <Button layoutX="452.0" layoutY="39.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="101.0" text="Generate report" />
       <Button layoutX="431.0" layoutY="288.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
-      <Label layoutX="396.0" layoutY="82.0" prefHeight="36.0" prefWidth="168.0" text="Report has been created" />
+      <Label layoutX="436.0" layoutY="75.0" prefHeight="36.0" prefWidth="134.0" text="Report has been created" />
       <ScrollPane fx:id="projectScrollPane" layoutX="60.0" layoutY="106.0" prefHeight="200.0" prefWidth="300.0">
          <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
