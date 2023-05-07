@@ -1,7 +1,8 @@
 import app.CSVgenerator;
 import app.SoftwareApp;
-import domain.Project;
+
 import domain.User;
+import domain.UserAlreadyExistsException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -23,37 +24,37 @@ public class Reports {
         // Write code here that turns the phrase above into concrete actions
         SoftwareApp.addActivity(Name, timebudget, weeks, startweek, "23001");
         SoftwareApp.addActivity(Name, timebudget, weeks, startweek, "23001");
-        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getActivityName(), Name);
-        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getTimeBudget(), timebudget);
-        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getWeeks(), weeks);
-        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getStartWeek(), startweek);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getActivityName(), Name);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getTimeBudget(), timebudget);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getWeeks(), weeks);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getStartWeek(), startweek);
     }
 
     @Given("there are completed activities")
-    public void thereAreCompletedActivities() {
+    public void thereAreCompletedActivities() throws UserAlreadyExistsException {
         User.createUser("Amanda", "aman");
         //get today's date
         LocalDate date = LocalDate.now();
         // make sure that the activity is completed
-        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").logHours(SoftwareApp.getUserFromID("aman"), 10, date);
-        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").setCompleted();
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").logHours(SoftwareApp.getUserFromID("aman"), 10, date);
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").setCompleted();
 
-        assertTrue(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").isCompleted());
-        assert SoftwareApp.getUserFromID("aman").getTimeSpentOnActivity("23001A2") == 10;
+        assertTrue(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").isCompleted());
+        assert SoftwareApp.getUserFromID("aman").getTimeSpentOnActivity("23001A1") == 10;
     }
     @When("I generate a report for the project")
-    public void iGenerateAReportForTheProject() throws Exception {
+    public void iGenerateAReportForTheProject() throws Exception, UserAlreadyExistsException {
         User.createUser("Phillip", "phil");
             SoftwareApp.assignActivityToUser("aman", "23001", "23001A2");
             SoftwareApp.assignActivityToUser("phil", "23001", "23001A2");
 
-        System.out.println(Project.workersList);
+       // System.out.println(Project.workersList);
     }
 
     @Then("the report shows the hours worked on each activity and the total time for the project")
     public void theReportShowsTheHoursWorkedOnEachActivityAndTheTotalTimeForTheProject() {
-        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A2").getUsedTime()), 10);
-        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A2").getTotalTimeSpentOnProject(), 10);
+        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A1").getUsedTime()), 10);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getTotalTimeSpentOnProject(), 10);
     }
 
     @When("the user click the {string} button and have selected the date range")

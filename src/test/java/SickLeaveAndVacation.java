@@ -1,6 +1,7 @@
 
 import app.SoftwareApp;
 import domain.User;
+import domain.UserAlreadyExistsException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,7 +13,7 @@ import static org.junit.Assert.*;
 public class SickLeaveAndVacation {
 
     @Given("a user has the id {string}")
-    public void aUserHasTheId(String arg0) {
+    public void aUserHasTheId(String arg0) throws UserAlreadyExistsException {
         User.createUser("Kasper", arg0);
         assertEquals(SoftwareApp.getUserFromID(arg0).getUserId(), arg0);
     }

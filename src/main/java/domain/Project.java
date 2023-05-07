@@ -1,7 +1,7 @@
 package domain;
 
 import app.SoftwareApp;
-import app.TooManyActivities;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ import java.util.List;
 public class Project {
     private final String ProjectName;
     private final String ProjectId;
-    public static List<User> workersList = new ArrayList<>();
-    public static final List<Activities> ActivityList = new ArrayList<>();
+    public List<User> workersList = new ArrayList<>(); // removed 'static'
+    public final List<Activities> ActivityList = new ArrayList<>(); // removed 'static'
     private User ProjectManager;
 
     public Project(String projectName) {
@@ -69,11 +69,11 @@ public class Project {
     }
 
 
-    public static List<Activities> getActivityList() {
-        return ActivityList;
+    public List<Activities> getActivityList() {
+        return ActivityList; // this line should also be changed to: return this.ActivityList;
     }
-    public static int getNumberOfActivities() {
-        return getActivityList().size();
+    public int getNumberOfActivities() {
+        return getActivityList().size(); // this line should also be changed to: return this.getActivityList().size();
     }
 
     public void assignActivityToUser(String userID, String activityID) {
@@ -123,7 +123,7 @@ public class Project {
         private final String StartWeek;
         private int LoggedTime;
         private Boolean isCompleted;
-        private ActivityTimeSheet activityTimeSheet;
+        private final ActivityTimeSheet activityTimeSheet;
 
         public Activities(String ActivityName, String TimeBudget, String Weeks, String StartWeek) {
             super(ProjectName);
@@ -188,10 +188,6 @@ public class Project {
         }
         public boolean isCompleted() {
             return isCompleted;
-        }
-
-        public List<ActivityTimeSheet.TimeLogEntry> getTimeLog() {
-            return ActivityTimeSheet.getTimeLog();
         }
 
     }
