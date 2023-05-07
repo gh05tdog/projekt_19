@@ -24,7 +24,7 @@
    <Button layoutX="397.0" layoutY="332.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
    <Label layoutX="394.0" layoutY="174.0" prefHeight="25.0" prefWidth="134.0" text="Report has been created" />
    <ScrollPane fx:id="projectScrollPane" layoutX="22.0" layoutY="168.0" prefHeight="200.0" prefWidth="305.0">
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0"  prefWidth="200.0">
          <HBox prefWidth="285.0">
             <VBox fx:id="vBoxName"  prefWidth="174.0" />
             <VBox fx:id="vBoxID"  prefWidth="73.0" />

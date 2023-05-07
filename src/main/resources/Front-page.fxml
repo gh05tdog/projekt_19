@@ -20,7 +20,7 @@
    <ScrollPane fx:id="scrollPaneUser" layoutX="39.0" layoutY="125.0" prefHeight="200.0" prefWidth="151.0">
       <VBox fx:id="projectVBoxUser" prefHeight="200.0" prefWidth="100.0" />
    </ScrollPane>
-   <ScrollPane fx:id="scrollPaneGlobal" layoutX="214.0" layoutY="125.0" prefHeight="200.0" prefWidth="151.0">
+   <ScrollPane fx:id="scrollPaneGlobal" layoutX="214.0" layoutY="125.0"  prefWidth="151.0">
       <VBox fx:id="projectVBox1" prefHeight="200.0" prefWidth="100.0">
          <VBox fx:id="projectVboxGlobal" prefHeight="200.0" prefWidth="161.0"/>
       </VBox>
