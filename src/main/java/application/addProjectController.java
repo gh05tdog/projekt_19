@@ -1,5 +1,6 @@
 package application;
 
+import app.SoftwareApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -39,7 +40,7 @@ public class addProjectController {
     }
     @FXML
     protected void returnFrontPage() {
-        view.showMainPage(theModel.getCurrentUser());
+        view.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
 
 
 

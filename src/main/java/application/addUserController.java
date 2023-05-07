@@ -54,7 +54,7 @@ public class addUserController {
     }
     @FXML
     protected void returnFrontPage() {
-        view.showMainPage(theModel.getCurrentUser());
+        view.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
 
 
 

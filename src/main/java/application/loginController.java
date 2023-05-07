@@ -27,16 +27,16 @@ public class loginController {
         // if the user exists, then login
         // else, show error message
 
-        if(SoftwareApp.getUserFromID(passwordField.getText()) != null)
+        if(SoftwareApp.getUserFromID(passwordField.getText().toLowerCase()) != null)
         {
-            theModel.setCurrentUser(SoftwareApp.getUserFromID(passwordField.getText()).getUserId());
-            theModel.setCurrentUserID(passwordField.getText());
-            theModel.frontPagePage(theModel.getCurrentUser());
+            theModel.setCurrentUser(SoftwareApp.getUserFromID(passwordField.getText().toLowerCase()).getUserId());
+            theModel.setCurrentUserID(passwordField.getText().toLowerCase());
+            theModel.frontPagePage();
         }else
         {
             System.out.println("User does not exist");
         }
-        return SoftwareApp.getUserFromID(passwordField.getText()).getName();
+        return SoftwareApp.getUserFromID(passwordField.getText().toLowerCase()).getName();
     }
 
     public void setModelAndView(Model model) {

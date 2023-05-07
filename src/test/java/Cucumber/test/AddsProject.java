@@ -1,3 +1,5 @@
+package Cucumber.test;
+
 import app.SoftwareApp;
 import app.TooManyActivities;
 import domain.Project;
@@ -106,7 +108,7 @@ public class AddsProject {
     }
 
     @Given("there is a user with the id {string}")
-    public void thereIsAUserWithTheId(String string) throws UserAlreadyExistsException {
+    public void thereIsAUserWithTheId(String string) {
         // Write code here that turns the phrase above into concrete actions
         try {
             User.createUser("emma", string);
