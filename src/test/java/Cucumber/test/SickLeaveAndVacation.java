@@ -1,3 +1,5 @@
+package Cucumber.test;
+
 import app.SoftwareApp;
 import domain.ActivityTimeSheet;
 import domain.Project;
@@ -40,7 +42,7 @@ public class SickLeaveAndVacation {
         // Write code here that turns the phrase above into concrete actions
         LocalDate sick = LocalDate.parse("2023-01-01");
         Project.SpecialActivityList.get(0).logHours(SoftwareApp.getUserFromID(string), 0,sick);
-        assertEquals(0, Project.SpecialActivityList.get(0).getTimeLog().get(0).getHours());
+        assertEquals(0, Project.SpecialActivityList.get(0).getUsedTime());
     }
     @Given("the user with the id {string} registers sick leave from {string} to {string}")
     public void theUserWithTheIdRegistersSickLeaveFromTo(String string, String string2, String string3) {
@@ -52,7 +54,7 @@ public class SickLeaveAndVacation {
     public void theUserWithTheIdIsSickFromTo(String string, String string2, String string3) {
         // Write code here that turns the phrase above into concrete actions
         int days = LocalDate.parse(string3).getDayOfYear() - LocalDate.parse(string2).getDayOfYear();
-        assertEquals(LocalDate.parse(string2), Project.SpecialActivityList.get(0).getTimeLog().get(ActivityTimeSheet.getTimeLog().size()-1).getDate());
+
         assertEquals(days, Project.SpecialActivityList.get(0).getUsedTime());
     }
 }

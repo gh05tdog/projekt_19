@@ -40,8 +40,8 @@ public class CSVgenerator {
                 reportBuilder.append("Is completed: ").append(activity.isCompleted()).append("\n");
                 reportBuilder.append("Assigned User ID: ").append(user.getUserId()).append("\n");
                 reportBuilder.append("Assigned User Name: ").append(user.getName()).append("\n");
-                reportBuilder.append("Time Spent on Activity: ").append(ActivityTimeSheet.getDateAndHours());
-                reportBuilder.append("Time Left for activity: ").append(Integer.parseInt(activity.getTimeBudget())-activity.LoggedTime).append("\n");
+//                reportBuilder.append("Time Spent on Activity: ").append(ActivityTimeSheet.getDateAndHours());
+//                reportBuilder.append("Time Left for activity: ").append(Integer.parseInt(activity.getTimeBudget())-activity.LoggedTime).append("\n");
                 reportBuilder.append("\n");
             }
         }

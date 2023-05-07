@@ -64,7 +64,7 @@ public class AddsProject {
     public void userAddsACoWorkerWithTheIdToTheProjectWithTheId(String username, String projectId) throws UserAlreadyExistsException {
         User.createUser("john",username);
         SoftwareApp.addCoWorker(username, projectId);
-        assertEquals(SoftwareApp.projectList.get(0).getWorkersList(username).getUserId(), username);
+        assertEquals(SoftwareApp.getProject(projectId).getWorkersList(username).getUserId(), username);
 
     }
 

@@ -156,6 +156,10 @@ public class Project {
             User.addActivityToUser(this, user);
         }
 
+        public List<Activities> getActivityList() {
+            return this.ActivityList;
+        }
+
         //return the list of users assigned to the activity
         public List<User> getUserAssignedActivities() {
             return UserAssignedActivities;
@@ -245,6 +249,7 @@ public class Project {
                 LoggedTime += registeredTime;
             }
         }
+
     }
 
 }

@@ -9,11 +9,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
-
-import static domain.Project.ActivityList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -23,6 +20,9 @@ public class InteractsWithActivities {
     public InteractsWithActivities(ErrorMessageHolder errorMessage) {
         this.errorMessage = errorMessage;
     }
+
+    //Get the activity list from the project
+
 
     @Given("the project manager with the id {string} is logged in")
     public void theProjectManagerWithTheIdIsLoggedIn(String userId) {
@@ -50,39 +50,19 @@ public class InteractsWithActivities {
     public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception, UserAlreadyExistsException {
         // Add activities to the project
         User.createUser("tejs", userID);
-        for (Project.Activities activities : ActivityList) {
-            System.out.println("before" + activities.getActivityId());
-        }
+
+
+
+
         System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         for (int i = 1; i <= nbOfActivities; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23001");
             SoftwareApp.assignActivityToUser(userID, "23001", "23001A" + i);
             System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         }
-        for (Project.Activities activities : ActivityList) {
-            System.out.println("after" + activities.getActivityId());
-        }
         System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         assert SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber() == nbOfActivities;
 
-
-       /* for (int i = 1; i <= nbOfActivities; i++) {
-            System.out.println("23001A" + i);
-
-            List<User> list = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A" + i).getUserAssignedActivities();
-            //Loop through the list and check if the user is assigned to the activity if not throw an exception
-            boolean isAssigned = false;
-            for (User user : list) {
-                if (user.getUserId().equals(userID)) {
-                    isAssigned = true;
-                    break;
-                }
-            }
-            if (!isAssigned) {
-                throw new Exception("User is not assigned to the activity");
-            }
-            }
-        */
 
     }
 
