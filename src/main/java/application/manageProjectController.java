@@ -41,7 +41,8 @@ public class manageProjectController {
         manageProjectName.setText(projectName);
     }
 
-    public void returnProjectPage() {
+    public void returnProjectPagePressed() {
+        view.showProjectPage(manageProjectID.getText(),manageProjectName.getText());
 
     }
 }

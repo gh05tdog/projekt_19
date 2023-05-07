@@ -155,6 +155,9 @@ public class View extends Application {
             if (activityPage != null) {
                 activityPage.close();
             }
+            if (manageProject!= null) {
+                manageProject.close();
+            }
             projectPage.show();
 
         } catch (Exception e) {
