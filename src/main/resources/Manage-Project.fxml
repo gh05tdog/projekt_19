@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManageProject">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.manageProjectController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dad9d9" height="200.0" layoutX="10.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="329.0" layoutX="226.0" layoutY="49.0" stroke="BLACK" strokeType="INSIDE" width="355.0" />

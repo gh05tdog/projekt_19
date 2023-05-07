@@ -154,6 +154,28 @@ public class View extends Application {
         }
     }
 
+    public void manageProjectPage () {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Manage-Project.fxml"));
+            AnchorPane root = loader.load();
+            this.projectPage = new Stage();
+            projectPage.setScene(new Scene(root));
+
+            // Get the new controller instance for the Front-page.fxml file
+            projectPageController projectPageController = loader.getController();
+            // Set the model and view for the new controller instance
+            projectPageController.setModelAndView(theModel, this);
+            // Set the project for the new controller instance
+
+            frontpage.close();
+
+            projectPage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loginPage() {
         try {
             frontpage.close();

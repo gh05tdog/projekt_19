@@ -84,4 +84,8 @@ public class Model {
         view.loginPage();
     }
 
+    public void manageProject() {
+        view.manageProjectPage();
+    }
+
 }

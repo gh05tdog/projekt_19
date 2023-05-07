@@ -101,4 +101,11 @@ public class projectPageController {
         view.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
     }
 
+    @FXML
+    protected void manageProjectPagePressed() {
+
+    }
+
+
+
 }
