@@ -26,6 +26,22 @@ public class manageProjectController {
 
     public Text manageProjectName;
 
+    @FXML
+    public TextField addActivityName;
+
+    @FXML
+    public TextField addTimeBudget;
+
+    @FXML
+    public TextField addStartWeek;
+
+    @FXML
+    public TextField enterWeekAmount;
+
+    public Project project;
+
+
+
 
     public void setModelAndView(Model theModel, View view) {
 
@@ -44,5 +60,11 @@ public class manageProjectController {
     public void returnProjectPagePressed() {
         view.showProjectPage(manageProjectID.getText(),manageProjectName.getText());
 
+    }
+
+    public void addActivityToProject() {
+        project = SoftwareApp.getProject(manageProjectID.getText());
+        project.addActivity(addActivityName.getText(),addTimeBudget.getText(),enterWeekAmount.getText(),addStartWeek.getText());
+        
     }
 }
