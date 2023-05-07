@@ -18,7 +18,7 @@ public class User {
 
     private final String userId;
 
-    private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
+    public final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
     private final List<Project.Activities> UserActivityList;
     public static final ArrayList<LocalDate> VacationDaysList = new ArrayList<>();
     private static boolean isCreated = false;

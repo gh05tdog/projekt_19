@@ -17,6 +17,8 @@ import javafx.scene.text.Text;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -40,12 +42,17 @@ public class activityPageController {
     public View view;
     public Model model;
 
+    @FXML
+    public TextField date;
+
 
 
 
     public void setModelAndView(Model model, View view) {
         this.view = view;
         this.model = model;
+        date.setText(String.valueOf(LocalDate.now()));
+
 
         // Add a ChangeListener to the ScrollPane's widthProperty
         // This code was created with the help of https://stackoverflow.com/questions/16606162/javafx-how-to-get-the-scrollbars-of-a-scrollpane
@@ -99,7 +106,34 @@ public class activityPageController {
 
     private void addUserTimeToVBox(String userId, float timeSpent, User user) {
 
-        ActivityTimeSheet activity = new ActivityTimeSheet("activityId", 5, LocalDate.now());
+        for (ActivityTimeSheet activityTimeSheet : user.timeSheet) {
+            if (activityTimeSheet.getActivityId().equals(activityIDLabel.getText())) {
+
+                String dateAndHours = activityTimeSheet.getDateAndHours();
+                activityTimeSheet.addHours(timeSpent, LocalDate.parse(date.getText()));
+                Text userIdText = new Text(userId);
+                Text timeSpentText = new Text(timeSpent + " hours\n" + dateAndHours);
+
+                Button editButton = new Button("Edit");
+                editButton.setOnAction(e -> editTimeEntry(user, timeSpent));
+                editButton.setMaxWidth(Double.MAX_VALUE);
+
+                Button removeButton = new Button("Remove");
+                removeButton.setOnAction(e -> removeTimeEntry(user, timeSpent));
+                removeButton.setMaxWidth(Double.MAX_VALUE);
+
+                VBox buttonsBox = new VBox(editButton, removeButton);
+                buttonsBox.setSpacing(5);
+
+                HBox userInfoRow = new HBox(buttonsBox, userIdText);
+                userInfoRow.setSpacing(10);
+
+                vBoxUserID.getChildren().add(userInfoRow);
+                vBoxTimeSpent.getChildren().add(timeSpentText);
+                return;
+            }
+        }
+        ActivityTimeSheet activity = new ActivityTimeSheet(activityIDLabel.getText(), 5, LocalDate.parse(date.getText()));
         String dateAndHours = activity.getDateAndHours();
 
         Text userIdText = new Text(userId);
@@ -220,7 +254,7 @@ public class activityPageController {
 
                 // Update the percentTime in the corresponding Project.Activities object
                 Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
-                activity.logHours(currentUser, registeredTime, LocalDate.now());
+                activity.logHours(currentUser, registeredTime, LocalDate.parse(date.getText()));
                 setProcents();
                 update();
             } else {
@@ -237,4 +271,5 @@ public class activityPageController {
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
         percentTime.setText(String.format("%.2f%%", activity.getPercentTime()));
     }
+
 }
