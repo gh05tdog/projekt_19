@@ -52,7 +52,7 @@
          <Font size="22.0" />
       </font>
    </Text>
-   <TextField fx:id="projectName" layoutX="131.0" layoutY="26.0" prefHeight="40.0" prefWidth="176.0" text="TextField">
+   <TextField fx:id="projectNameField" layoutX="131.0" layoutY="26.0" prefHeight="40.0" prefWidth="176.0" text="TextField">
       <font>
          <Font size="19.0" />
       </font>
