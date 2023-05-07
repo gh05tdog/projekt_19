@@ -29,6 +29,7 @@ public class Model {
         SoftwareApp.addProject("Project102");
         SoftwareApp.addProject("Project103");
 
+
         SoftwareApp.addCoWorker(currentUser,"23001"); // Assign the user to a specific project
         SoftwareApp.addActivity("Projekt beskrivelse","100","10","4","23001");
         SoftwareApp.addActivity("Projekt diagram","100","10","4","23002");

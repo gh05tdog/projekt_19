@@ -1,6 +1,5 @@
 package app;
 
-import domain.ActivityTimeSheet;
 import domain.Project;
 import domain.Project.Activities;
 import domain.User;
