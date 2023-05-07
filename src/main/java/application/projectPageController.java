@@ -33,8 +33,6 @@ public class projectPageController {
 
     private View view;
 
-    private Project currentProject;
-
     public void setModelAndView(Model theModel, View view) {
         this.theModel = theModel;
         this.view = view;
@@ -51,8 +49,9 @@ public class projectPageController {
     }
 
     private void initializeComponents() {
-        currentProject = SoftwareApp.getProject(projectIDLabel.getText());
+        Project currentProject = SoftwareApp.getProject(projectIDLabel.getText());
         System.out.println(projectIDLabel.getText());
+        assert currentProject != null;
         System.out.println(currentProject.getProjectName());
         System.out.println(currentProject.getNumberOfActivities());
 
@@ -99,7 +98,7 @@ public class projectPageController {
 
     @FXML
     protected void returnFrontPage() {
-        view.showMainPage(theModel.getCurrentUser());
+        view.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
     }
 
 }

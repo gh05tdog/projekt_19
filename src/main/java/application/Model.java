@@ -31,8 +31,8 @@ public class Model {
         SoftwareApp.assignActivityToUser("test","23002","23001A2");
     }
 
-    public void frontPagePage(String name) {
-        view.showMainPage(name);
+    public void frontPagePage() {
+        view.showMainPage(SoftwareApp.getUserFromID(getCurrentUserID()).getName());
 
     }
 

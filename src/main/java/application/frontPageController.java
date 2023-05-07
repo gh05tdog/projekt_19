@@ -114,11 +114,9 @@ public class frontPageController {
     }
 
     @FXML
-
-    private Label userNameLabel;
-
-    public void setUserNameLabel(String name) {
-        userNameLabel.setText(name);
+    private Label nameLabel;
+    public void setNameLabel(String name) {
+        nameLabel.setText(name);
     }
 
 

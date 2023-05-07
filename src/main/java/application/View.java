@@ -1,7 +1,5 @@
 package application;
 
-import app.SoftwareApp;
-import domain.Project;
 import domain.UserAlreadyExistsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -63,7 +61,7 @@ public class View extends Application {
                 // Set the model and view for the new controller instance
                 frontPageController.setModelAndView(theModel);
                 // Set the username label for the new controller instance
-                frontPageController.setUserNameLabel(name);
+                frontPageController.setNameLabel(name);
 
 
                 // Close the login window
