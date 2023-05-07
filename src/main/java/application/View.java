@@ -129,7 +129,7 @@ public class View extends Application {
         }
     }
 
-    public void showProjectPage (String projectID, String nameExtract) {
+    public void showProjectPage (String projectID, String projectName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Project-page.fxml"));
             AnchorPane root = loader.load();
@@ -141,13 +141,17 @@ public class View extends Application {
             // Set the model and view for the new controller instance
             projectPageController.setModelAndView(theModel, this);
             // Set the project for the new controller instance
-            projectPageController.setProjectNameLabel(nameExtract);
+            projectPageController.setProjectNameLabel(projectName);
             // Set the username label for the new controller instance
             projectPageController.setProjectIDLabel(projectID);
             // Close the login window
 
-            frontpage.close();
-
+            if (frontpage != null) {
+                frontpage.close();
+            }
+            if (activityPage != null) {
+                activityPage.close();
+            }
             projectPage.show();
 
         } catch (Exception e) {

@@ -5,6 +5,7 @@ import app.SoftwareApp;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -26,6 +27,8 @@ public class activityPageController {
     public TextField allocatedTime;
     public Text percentTime;
 
+    public View view;
+
     public Text projectNameLabel;
     public Text projectIDLabel;
 
@@ -33,6 +36,7 @@ public class activityPageController {
 
     public void setModelAndView(Model theModel, View view) {
         this.theModel = theModel;
+        this.view = view;
 
         // Add a ChangeListener to the ScrollPane's widthProperty
         // This code was created with the help of https://stackoverflow.com/questions/16606162/javafx-how-to-get-the-scrollbars-of-a-scrollpane
@@ -82,6 +86,8 @@ public class activityPageController {
         allocatedTime.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityID.getText()).getWeeks());
     }
 
-    public void returnToFrontPage(ActionEvent actionEvent) {
+    @FXML
+    protected void returnProjectPage() {
+        view.showProjectPage(projectIDLabel.getText(),projectNameLabel.getText());
     }
 }
