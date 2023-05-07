@@ -6,7 +6,9 @@ import domain.Project;
 import domain.User;
 import domain.UserAlreadyExistsException;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Model {
@@ -19,12 +21,16 @@ public class Model {
 
         // Add a user to the database
         User newUser = User.createUser("Roberto", "test");
+        User.createUser("Tom", "toom");
         currentUser = newUser.getUserId(); // Set the currentUser variable to the created user's userId
-        SoftwareApp.addProject("din mor");
+        SoftwareApp.addProject("Lommeregner");
         SoftwareApp.addProject("Project102");
         SoftwareApp.addProject("Project103");
         SoftwareApp.addCoWorker(currentUser,"23001"); // Assign the user to a specific project
-        SoftwareApp.addActivity("FirstActivity","100","10","4","23001");
+        SoftwareApp.addActivity("Projekt beskrivelse","100","10","4","23001");
+        // Add time to the activity
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").logHours(SoftwareApp.getUserFromID("toom"),1, LocalDate.parse("2021-05-01"));
+
         SoftwareApp.addActivity("secondtActivity","100","10","4","23001");
         SoftwareApp.addActivity("thirdActivity","100","10","4","23001");
         SoftwareApp.addActivity("FourthActivity","100","10","4","23001");
@@ -56,14 +62,11 @@ public class Model {
         SoftwareApp.addProject(projectName);
     }
 
-    public String getCurrentUser () {
-        return currentUser;
-
-    }
     public void setCurrentUser(String string) {
         this.currentUser = string;
     }
     public void setCurrentUserID(String string) {
+        this.currentUser = string;
     }
     public String getCurrentUserID () {
         return currentUser;
