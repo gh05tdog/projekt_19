@@ -1,6 +1,7 @@
 package application;
 
 import app.SoftwareApp;
+import app.TooManyActivities;
 import domain.ActivityTimeSheet;
 import domain.Project;
 import domain.User;
@@ -37,6 +38,12 @@ public class manageProjectController {
 
     @FXML
     public TextField enterWeekAmount;
+    @FXML
+    private TextField activityUserID;
+
+    @FXML
+    private TextField activityActivityID;
+
 
     public Project project;
 
@@ -65,6 +72,11 @@ public class manageProjectController {
     public void addActivityToProject() {
         project = SoftwareApp.getProject(manageProjectID.getText());
         project.addActivity(addActivityName.getText(),addTimeBudget.getText(),enterWeekAmount.getText(),addStartWeek.getText());
-        
+
+    }
+
+    public void addActivityToUser () throws TooManyActivities {
+        SoftwareApp.assignActivityToUser(activityUserID.getText(),manageProjectID.getText(),activityActivityID.getText());
+
     }
 }

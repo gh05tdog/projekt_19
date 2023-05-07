@@ -99,8 +99,8 @@
       </Text>
       <Text layoutX="24.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter user ID" />
       <Text layoutX="16.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter activity ID" />
-      <TextField layoutX="120.0" layoutY="246.0" prefHeight="25.0" prefWidth="83.0" />
-      <TextField layoutX="120.0" layoutY="276.0" prefHeight="25.0" prefWidth="83.0" />
-      <Button layoutX="63.0" layoutY="305.0" mnemonicParsing="false" text="Add to activity" />
+      <TextField fx:id = "activityActivityID" layoutX="120.0" layoutY="246.0" prefHeight="25.0" prefWidth="83.0" />
+      <TextField fx:id = "activityUserID" layoutX="120.0" layoutY="276.0" prefHeight="25.0" prefWidth="83.0" />
+      <Button fx:id = "ActivityToUser" layoutX="63.0" layoutY="305.0" mnemonicParsing="false" text="Add to activity" onAction="#addActivityToUser" />
    </children>
 </AnchorPane>
