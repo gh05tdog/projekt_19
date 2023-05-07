@@ -12,19 +12,18 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.projectPageController">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbebe" height="89.0" layoutX="22.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="305.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c3c3c3" height="134.0" layoutX="341.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="221.0" layoutX="370.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" width="198.0" />
-   <Label fx:id="projectIDLabel" layoutX="37.0" layoutY="6.0" text="23001">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbebe" height="89.0" layoutX="22.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="305.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c3c3c3" height="134.0" layoutX="336.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
+   <Label fx:id="projectIDLabel" layoutX="32.0" layoutY="28.0" text="23001">
       <font>
          <Font size="25.0" />
       </font>
    </Label>
-   <Button fx:id="manageProject" layoutX="200.0" layoutY="337.0" mnemonicParsing="false" onAction="#manageProjectPagePressed" prefHeight="36.0" prefWidth="100.0" text="Manage Project" />
-   <Button layoutX="413.0" layoutY="328.0" mnemonicParsing="false" onAction="#generateReportPressed" prefHeight="27.0" prefWidth="101.0" text="Generate report" />
-   <Button layoutX="22.0" layoutY="337.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
-   <Label layoutX="397.0" layoutY="355.0" prefHeight="25.0" prefWidth="134.0" text="Report has been created" />
-   <ScrollPane fx:id="projectScrollPane" layoutX="22.0" layoutY="124.0" prefHeight="200.0" prefWidth="305.0">
+   <Button fx:id="manageProject" layoutX="408.0" layoutY="232.0" mnemonicParsing="false" onAction="#manageProjectPagePressed" prefHeight="36.0" prefWidth="100.0" text="Manage Project" />
+   <Button layoutX="415.0" layoutY="147.0" mnemonicParsing="false" onAction="#generateReportPressed" prefHeight="27.0" prefWidth="101.0" text="Generate report" />
+   <Button layoutX="397.0" layoutY="332.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
+   <Label layoutX="394.0" layoutY="174.0" prefHeight="25.0" prefWidth="134.0" text="Report has been created" />
+   <ScrollPane fx:id="projectScrollPane" layoutX="22.0" layoutY="168.0" prefHeight="200.0" prefWidth="305.0">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
          <HBox prefHeight="200.0" prefWidth="285.0">
             <VBox fx:id="vBoxName" prefHeight="200.0" prefWidth="174.0" />
@@ -33,50 +32,31 @@
          </HBox>
       </AnchorPane>
    </ScrollPane>
-   <Text layoutX="374.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register activity time" wrappingWidth="191.0">
-      <font>
-         <Font size="20.0" />
-      </font>
-   </Text>
-   <Text layoutX="410.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter activity ID">
-      <font>
-         <Font size="17.0" />
-      </font>
-   </Text>
-   <TextField layoutX="395.0" layoutY="80.0" />
-   <Text layoutX="382.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter time allocated">
-      <font>
-         <Font size="20.0" />
-      </font>
-   </Text>
-   <TextField layoutX="395.0" layoutY="132.0" />
-   <Text layoutX="409.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID not found" wrappingWidth="122.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="22.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" width="166.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="185.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="251.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
-   <Text layoutX="188.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID" textAlignment="CENTER" wrappingWidth="62.0" />
-   <Text layoutX="66.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" textAlignment="CENTER" wrappingWidth="78.13671875" />
-   <Text layoutX="248.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timebudget" textAlignment="CENTER" wrappingWidth="68.0">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="22.0" layoutY="148.0" stroke="BLACK" strokeType="INSIDE" width="166.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="185.0" layoutY="148.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" layoutX="251.0" layoutY="148.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
+   <Text layoutX="188.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID" textAlignment="CENTER" wrappingWidth="62.0" />
+   <Text layoutX="66.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" textAlignment="CENTER" wrappingWidth="78.13671875" />
+   <Text layoutX="248.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timebudget" textAlignment="CENTER" wrappingWidth="68.0">
       <font>
          <Font size="11.0" />
       </font></Text>
-   <TextField fx:id="getDate" layoutX="473.0" layoutY="293.0" prefHeight="25.0" prefWidth="108.0" promptText="yyyy-mm-dd" />
-   <Text layoutX="353.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter report date">
+   <TextField fx:id="getDate" layoutX="465.0" layoutY="112.0" prefHeight="25.0" prefWidth="108.0" promptText="yyyy-mm-dd" />
+   <Text layoutX="341.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter report date">
       <font>
          <Font size="15.0" />
       </font>
    </Text>
-   <Text layoutX="386.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate report">
+   <Text layoutX="381.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate report">
       <font>
          <Font size="22.0" />
       </font>
    </Text>
-   <Button layoutX="409.0" layoutY="168.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="122.0" text="Add registered time" />
-   <TextField fx:id="projectName" layoutX="131.0" layoutY="6.0" prefHeight="40.0" prefWidth="176.0" text="TextField">
+   <TextField fx:id="projectName" layoutX="131.0" layoutY="26.0" prefHeight="40.0" prefWidth="176.0" text="TextField">
       <font>
          <Font size="19.0" />
       </font>
    </TextField>
-   <Button layoutX="144.0" layoutY="52.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" text="Change project name" />
-   <Label layoutX="186.0" layoutY="372.0" prefHeight="17.0" prefWidth="134.0" text="Missing manager-acces" />
+   <Button layoutX="144.0" layoutY="77.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" text="Change project name" />
+   <Label layoutX="392.0" layoutY="274.0" prefHeight="17.0" prefWidth="134.0" text="Missing manager-acces" />
 </AnchorPane>
