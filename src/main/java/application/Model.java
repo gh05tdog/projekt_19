@@ -33,8 +33,8 @@ public class Model {
         Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").logHours(SoftwareApp.getUserFromID("toom"),1, LocalDate.parse("2021-05-01"));
 
         SoftwareApp.addActivity("secondtActivity","100","10","4","23001");
-        SoftwareApp.addActivity("thirdActivity","100","10","4","23001");
-        SoftwareApp.addActivity("FourthActivity","100","10","4","23001");
+        SoftwareApp.addActivity("thirdActivity","70","10","4","23001");
+        SoftwareApp.addActivity("FourthActivity","50","10","4","23001");
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
         SoftwareApp.assignActivityToUser("test","23002","23001A2");
     }

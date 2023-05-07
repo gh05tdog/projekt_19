@@ -8,9 +8,9 @@ import domain.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.text.Text;
@@ -30,7 +30,6 @@ public class activityPageController {
     public Button returnToFrontPage;
     public VBox vBoxUserID;
     public VBox vBoxTimeSpent;
-    public VBox vBoxButtons;
     public TextField enterTime;
     public Button addToActivity;
     public TextField startWeek;
@@ -77,7 +76,6 @@ public class activityPageController {
     private void update() {
         vBoxUserID.getChildren().clear();
         vBoxTimeSpent.getChildren().clear();
-        vBoxButtons.getChildren().clear();
 
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
         activityIDLabel.setText(String.valueOf(activity.getActivityId()));
@@ -97,21 +95,32 @@ public class activityPageController {
 
 
     private void addUserTimeToVBox(String userId, int timeSpent, User user) {
-        Text userIdText = new Text(userId);
+
         ActivityTimeSheet activity = new ActivityTimeSheet("activityId", 5, LocalDate.now());
         String dateAndHours = activity.getDateAndHours();
+
+        Text userIdText = new Text(userId);
         Text timeSpentText = new Text(timeSpent + " hours\n" + dateAndHours);
 
         Button editButton = new Button("Edit");
         editButton.setOnAction(e -> editTimeEntry(user, timeSpent));
+        editButton.setMaxWidth(Double.MAX_VALUE);
 
         Button removeButton = new Button("Remove");
         removeButton.setOnAction(e -> removeTimeEntry(user, timeSpent));
+        removeButton.setMaxWidth(Double.MAX_VALUE);
 
-        vBoxUserID.getChildren().add(userIdText);
+        VBox buttonsBox = new VBox(editButton, removeButton);
+        buttonsBox.setSpacing(5);
+
+        HBox userInfoRow = new HBox(buttonsBox, userIdText);
+        userInfoRow.setSpacing(10);
+
+        vBoxUserID.getChildren().add(userInfoRow);
         vBoxTimeSpent.getChildren().add(timeSpentText);
-        vBoxButtons.getChildren().addAll(editButton, removeButton);
     }
+
+
 
     private void editTimeEntry(User user, int oldTimeSpent) {
         // Show a dialog to edit the time entry
@@ -164,7 +173,7 @@ public class activityPageController {
 
         endWeek.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getEndWeek());
         startWeek.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getStartWeek());
-        allocatedTime.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getWeeks());
+        allocatedTime.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getAllocatedTime());
     }
 
     @FXML
@@ -185,12 +194,8 @@ public class activityPageController {
         }
         activity.setStartWeek(startWeek.getText());
         activity.setEndWeek(endWeek.getText());
+        activity.setAllocatedTime(allocatedTime.getText());
         update();
-
-        //Check if the data is correct
-        System.out.println(activity.getStartWeek());
-        System.out.println(activity.getEndWeek());
-        System.out.println(activity.getWeeks());
     }
 
     public void registerTimeAction() {
