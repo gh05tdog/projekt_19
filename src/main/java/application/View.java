@@ -26,7 +26,6 @@ public class View extends Application {
     private Stage manageProject;
 
 
-
     @Override
     public void start(Stage primaryStage) {
 
