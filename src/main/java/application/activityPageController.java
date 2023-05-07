@@ -69,7 +69,7 @@ public class activityPageController {
         vBoxTimeSpent.getChildren().clear();
 
         for (User user : SoftwareApp.UserList) {
-            int timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
+            float timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
             if (timeSpent > 0) {
                 addUserTimeToVBox(user.getUserId(), timeSpent, user);
             }
@@ -89,7 +89,7 @@ public class activityPageController {
         setProcents();
 
         for (User user : SoftwareApp.UserList) {
-            int timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
+            float timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
             if (timeSpent > 0) {
                 addUserTimeToVBox(user.getUserId(), timeSpent, user);
             }
@@ -98,7 +98,7 @@ public class activityPageController {
 
 
 
-    private void addUserTimeToVBox(String userId, int timeSpent, User user) {
+    private void addUserTimeToVBox(String userId, float timeSpent, User user) {
 
         ActivityTimeSheet activity = new ActivityTimeSheet("activityId", 5, LocalDate.now());
         String dateAndHours = activity.getDateAndHours();
@@ -126,7 +126,7 @@ public class activityPageController {
 
 
 
-    private void editTimeEntry(User user, int oldTimeSpent) {
+    private void editTimeEntry(User user, float oldTimeSpent) {
         // Show a dialog to edit the time entry
         TextInputDialog dialog = new TextInputDialog(String.valueOf(oldTimeSpent));
         dialog.setTitle("Edit Time Entry");
@@ -136,7 +136,7 @@ public class activityPageController {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(timeString -> {
             try {
-                int newTimeSpent = Integer.parseInt(timeString);
+                float newTimeSpent = Float.parseFloat(timeString);
                 user.editTimeSpent(activityIDLabel, oldTimeSpent, newTimeSpent);
                 update();
             } catch (NumberFormatException e) {
@@ -149,7 +149,7 @@ public class activityPageController {
         });
     }
 
-    private void removeTimeEntry(User user, int timeSpent) {
+    private void removeTimeEntry(User user, float timeSpent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Remove Time Entry");
         alert.setHeaderText("Are you sure you want to remove this time entry?");
@@ -198,6 +198,7 @@ public class activityPageController {
         }
         activity.setStartWeek(startWeek.getText());
         activity.setEndWeek(endWeek.getText());
+        activity.setallocatedTime(allocatedTime.getText());
         setProcents();
         update();
     }
@@ -211,18 +212,17 @@ public class activityPageController {
             alert.setContentText("Please enter a valid number of hours.");
             alert.showAndWait();
         } else {
-            int registeredTime = enterTime.getText().isEmpty() ? 0 : Integer.parseInt(enterTime.getText());
+            float registeredTime = enterTime.getText().isEmpty() ? 0 : Float.parseFloat(enterTime.getText());
             if (registeredTime > 0) {
                 User currentUser = SoftwareApp.getUserFromID(model.getCurrentUserID());
 
 
-                currentUser.updateTimeSheet(activityIDLabel.getText(), registeredTime, LocalDate.now());
+                //currentUser.updateTimeSheet(activityIDLabel.getText(), registeredTime, LocalDate.now());
 
                 // Update the percentTime in the corresponding Project.Activities object
                 Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
                 activity.logHours(currentUser, registeredTime, LocalDate.now());
-                activity.updatePercentTime(currentUser.getUserId(), registeredTime);
-
+                setProcents();
                 update();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -236,7 +236,6 @@ public class activityPageController {
 
     public void setProcents() {
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
-        activity.updatePercentTime(model.getCurrentUserID(), 0);
         percentTime.setText(String.format("%.2f%%", activity.getPercentTime()));
     }
 }

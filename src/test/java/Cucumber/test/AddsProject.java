@@ -2,6 +2,7 @@ package Cucumber.test;
 
 import app.SoftwareApp;
 import app.TooManyActivities;
+import app.WayTooManyActivities;
 import domain.Project;
 import domain.User;
 
@@ -107,7 +108,7 @@ public class AddsProject {
     }
 
     @When("The user assign employees {string} and {string} to activity {string} in project {string}")
-    public void theUserAssignEmployeesAndToActivityInProject(String user1, String user2, String activityID, String projectID) throws TooManyActivities {
+    public void theUserAssignEmployeesAndToActivityInProject(String user1, String user2, String activityID, String projectID) throws TooManyActivities, WayTooManyActivities {
         // Write code here that turns the phrase above into concrete actions
         //System.out.println(SoftwareApp.UserList);
             SoftwareApp.assignActivityToUser(user1, projectID, activityID);

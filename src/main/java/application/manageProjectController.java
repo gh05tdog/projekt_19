@@ -2,6 +2,7 @@ package application;
 
 import app.SoftwareApp;
 import app.TooManyActivities;
+import app.WayTooManyActivities;
 import domain.ActivityTimeSheet;
 import domain.Project;
 import domain.User;
@@ -72,6 +73,16 @@ public class manageProjectController {
     public void checkAvailableUsers() {
         vBoxUserList.getChildren().clear();
 
+        //Check the Field is not empty
+        if (activityField.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No Activity Selected");
+            alert.setContentText("Please select an activity to check available users");
+            alert.showAndWait();
+            return;
+        }
+
         int Startweek = Integer.parseInt(SoftwareApp.getProject(manageProjectID.getText()).getActivity(activityField.getText()).getStartWeek());
         int endweek = Integer.parseInt(SoftwareApp.getProject(manageProjectID.getText()).getActivity(activityField.getText()).getEndWeek());
 
@@ -118,15 +129,33 @@ public class manageProjectController {
 
     public void addActivityToProject() {
         project = SoftwareApp.getProject(manageProjectID.getText());
+        assert project != null;
         project.addActivity(addActivityName.getText(),addTimeBudget.getText(),enterWeekAmount.getText(),addStartWeek.getText());
 
     }
 
-    public void addActivityToUser () throws TooManyActivities {
-        SoftwareApp.assignActivityToUser(activityUserID.getText(),manageProjectID.getText(),activityActivityID.getText());
+    public void addActivityToUser () {
+        try {
+            SoftwareApp.assignActivityToUser(activityUserID.getText(),manageProjectID.getText(),activityActivityID.getText());
+        } catch (TooManyActivities tooManyActivities) {
+            //Give a warning to the user that the user has too many activities but ask if they want to continue
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Warning");
+            alert.setHeaderText("User has too many activities");
+            alert.setContentText("Do you want to continue?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                Objects.requireNonNull(SoftwareApp.getProject(manageProjectID.getText())).assignActivityToUser(activityUserID.getText(), activityActivityID.getText());
+            }
+        }catch (WayTooManyActivities wayTooManyActivities){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("User has way too many activities");
+            alert.setContentText("Please assign the activity to another user");
+            alert.showAndWait();
+        }
 
     }
-
     public void assignProjectManAction() {
         User user = SoftwareApp.getUserFromID(userIDManager.getText());
 
@@ -140,6 +169,4 @@ public class manageProjectController {
             alert.showAndWait();
         }
     }
-
-
 }

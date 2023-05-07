@@ -2,6 +2,7 @@ package application;
 
 import app.SoftwareApp;
 import app.TooManyActivities;
+import app.WayTooManyActivities;
 import domain.Project;
 import domain.User;
 import domain.UserAlreadyExistsException;
@@ -17,7 +18,7 @@ public class Model {
     private String currentUser;
 
 
-    public Model(View view) throws TooManyActivities, UserAlreadyExistsException {
+    public Model(View view) throws TooManyActivities, UserAlreadyExistsException, WayTooManyActivities {
         this.view = view;
 
         // Add a user to the database
@@ -46,9 +47,10 @@ public class Model {
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
 
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 20; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23003");
-            SoftwareApp.assignActivityToUser("rubn", "23003", "23003A" + i);
+
+            Objects.requireNonNull(SoftwareApp.getProject("23003")).assignActivityToUser("rubn", "23003A" + i);
         }
 
     }

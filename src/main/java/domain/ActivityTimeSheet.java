@@ -7,17 +7,17 @@ import java.util.List;
 
 public class ActivityTimeSheet {
     private final String activityId;
-    private int totalHours;
+    private float totalHours;
     private final List<TimeLogEntry> timeLog;
 
-    public ActivityTimeSheet(String activityId, int hours, LocalDate date) {
+    public ActivityTimeSheet(String activityId, float hours, LocalDate date) {
         this.activityId = activityId;
         this.totalHours = 0;
         this.timeLog = new ArrayList<>();
         addHours(hours, date);
     }
 
-    public void addHours(int hours, LocalDate date) {
+    public void addHours(float hours, LocalDate date) {
         totalHours += hours;
         timeLog.add(new TimeLogEntry(hours, date));
     }
@@ -26,39 +26,35 @@ public class ActivityTimeSheet {
         return activityId;
     }
 
-    public int getTotalHours() {
+    public float getTotalHours() {
         return totalHours;
     }
 
-    public List<TimeLogEntry> getTimeLog() {
-        return this.timeLog;
-    }
 
     public String getDateAndHours() {
         StringBuilder dateAndHours = new StringBuilder();
         for (TimeLogEntry entry : this.timeLog) {
-            dateAndHours.append(entry.getDate()).append(" ").append(entry.getHours()).append("\n");
+            dateAndHours.append(entry.getDate()).append("\n");
         }
         return dateAndHours.toString();
     }
 
 
-
-    public void editHours(int oldTimeSpent, int newTimeSpent) {
+    public void editHours(float oldTimeSpent, float newTimeSpent) {
         totalHours -= oldTimeSpent;
         totalHours += newTimeSpent;
     }
 
 
     public static class TimeLogEntry {
-        private final int hours;
+        private final float hours;
         private final LocalDate date;
 
-        public TimeLogEntry(int hours, LocalDate date) {
+        public TimeLogEntry(float hours, LocalDate date) {
             this.hours = hours;
             this.date = date;
         }
-        public int getHours() {
+        public float getHours() {
             return hours;
         }
 

@@ -1,6 +1,7 @@
 package Cucumber.test;
 
 import app.SoftwareApp;
+import app.WayTooManyActivities;
 import domain.Project;
 import domain.User;
 import domain.UserAlreadyExistsException;
@@ -57,7 +58,7 @@ public class InteractsWithActivities {
     }
 
     @Given("the user with an id {string} is assigned {int} activities")
-    public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception, UserAlreadyExistsException {
+    public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception, UserAlreadyExistsException, WayTooManyActivities {
         // Add activities to the project
         User.createUser("tejs", userID);
 
@@ -80,7 +81,7 @@ public class InteractsWithActivities {
             SoftwareApp.addActivity("TOO-MANY", "10", "1", "1", "23001");
             SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
 
-        } catch (Exception e) {
+        } catch (Exception | WayTooManyActivities e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -101,15 +102,15 @@ public class InteractsWithActivities {
     }
 
 
-    @Then("the used time on activity is {int} hours")
-    public void theUsedTimeOnActivityIsHours(int arg0) {
-        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A2").getUsedTime()), arg0);
+    @Then("the used time on activity is {float} hours")
+    public void theUsedTimeOnActivityIsHours(float arg0) {
+        assert(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A2").getUsedTime()) == arg0);
     }
 
 
     @Then("the user timesheet should be updated with the logged time")
     public void theUserTimesheetShouldBeUpdatedWithTheLoggedTime() {
-        assertEquals(SoftwareApp.getUserFromID("abcd").getTimeSpentOnActivity("23001A2"), 2);
+        assert (SoftwareApp.getUserFromID("abcd").getTimeSpentOnActivity("23001A2") == 2.0);
     }
 
     @Given("there are employees registered in the system")

@@ -72,9 +72,6 @@ public class Project {
 
         return ActivityList;
     }
-    public int getNumberOfActivities() {
-        return getActivityList().size();
-    }
 
     public void assignActivityToUser(String userID, String activityID) {
         //Loop through the list of activities
@@ -129,7 +126,7 @@ public class Project {
         private String TimeBudget;
         private String Weeks;
         private String StartWeek;
-        private int LoggedTime = 0;
+        private float LoggedTime = 0;
         private Boolean isCompleted;
         private final ActivityTimeSheet activityTimeSheet;
 
@@ -182,20 +179,16 @@ public class Project {
             return StartWeek;
         }
 
-        public void logHours(User user, int hours, LocalDate date) {
+        public void logHours(User user, float hours, LocalDate date) {
             LoggedTime += hours;
             user.updateTimeSheet(ActivityId, hours, date);
             //activityTimeSheet.addHours(hours, date);
         }
 
-        public int getUsedTime() {
+        public float getUsedTime() {
             return LoggedTime;
         }
 
-        public void setCompleted() {
-            //set the activity to completed
-            isCompleted = true;
-        }
 
         public String getEndWeek() {
             return String.valueOf(Integer.parseInt(StartWeek) + Integer.parseInt(Weeks) - 1);
@@ -222,27 +215,17 @@ public class Project {
             this.Weeks = String.valueOf(Integer.parseInt(text) - Integer.parseInt(StartWeek) + 1);
         }
 
-        public boolean getSpecialActivity() {
-            return ActivityId.contains("11111A");
-        }
-        public void setAllocatedTime(String text) {
-            this.TimeBudget = text;
-        }
-
         public String getAllocatedTime() {
             return TimeBudget;
         }
 
         public double getPercentTime() {
-            return (double) LoggedTime / Integer.parseInt(TimeBudget) * 100;
+            return (double) (LoggedTime) / Integer.parseInt(TimeBudget) * 100;
         }
 
-        public void updatePercentTime(String userId, int registeredTime) {
-            if (UserAssignedActivities.contains(SoftwareApp.getUserFromID(userId))) {
-                LoggedTime += registeredTime;
-            }
+        public void setallocatedTime(String text) {
+            this.TimeBudget = text;
         }
-
     }
 
 }

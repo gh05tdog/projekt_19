@@ -72,12 +72,14 @@ public class SoftwareApp {
     }
 
 
-    public static void assignActivityToUser(String userID, String projectID, String activityID) throws TooManyActivities {
+    public static void assignActivityToUser(String userID, String projectID, String activityID) throws TooManyActivities, WayTooManyActivities {
         Project project = getProject(projectID);
         if (project != null) {
-            if (getUserFromID(userID).getAssignedActivitiesNumber() >= 10) {
+            if (getUserFromID(userID).getAssignedActivitiesNumber() >= 10 && getUserFromID(userID).getAssignedActivitiesNumber() < 20){
                 project.assignActivityToUser(userID, activityID);
                 throw new TooManyActivities("This user has more than 10 activities assigned");
+            } else if (getUserFromID(userID).getAssignedActivitiesNumber() == 20){
+                throw new WayTooManyActivities("This user has 20 activities assigned. Cannot assign more activities");
             }
             project.assignActivityToUser(userID, activityID);
         }

@@ -33,6 +33,7 @@ import java.util.regex.Pattern;
 
 
 public class Reports {
+
     @Given("there is an activity with a name {string}, timebudget {string}, weeks {string}, start week {string}")
     public void thereIsAnActivityWithANameTimebudgetWeeksStartWeek(String Name, String timebudget, String weeks, String startweek) {
         // Write code here that turns the phrase above into concrete actions
@@ -94,10 +95,10 @@ public class Reports {
 
         // Verify the hours worked on each activity
         for (Project.Activities activity : Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivityList()) {
-            int expectedHoursWorked = activity.getUsedTime();
-            int actualHoursWorked = hoursWorkedPerActivity.getOrDefault(activity.getActivityId(), 0);
+            float expectedHoursWorked = activity.getUsedTime();
+            float actualHoursWorked = hoursWorkedPerActivity.getOrDefault(activity.getActivityId(), 0);
             System.out.println(activity.getUsedTime());
-            assertEquals(expectedHoursWorked, actualHoursWorked);
+            assert(expectedHoursWorked == actualHoursWorked);
         }
 
         // Verify the total time for the project

@@ -1,5 +1,6 @@
 package application;
 
+import app.WayTooManyActivities;
 import domain.UserAlreadyExistsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +45,7 @@ public class View extends Application {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } catch (UserAlreadyExistsException e) {
+        } catch (UserAlreadyExistsException | WayTooManyActivities e) {
             throw new RuntimeException(e);
         }
     }

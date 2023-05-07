@@ -64,7 +64,7 @@ public class User {
         return UserActivityList.size();
     }
 
-    public int getTimeSpentOnActivity(String activityId) {
+    public float getTimeSpentOnActivity(String activityId) {
         // Search for the activity in the timesheet
         for (ActivityTimeSheet activityTimeSheet : timeSheet) {
             if (activityTimeSheet.getActivityId().equals(activityId)) {
@@ -76,14 +76,7 @@ public class User {
         return 0;
     }
 
-    public static void addVacationDays(LocalDate start, LocalDate end) {
-
-        for (LocalDate date = start; date.isBefore(end); date = date.plusDays(1)) {
-            VacationDaysList.add(date);
-        }
-    }
-
-    public void updateTimeSheet(String activityId, int hours, LocalDate date) {
+    public void updateTimeSheet(String activityId, float hours, LocalDate date) {
         for (ActivityTimeSheet activity : timeSheet) {
             if (activity.getActivityId().equals(activityId)) {
                 activity.addHours(hours, date);
@@ -96,7 +89,7 @@ public class User {
     }
 
 
-    public void editTimeSpent(Text activityID, int oldTimeSpent, int newTimeSpent) {
+    public void editTimeSpent(Text activityID, float oldTimeSpent, float newTimeSpent) {
         for (ActivityTimeSheet activity : timeSheet) {
             if (activity.getActivityId().equals(activityID.getText())) {
                 activity.editHours(oldTimeSpent, newTimeSpent);
@@ -105,7 +98,7 @@ public class User {
         }
     }
 
-    public void removeTimeSpent(Text activityID, int timeSpent) {
+    public void removeTimeSpent(Text activityID, float timeSpent) {
         for (ActivityTimeSheet activity : timeSheet) {
             if (activity.getActivityId().equals(activityID.getText())) {
                 activity.editHours(timeSpent, 0);
