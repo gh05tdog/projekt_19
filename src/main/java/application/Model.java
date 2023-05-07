@@ -99,4 +99,9 @@ public class Model {
         NumberFormat.getInstance().parse(str, pos);
         return str.length() == pos.getIndex();
     }
+
+    public void changeProjectName(String newProjectName, String projectID) {
+        Objects.requireNonNull(SoftwareApp.getProject(projectID)).setProjectName(newProjectName);
+    }
 }
+
