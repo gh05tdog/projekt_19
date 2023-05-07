@@ -129,7 +129,6 @@ public class projectPageController {
       int week = calendar.get(Calendar.WEEK_OF_YEAR);
       csVgenerator = new CSVgenerator(SoftwareApp.getProject(projectIDLabel.getText()));
       csVgenerator.saveCSVReportToFile(week);
-      System.out.println("din mor");
 
     }
 
