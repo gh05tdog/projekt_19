@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 
 public class frontPageController {
 
+    public Button logOutButton;
     @FXML
     private ScrollPane scrollPaneUser;
 
@@ -128,6 +129,11 @@ public class frontPageController {
     @FXML
     protected void createProjectPressed() {
         theModel.addProjectPage();
+    }
+
+    @FXML
+    protected void logoutAction() {
+        theModel.logout();
     }
 
 

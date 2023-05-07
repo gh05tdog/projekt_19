@@ -17,6 +17,7 @@ public class loginController {
     public void initialize()
     {
         // Set the login button to be the default button so that the user can press enter to log in
+        passwordField.clear();
         loginButton.setDefaultButton(true);
     }
 
@@ -42,7 +43,4 @@ public class loginController {
     public void setModelAndView(Model model) {
         this.theModel = model;
     }
-
-
-
 }

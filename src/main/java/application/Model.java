@@ -13,6 +13,7 @@ public class Model {
     private final View view;
     private String currentUser;
 
+
     public Model(View view) throws TooManyActivities, UserAlreadyExistsException {
         this.view = view;
 
@@ -77,6 +78,10 @@ public class Model {
     public void projectPagePage(String IDExtract, String nameExtract) {
         view.showProjectPage(IDExtract, nameExtract);
 
+    }
+
+    public void logout() {
+        view.loginPage();
     }
 
 }
