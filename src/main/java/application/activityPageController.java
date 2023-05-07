@@ -2,6 +2,9 @@ package application;
 
 
 import app.SoftwareApp;
+import domain.ActivityTimeSheet;
+import domain.Project;
+import domain.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -55,19 +58,30 @@ public class activityPageController {
     }
 
     private void initializeComponents() {
-        // Get the current projects activity list
-        // For each activity in the list, create a new HBox with the activity name and ID
-        // Add the HBox to the VBox
         vBoxUserID.getChildren().clear();
         vBoxTimeSpent.getChildren().clear();
-        /*Project project = SoftwareApp.getTheModel().getCurrentProject();
-        for (int i = 0; i < theModel.getActivityList().size(); i++) {
-            Text userID = new Text(theModel.getActivityList().get(i).getUserID());
-            Text timeSpent = new Text(theModel.getActivityList().get(i).getTimeSpent());
-            vBoxUserID.getChildren().add(userID);
-            vBoxTimeSpent.getChildren().add(timeSpent);
-        }*/
+
+        Project project = SoftwareApp.getProject(projectIDLabel.getText());
+        Project.Activities activity = Objects.requireNonNull(project).getActivity(activityID.getText());
+
+        for (User user : SoftwareApp.UserList) {
+            int timeSpent = user.getTimeSpentOnActivity(activityID.getText());
+            if (timeSpent > 0) {
+                addUserTimeToVBox(user.getUserId(), timeSpent, user);
+            }
+        }
     }
+
+    private void addUserTimeToVBox(String userId, int timeSpent, User user) {
+        Text userIdText = new Text(userId);
+        String timeLogString = ActivityTimeSheet.getDateAndHours();
+        Text timeSpentText = new Text(timeSpent + " hours\n" + timeLogString);
+
+        vBoxUserID.getChildren().add(userIdText);
+        vBoxTimeSpent.getChildren().add(timeSpentText);
+    }
+
+
 
     public void setActvityName(String name) {
         activityName.setText(name);
