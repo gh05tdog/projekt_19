@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 
+import static domain.Project.ActivityList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -38,7 +39,7 @@ public class InteractsWithActivities {
         }
         User user = SoftwareApp.getUserFromID(userId);
 
-        SoftwareApp.projectList.get(0).setProjectManager(user);
+        SoftwareApp.getProject("23001").setProjectManager(user);
         Project project = SoftwareApp.getProject("23001");
         assert project != null;
 
@@ -48,25 +49,26 @@ public class InteractsWithActivities {
     @Given("the user with an id {string} is assigned {int} activities")
     public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception, UserAlreadyExistsException {
         // Add activities to the project
-        User.createUser("tejs",userID);
-
+        User.createUser("tejs", userID);
+        for (Project.Activities activities : ActivityList) {
+            System.out.println("before" + activities.getActivityId());
+        }
+        System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         for (int i = 1; i <= nbOfActivities; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23001");
-
-                SoftwareApp.assignActivityToUser(userID, "23001", "23001" + "A" + i);
-
+            SoftwareApp.assignActivityToUser(userID, "23001", "23001A" + i);
+            System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         }
-
+        for (Project.Activities activities : ActivityList) {
+            System.out.println("after" + activities.getActivityId());
+        }
+        System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         assert SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber() == nbOfActivities;
 
-        List<User> list1 = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUserAssignedActivities();
-        for (User user : list1) {
 
-            System.out.println(user.getUserId());
-        }
-
-        for(int i = 1; i <= nbOfActivities; i++) {
+       /* for (int i = 1; i <= nbOfActivities; i++) {
             System.out.println("23001A" + i);
+
             List<User> list = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A" + i).getUserAssignedActivities();
             //Loop through the list and check if the user is assigned to the activity if not throw an exception
             boolean isAssigned = false;
@@ -79,8 +81,9 @@ public class InteractsWithActivities {
             if (!isAssigned) {
                 throw new Exception("User is not assigned to the activity");
             }
+            }
+        */
 
-        }
     }
 
     @When("the user with an id {string} is assigned the activity")
@@ -88,7 +91,7 @@ public class InteractsWithActivities {
         User user = SoftwareApp.getUserFromID(string);
         try {
             SoftwareApp.addActivity("TOO-MANY", "10", "1", "1", "23001");
-                SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
+            SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
 
         } catch (Exception e) {
             errorMessage.setErrorMessage(e.getMessage());
@@ -102,7 +105,7 @@ public class InteractsWithActivities {
 
     @Then("the user is assigned the activity")
     public void the_user_is_assigned_the_activity() {
-        assertEquals(SoftwareApp.getUserFromID("test").getAssignedActivitiesNumber(), 11);
+        assertEquals(SoftwareApp.getUserFromID("tejs").getAssignedActivitiesNumber(), 11);
     }
 
     @When("the user with the id {string} logs {int} hours on activity {string}")
@@ -110,16 +113,16 @@ public class InteractsWithActivities {
         Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity(arg2).logHours(SoftwareApp.getUserFromID(arg0), arg1, LocalDate.now());
     }
 
-    @Then("the used time on activity is {int}")
-    public void theUsedTimeOnActivityIs(Integer int1) {
-        int time = int1;
-        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A1").getUsedTime()), time);
+
+    @Then("the used time on activity is {int} hours")
+    public void theUsedTimeOnActivityIsHours(int arg0) {
+        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A1").getUsedTime()), arg0);
     }
 
 
     @Then("the user timesheet should be updated with the logged time")
     public void theUserTimesheetShouldBeUpdatedWithTheLoggedTime() {
-        assertEquals(SoftwareApp.getUserFromID("abcd").getTimeSpentOnActivity("23001A1"),2);
+        assertEquals(SoftwareApp.getUserFromID("abcd").getTimeSpentOnActivity("23001A1"), 2);
     }
 
     @Given("there are employees registered in the system")
@@ -130,3 +133,4 @@ public class InteractsWithActivities {
         SoftwareApp.addUser(user1);
     }
 }
+

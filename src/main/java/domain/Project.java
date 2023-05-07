@@ -8,29 +8,31 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static app.SoftwareApp.projectList;
+
 
 public class Project {
     private String ProjectName;
-    private final String ProjectId;
+    private String ProjectId;
     public List<User> workersList = new ArrayList<>();
     public final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
+    public static final List<Activities> SpecialActivityList = new ArrayList<>();
 
     public Project(String projectName) {
         this.ProjectName = projectName;
-
-        //Count all projects in the system
-        //Add 1 to the count
-        //Set the ProjectId to the count
-
         int Year = Calendar.getInstance().get(Calendar.YEAR) % 100;
-
-        if (SoftwareApp.getNumberOfProject() < 10) {
-            this.ProjectId = Year + "00" + (SoftwareApp.getNumberOfProject() + 1);
-        } else if (SoftwareApp.getNumberOfProject() < 100) {
-            this.ProjectId = Year + "0" + (SoftwareApp.getNumberOfProject() + 1);
-        } else {
-            this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
+        if(projectList.size() == 1){
+            this.ProjectId = Year + "001";
+        }
+        else {
+            if (SoftwareApp.getNumberOfProject() < 10) {
+                this.ProjectId = Year + "00" + (SoftwareApp.getNumberOfProject() + 1);
+            } else if (SoftwareApp.getNumberOfProject() < 100) {
+                this.ProjectId = Year + "0" + (SoftwareApp.getNumberOfProject() + 1);
+            } else {
+                this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
+            }
         }
     }
 
@@ -71,25 +73,30 @@ public class Project {
     }
 
 
+
     public List<Activities> getActivityList() {
-        return ActivityList; // this line should also be changed to: return this.ActivityList;
+
+        return ActivityList;
+    }
+    public int getNumberOfActivities() {
+        return getActivityList().size();
     }
 
     public void assignActivityToUser(String userID, String activityID) {
         //Loop through the list of activities
         for (Activities activity : ActivityList) {
-            //If the activityID matches the activityID of the activity in the list
             if (activity.getActivityId().equals(activityID)) {
                 //Add the user to the activity
+                //If the activityID matches the activityID of the activity in the list
                 activity.addWorkerToActivity(SoftwareApp.getUserFromID(userID));
             }
         }
     }
 
     public Activities getActivity(String s) {
-        for (Activities activity : ActivityList) {
-            if (activity.getActivityId().equals(s)) {
-                return activity;
+        for (Activities activities : ActivityList) {
+            if (activities.getActivityId().equals(s)) {
+                return activities;
             }
         }
         return null;
@@ -103,12 +110,12 @@ public class Project {
         return totalTimeSpentOnProject;
     }
 
-    public int getTimeLeftForProject() {
-        int TimeLeftForProject = 0;
-        for (Activities activity : ActivityList) {
-            TimeLeftForProject += Integer.parseInt(activity.TimeBudget) - activity.LoggedTime;
-        }
-        return TimeLeftForProject;
+    public void changeProjectId(String newId) {
+        ProjectId = newId;
+    }
+
+    public void changeProjectName(String newName) {
+        ProjectName = newName;
     }
 
     public void setProjectName(String newProjectName) {
@@ -139,7 +146,6 @@ public class Project {
             this.Weeks = Weeks;
             this.StartWeek = StartWeek;
             this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
-            
             this.isCompleted = false;
             this.activityTimeSheet = new ActivityTimeSheet(ActivityId, 0, LocalDate.now());
         }
@@ -178,6 +184,7 @@ public class Project {
         public void logHours(User user, int hours, LocalDate date) {
             LoggedTime += hours;
             user.updateTimeSheet(ActivityId, hours, date);
+            //activityTimeSheet.addHours(hours, date);
 
         }
 
@@ -215,6 +222,9 @@ public class Project {
             this.Weeks = String.valueOf(Integer.parseInt(text) - Integer.parseInt(StartWeek) + 1);
         }
 
+        public boolean getSpecialActivity() {
+            return ActivityId.contains("11111A");
+        }
         public void setAllocatedTime(String text) {
             this.TimeBudget = text;
         }

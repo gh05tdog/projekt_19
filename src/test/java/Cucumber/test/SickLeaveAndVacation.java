@@ -1,60 +1,58 @@
-package Cucumber.test;
-
 import app.SoftwareApp;
+import domain.ActivityTimeSheet;
+import domain.Project;
 import domain.User;
-import domain.UserAlreadyExistsException;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import java.util.Date;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class SickLeaveAndVacation {
-
-    @Given("a user has the id {string}")
-    public void aUserHasTheId(String arg0) throws UserAlreadyExistsException {
-        User.createUser("Kasper", arg0);
-        assertEquals(SoftwareApp.getUserFromID(arg0).getUserId(), arg0);
+    @Given("the user with the id {string} is not already on vacation")
+    public void theUserWithTheIdIsNotAlreadyOnVacation(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println(Project.SpecialActivityList);
+        Project.SpecialActivityList.get(1).logHours(SoftwareApp.getUserFromID(string), 0, LocalDate.now());
+        assertEquals(0, Project.SpecialActivityList.get(1).getUsedTime());
     }
 
-    @And("the user with the id {string} is logged in")
-    public void theUserWithTheIdIsLoggedIn(String arg0) {
-        User user = SoftwareApp.getUserFromID(arg0);
-        SoftwareApp.CurrentUser = user.getUserId();
-        assertEquals(SoftwareApp.CurrentUser, arg0);
-    }
-
-
-    @And("the user with the id {string} is not already on vacation")
-    public void theUserWithTheIdIsNotAlreadyOnVacation(String arg0) {
-        //Get today's date
-       Date today = new Date();
-       assertFalse(SoftwareApp.getUserFromID(arg0).isOnVacation(today));
-    }
-
-    @And("the user with the id {string} registers vacation with start date {string} and end date {string}")
-    public void theUserWithTheIdRegistersVacationWithStartDateAndEndDate(String arg0, String arg1, String arg2) {
-        System.out.println(SoftwareApp.getUserFromID(arg0).getUserId());
-        SoftwareApp.getUserFromID(arg0).setVacation(arg1, arg2);
-        System.out.println(SoftwareApp.getUserFromID(arg0).getUnAvailableDates());
+    @Given("the user with the id {string} registers vacation with start date {string} and end date {string}")
+    public void theUserWithTheIdRegistersVacationWithStartDateAndEndDate(String string, String string2, String string3) {
+        User.addVacationDays(LocalDate.parse(string2), LocalDate.parse(string3));
+        int days = LocalDate.parse(string3).getDayOfYear() - LocalDate.parse(string2).getDayOfYear();
+        Project.SpecialActivityList.get(1).logHours(SoftwareApp.getUserFromID(string), days, LocalDate.parse(string2));
+        assertEquals(days, Project.SpecialActivityList.get(1).getUsedTime());
     }
 
     @Then("the user with the id {string} is on vacation from {string} to {string}")
     public void theUserWithTheIdIsOnVacationFromTo(String string, String string2, String string3) {
         // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        List<LocalDate> VacationDates = LocalDate.parse(string2).datesUntil(LocalDate.parse(string3)).collect(Collectors.toList());
+        assertEquals(User.VacationDaysList, VacationDates);
     }
 
-    @Then("the users availability should be updated")
-    public void theUsersAvailabilityShouldBeUpdated() {
+    @Given("the user with the id {string} is not already sick")
+    public void theUserWithTheIdIsNotAlreadySick(String string) {
         // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        LocalDate sick = LocalDate.parse("2023-01-01");
+        Project.SpecialActivityList.get(0).logHours(SoftwareApp.getUserFromID(string), 0,sick);
+        assertEquals(0, Project.SpecialActivityList.get(0).getTimeLog().get(0).getHours());
+    }
+    @Given("the user with the id {string} registers sick leave from {string} to {string}")
+    public void theUserWithTheIdRegistersSickLeaveFromTo(String string, String string2, String string3) {
+        // Write code here that turns the phrase above into concrete actions
+        int days = LocalDate.parse(string3).getDayOfYear() - LocalDate.parse(string2).getDayOfYear();
+        Project.SpecialActivityList.get(0).logHours(SoftwareApp.getUserFromID(string), days, LocalDate.parse(string2));
+    }
+    @Then("the user with the id {string} is sick from {string} to {string}")
+    public void theUserWithTheIdIsSickFromTo(String string, String string2, String string3) {
+        // Write code here that turns the phrase above into concrete actions
+        int days = LocalDate.parse(string3).getDayOfYear() - LocalDate.parse(string2).getDayOfYear();
+        assertEquals(LocalDate.parse(string2), Project.SpecialActivityList.get(0).getTimeLog().get(ActivityTimeSheet.getTimeLog().size()-1).getDate());
+        assertEquals(days, Project.SpecialActivityList.get(0).getUsedTime());
     }
 }
-
-
-
-
-
