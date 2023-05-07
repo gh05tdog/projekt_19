@@ -9,7 +9,6 @@ import domain.UserAlreadyExistsException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import javafx.scene.control.Label;
 
 public class Model {
     private final View view;
@@ -76,8 +75,6 @@ public class Model {
         return SoftwareApp.projectList;
     }
 
-    public List<Project.Activities> getActivities(Project project){ return project.ActivityList; }
-
     public void projectPagePage(String IDExtract, String nameExtract) {
         view.showProjectPage(IDExtract, nameExtract);
 
@@ -91,4 +88,7 @@ public class Model {
         view.manageProjectPage(projectID,projectName);
     }
 
+    public void showMainPage(String name) {
+        view.showMainPage(name);
+    }
 }
