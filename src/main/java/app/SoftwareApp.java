@@ -12,12 +12,7 @@ import java.util.Objects;
 public class SoftwareApp {
 
     public SoftwareApp() {
-        addProject("Off work Activities");
-        Objects.requireNonNull(getProject("23001")).changeProjectId("11111");
-        System.out.println("This should work:" + Objects.requireNonNull(getProject("11111")).getProjectId());
-        addActivity("Sick days", "0", "0", "1", "23001");
-        addActivity("Vacation days", "0", "0", "1", "23001");
-        addActivity("Other", "0", "0", "1", "23001");
+
 
         //Print all projects
         for (Project project : projectList) {

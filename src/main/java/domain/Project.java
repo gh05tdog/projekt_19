@@ -136,7 +136,7 @@ public class Project {
             this.TimeBudget = TimeBudget;
             this.Weeks = Weeks;
             this.StartWeek = StartWeek;
-            this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
+            this.ActivityId = ProjectId + "A" + (ActivityList.size());
             this.isCompleted = false;
             this.activityTimeSheet = new ActivityTimeSheet(ActivityId, 0, LocalDate.now());
         }

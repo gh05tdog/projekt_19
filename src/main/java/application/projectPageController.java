@@ -5,6 +5,7 @@ import app.CSVgenerator;
 import app.SoftwareApp;
 import domain.Project;
 import domain.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -137,5 +138,12 @@ public class projectPageController {
       csVgenerator.saveCSVReportToFile(week);
       
 
+    }
+
+    public void changeProjectNameAction(ActionEvent actionEvent) {
+        Project currentProject = SoftwareApp.getProject(projectIDLabel.getText());
+        assert currentProject != null;
+        currentProject.setProjectName(projectNameField.getText());
+        view.showAlert("Project name changed to " + projectNameField.getText() + " successfully!");
     }
 }

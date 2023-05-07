@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.projectPageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.projectPageController">
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bfbebe" height="89.0" layoutX="22.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="305.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c3c3c3" height="134.0" layoutX="336.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
    <Label fx:id="projectIDLabel" layoutX="32.0" layoutY="28.0" text="23001">
@@ -24,11 +18,11 @@
    <Button layoutX="397.0" layoutY="332.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
    <Label layoutX="394.0" layoutY="174.0" prefHeight="25.0" prefWidth="134.0" text="Report has been created" />
    <ScrollPane fx:id="projectScrollPane" layoutX="22.0" layoutY="168.0" prefHeight="200.0" prefWidth="305.0">
-      <AnchorPane minHeight="0.0" minWidth="0.0"  prefWidth="200.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
          <HBox prefWidth="285.0">
-            <VBox fx:id="vBoxName"  prefWidth="174.0" />
-            <VBox fx:id="vBoxID"  prefWidth="73.0" />
-            <VBox fx:id="vBoxTime"  prefWidth="66.0" />
+            <VBox fx:id="vBoxName" prefWidth="174.0" />
+            <VBox fx:id="vBoxID" prefWidth="73.0" />
+            <VBox fx:id="vBoxTime" prefWidth="66.0" />
          </HBox>
       </AnchorPane>
    </ScrollPane>
@@ -57,6 +51,6 @@
          <Font size="19.0" />
       </font>
    </TextField>
-   <Button layoutX="144.0" layoutY="77.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" text="Change project name" />
+   <Button layoutX="144.0" layoutY="77.0" mnemonicParsing="false" onAction="#changeProjectNameAction" prefHeight="29.0" prefWidth="130.0" text="Change project name" />
    <Label layoutX="392.0" layoutY="274.0" prefHeight="17.0" prefWidth="134.0" text="Missing manager-acces" />
 </AnchorPane>

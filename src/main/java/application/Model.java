@@ -21,6 +21,11 @@ public class Model {
     public Model(View view) throws TooManyActivities, UserAlreadyExistsException, WayTooManyActivities {
         this.view = view;
 
+        SoftwareApp.addProject("Off work Activities");
+        SoftwareApp.addActivity("Sick days", "0", "0", "1", "23001");
+        SoftwareApp.addActivity("Vacation days", "0", "0", "1", "23001");
+        SoftwareApp.addActivity("Other", "0", "0", "1", "23001");
+
         // Add a user to the database
         User newUser = User.createUser("Roberto", "test");
         User.createUser("Tom", "toom");
@@ -32,26 +37,29 @@ public class Model {
 
 
         SoftwareApp.addCoWorker(currentUser,"23001"); // Assign the user to a specific project
-        SoftwareApp.addActivity("Projekt beskrivelse","100","10","4","23001");
-        SoftwareApp.addActivity("Projekt diagram","100","10","4","23002");
+        SoftwareApp.addActivity("Projekt beskrivelse","100","10","4","23002");
+        SoftwareApp.addActivity("Projekt diagram","100","10","4","23003");
 
         // Add time to the activity
-        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").logHours(SoftwareApp.getUserFromID("toom"),1, LocalDate.parse("2021-05-01"));
 
-        SoftwareApp.addActivity("secondtActivity","100","10","4","23001");
-        SoftwareApp.addActivity("thirdActivity","70","10","4","23001");
-        SoftwareApp.addActivity("FourthActivity","50","10","4","23001");
-        SoftwareApp.assignActivityToUser("test","23001","23001A1");
-        SoftwareApp.assignActivityToUser("test","23001","23001A2");
-        //System.out.println(Objects.requireNonNull(SoftwareApp.getProject("23002")).getActivity("23002A1").getActivityName());
+
+        SoftwareApp.addActivity("secondtActivity","100","10","4","23002");
+        SoftwareApp.addActivity("thirdActivity","70","10","4","23002");
+        SoftwareApp.addActivity("FourthActivity","50","10","4","23002");
+
+        SoftwareApp.assignActivityToUser("test","23001","23002A1");
+        SoftwareApp.assignActivityToUser("test","23001","23002A2");
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
+        Objects.requireNonNull(SoftwareApp.getProject("23002")).getActivity("23002A1").logHours(SoftwareApp.getUserFromID("toom"),1, LocalDate.parse("2021-05-01"));
 
         for (int i = 1; i <= 20; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23003");
 
             Objects.requireNonNull(SoftwareApp.getProject("23003")).assignActivityToUser("rubn", "23003A" + i);
         }
+
+
 
     }
 
