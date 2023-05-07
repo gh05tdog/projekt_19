@@ -1,6 +1,7 @@
 package application;
 
 
+import app.CSVgenerator;
 import app.SoftwareApp;
 import domain.Project;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+
+import java.util.Date;
 
 public class projectPageController {
 
@@ -32,6 +35,8 @@ public class projectPageController {
     private VBox vBoxTime;
 
     private View view;
+
+    public CSVgenerator csVgenerator;
 
     public void setModelAndView(Model theModel, View view) {
         this.theModel = theModel;
@@ -107,6 +112,12 @@ public class projectPageController {
     @FXML
     protected void manageProjectPagePressed() {
         theModel.manageProject(projectIDLabel.getText(),projectNameLabel.getText());
+
+    }
+
+    public void generateReportPressed() {
+        
+      csVgenerator = new CSVgenerator(SoftwareApp.getProject(projectIDLabel.getText()));
 
     }
 
