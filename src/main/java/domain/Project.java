@@ -1,6 +1,7 @@
 package domain;
 
 import app.SoftwareApp;
+import app.TooManyActivities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,6 +52,15 @@ public class Project {
         return workersList.stream().filter(user -> user.getUserId().equals(id)).findFirst().orElse(null);
     }
 
+    public boolean userInProject (User user) {
+        boolean a;
+        for (int i = 0; i< workersList.size(); i++)
+            if (user == workersList.get(i)); {
+                a = true;
+            }
+        return a;
+    }
+
     public User getProjectManager() {
         return ProjectManager;
     }
@@ -68,8 +78,15 @@ public class Project {
             ActivityList.add(activity);
         }
     }
-    public List<Activities> getActivityList() {
+
+
+
+    public static List<Activities> getActivityList() {
+
         return ActivityList;
+    }
+    public static int getNumberOfActivities() {
+        return getActivityList().size();
     }
 
 
@@ -112,6 +129,7 @@ public class Project {
     }
 
     public class Activities extends Project {
+        public List<Activities> ActivityList = new ArrayList<>();
         private final List<User> UserAssignedActivities = new ArrayList<>();
         private final String ActivityName;
         private String ActivityId;
@@ -168,6 +186,7 @@ public class Project {
             LoggedTime += hours;
             user.updateTimeSheet(ActivityId, hours, date);
             //activityTimeSheet.addHours(hours, date);
+
         }
 
         public int getUsedTime() {
@@ -189,5 +208,6 @@ public class Project {
             return ActivityId.contains("11111A");
         }
     }
+
 }
 

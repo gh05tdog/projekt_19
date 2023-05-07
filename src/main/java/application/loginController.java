@@ -6,10 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 
 public class loginController {
+
     public Button loginButton;
     private Model theModel;
     @FXML
-    private PasswordField passwordField;
+    public PasswordField passwordField;
+
 
     // Create initialize function
     public void initialize()
@@ -19,7 +21,7 @@ public class loginController {
     }
 
     @FXML
-    protected void LoginButtonPressed()
+    protected String LoginButtonPressed()
     {
         // Check if the user exists with the function getUserFromID
         // if the user exists, then login
@@ -27,15 +29,20 @@ public class loginController {
 
         if(SoftwareApp.getUserFromID(passwordField.getText()) != null)
         {
-            theModel.login(SoftwareApp.getUserFromID(passwordField.getText()).getName());
+            theModel.setCurrentUser(SoftwareApp.getUserFromID(passwordField.getText()).getUserId());
+            theModel.setCurrentUserID(passwordField.getText());
+            theModel.frontPagePage(theModel.getCurrentUser());
         }else
         {
             System.out.println("User does not exist");
         }
+        return SoftwareApp.getUserFromID(passwordField.getText()).getName();
     }
-    public void setModelAndView(Model model)
-    {
+
+    public void setModelAndView(Model model) {
         this.theModel = model;
     }
+
+
 
 }

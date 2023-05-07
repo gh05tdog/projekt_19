@@ -1,6 +1,7 @@
 import app.SoftwareApp;
 import domain.Project;
 import domain.User;
+import domain.UserAlreadyExistsException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -44,7 +45,7 @@ public class InteractsWithActivities {
     }
 
     @Given("the user with an id {string} is assigned {int} activities")
-    public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception {
+    public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception, UserAlreadyExistsException {
         // Add activities to the project
         User.createUser("tejs", userID);
         for (Project.Activities activities : ActivityList) {
@@ -129,6 +130,5 @@ public class InteractsWithActivities {
         User user1 = new User("Amanda", "tesl");
         SoftwareApp.addUser(user1);
     }
-
-
 }
+

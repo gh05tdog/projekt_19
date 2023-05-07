@@ -13,7 +13,7 @@ import static app.SoftwareApp.projectList;
 public class User {
 
     private final String name;
-    private final String userId;
+    private String userId;
 
     // public static List<Project.Activities> UserActivityList = new ArrayList<>();
     private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
@@ -22,13 +22,15 @@ public class User {
     private static boolean isCreated = false;
     private static boolean isCreated2 = false;
 
+
+
     public User(String name, String userId) {
         this.name = name;
         this.userId = userId;
         this.UserActivityList = new ArrayList<>();
     }
 
-    public static User createUser(String name, String userId) {
+    public static User createUser(String name, String userId) throws UserAlreadyExistsException {
         //Check if username is already in use
         //If it is, throw an exception
         if (!isCreated) {
@@ -49,6 +51,7 @@ public class User {
         if (SoftwareApp.getUserFromID(userId) != null) {
             return SoftwareApp.getUserFromID(userId);
         }
+
         User newUser = new User(name, userId);
         SoftwareApp.UserList.add(newUser);
         System.out.println("User " + name + " created");
@@ -82,7 +85,9 @@ public class User {
         // If the activity is not in the timesheet, return 0
         return 0;
     }
+
     public static void addVacationDays(LocalDate start, LocalDate end) {
+
         for (LocalDate date = start; date.isBefore(end); date = date.plusDays(1)) {
             VacationDaysList.add(date);
         }
