@@ -86,7 +86,7 @@ public class activityPageController {
         startWeek.setText(String.valueOf(activity.getStartWeek()));
         endWeek.setText(String.valueOf(activity.getEndWeek()));
         allocatedTime.setText(String.valueOf(activity.getAllocatedTime()));
-        percentTime.setText(String.format("%.2f%%", activity.getPercentTime()));
+        setProcents();
 
         for (User user : SoftwareApp.UserList) {
             int timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
@@ -198,7 +198,7 @@ public class activityPageController {
         }
         activity.setStartWeek(startWeek.getText());
         activity.setEndWeek(endWeek.getText());
-        activity.setAllocatedTime(allocatedTime.getText());
+        setProcents();
         update();
     }
 
@@ -214,10 +214,13 @@ public class activityPageController {
             int registeredTime = enterTime.getText().isEmpty() ? 0 : Integer.parseInt(enterTime.getText());
             if (registeredTime > 0) {
                 User currentUser = SoftwareApp.getUserFromID(model.getCurrentUserID());
+
+
                 currentUser.updateTimeSheet(activityIDLabel.getText(), registeredTime, LocalDate.now());
 
                 // Update the percentTime in the corresponding Project.Activities object
                 Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
+                activity.logHours(currentUser, registeredTime, LocalDate.now());
                 activity.updatePercentTime(currentUser.getUserId(), registeredTime);
 
                 update();
@@ -233,6 +236,7 @@ public class activityPageController {
 
     public void setProcents() {
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
+        activity.updatePercentTime(model.getCurrentUserID(), 0);
         percentTime.setText(String.format("%.2f%%", activity.getPercentTime()));
     }
 }

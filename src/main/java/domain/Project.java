@@ -186,7 +186,6 @@ public class Project {
             LoggedTime += hours;
             user.updateTimeSheet(ActivityId, hours, date);
             //activityTimeSheet.addHours(hours, date);
-
         }
 
         public int getUsedTime() {
@@ -235,9 +234,6 @@ public class Project {
         }
 
         public double getPercentTime() {
-            if (Integer.parseInt(TimeBudget) == 0) {
-                return 0;
-            }
             return (double) LoggedTime / Integer.parseInt(TimeBudget) * 100;
         }
 
