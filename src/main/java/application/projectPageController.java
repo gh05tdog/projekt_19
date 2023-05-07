@@ -1,22 +1,31 @@
 package application;
 
 
+import app.CSVgenerator;
 import app.SoftwareApp;
 import domain.Project;
+import domain.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
+
 public class projectPageController {
 
-    public Label projectNameLabel;
+    public TextField projectNameField;
 
     public Label projectIDLabel;
+    public Button manageProject;
     private Model theModel;
 
     @FXML
@@ -32,6 +41,10 @@ public class projectPageController {
     private VBox vBoxTime;
 
     private View view;
+
+    public CSVgenerator csVgenerator;
+    @FXML
+    private TextField getDate;
 
     public void setModelAndView(Model theModel, View view) {
         this.theModel = theModel;
@@ -50,65 +63,78 @@ public class projectPageController {
 
     private void initializeComponents() {
         Project currentProject = SoftwareApp.getProject(projectIDLabel.getText());
-        System.out.println(projectIDLabel.getText());
         assert currentProject != null;
-        System.out.println(currentProject.getProjectName());
-        System.out.println(currentProject.getNumberOfActivities());
-
 
 
         for (int i = 0; i < currentProject.getActivityList().size(); i++) {
-
             Project.Activities activity = currentProject.getActivityList().get(i);
-            System.out.println(activity.getActivityName());
+            final String activityId = activity.getActivityId();
+            final String activityName = activity.getActivityName();
+
             Button activityButtonName = new Button();
             activityButtonName.setMinWidth(vBoxName.getWidth());
             activityButtonName.maxWidthProperty().bind(vBoxName.widthProperty());
-            activityButtonName.setText(activity.getActivityName());
+            activityButtonName.setText(activityName);
+            activityButtonName.setId(activityId); // set the ID of the button to the activity ID
+
             activityButtonName.setOnAction(e -> {
-                view.showActivityPage(activity.getActivityId(), activity.getActivityName(), projectIDLabel.getText());
+                
+                view.showActivityPage(activity.getActivityId(), activity.getActivityName(), projectIDLabel.getText()); // use activity's properties directly
             });
+
 
             Button activityButtonId = new Button();
             activityButtonId.setMinWidth(vBoxName.getWidth());
             activityButtonId.maxWidthProperty().bind(vBoxName.widthProperty());
-            activityButtonId.setText(activity.getActivityId());
+            activityButtonId.setText(activityId);
 
             Button activityButtonTime = new Button();
             activityButtonTime.setMinWidth(vBoxName.getWidth());
             activityButtonTime.maxWidthProperty().bind(vBoxName.widthProperty());
             activityButtonTime.setText(activity.getTimeBudget());
+
             // set button properties
             vBoxName.getChildren().add(activityButtonName);
             vBoxID.getChildren().add(activityButtonId);
             vBoxTime.getChildren().add(activityButtonTime);
-
         }
-
-
-
-
-
     }
+
+
 
     public void setProjectIDLabel(String name) {
         projectIDLabel.setText(name);
     }
 
     public void setProjectNameLabel(String name) {
-        projectNameLabel.setText(name);
+        projectNameField.setText(name);
     }
 
     @FXML
     protected void returnFrontPage() {
-        view.showMainPage(projectNameLabel.getText());
+        view.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
     }
 
     @FXML
     protected void manageProjectPagePressed() {
+        User manger = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getManager();
+        if(manger == null || manger.getUserId().equals(theModel.getCurrentUserID())) {
+            theModel.manageProject(projectIDLabel.getText(), projectNameField.getText());
+        }else {
+            view.showAlert("You are not the manager of this project");
+        }
 
     }
 
+    public void generateReportPressed() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      Date date = dateFormat.parse(getDate.getText());
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(date);
+      int week = calendar.get(Calendar.WEEK_OF_YEAR);
+      csVgenerator = new CSVgenerator(SoftwareApp.getProject(projectIDLabel.getText()));
+      csVgenerator.saveCSVReportToFile(week);
+      
 
-
+    }
 }

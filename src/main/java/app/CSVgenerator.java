@@ -1,6 +1,5 @@
 package app;
 
-import domain.ActivityTimeSheet;
 import domain.Project;
 import domain.Project.Activities;
 import domain.User;
@@ -39,7 +38,7 @@ public class CSVgenerator {
                         activity.getStartWeek(),
                         user.getUserId(),
                         user.getName()));
-                        reportBuilder.append(ActivityTimeSheet.getDateAndHours());
+                        reportBuilder.append(activity.getActivityTimeSheet().getDateAndHours());
                         reportBuilder.append(project.getTimeLeftForProject());
                         reportBuilder.append("\n");
             }

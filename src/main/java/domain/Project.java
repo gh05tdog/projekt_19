@@ -10,10 +10,10 @@ import java.util.List;
 
 
 public class Project {
-    private final String ProjectName;
+    private String ProjectName;
     private final String ProjectId;
-    public List<User> workersList = new ArrayList<>(); // removed 'static'
-    public final List<Activities> ActivityList = new ArrayList<>(); // removed 'static'
+    public List<User> workersList = new ArrayList<>();
+    public final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
 
     public Project(String projectName) {
@@ -32,7 +32,6 @@ public class Project {
         } else {
             this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
         }
-
     }
 
     public String getProjectName() {
@@ -66,14 +65,14 @@ public class Project {
     public void addActivity(String name, String timebudget, String weeks, String startWeek) {
         Activities activity = new Activities(name, timebudget, weeks, startWeek);
         ActivityList.add(activity);
+        // Generate a new ActivityId for the added activity
+        String activityId = ProjectId + "A" + ActivityList.size();
+        activity.setActivityId(activityId);
     }
 
 
     public List<Activities> getActivityList() {
         return ActivityList; // this line should also be changed to: return this.ActivityList;
-    }
-    public int getNumberOfActivities() {
-        return getActivityList().size(); // this line should also be changed to: return this.getActivityList().size();
     }
 
     public void assignActivityToUser(String userID, String activityID) {
@@ -112,15 +111,23 @@ public class Project {
         return TimeLeftForProject;
     }
 
+    public void setProjectName(String newProjectName) {
+        this.ProjectName = newProjectName;
+    }
+
+    public User getManager() {
+        return ProjectManager;
+    }
+
 
     public class Activities extends Project {
         public List<Activities> ActivityList = new ArrayList<>();
         private final List<User> UserAssignedActivities = new ArrayList<>();
         private final String ActivityName;
-        private final String ActivityId;
-        private final String TimeBudget;
-        private final String Weeks;
-        private final String StartWeek;
+        private String ActivityId;
+        private String TimeBudget;
+        private String Weeks;
+        private String StartWeek;
         private int LoggedTime;
         private Boolean isCompleted;
         private final ActivityTimeSheet activityTimeSheet;
@@ -132,6 +139,7 @@ public class Project {
             this.Weeks = Weeks;
             this.StartWeek = StartWeek;
             this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
+            
             this.isCompleted = false;
             this.activityTimeSheet = new ActivityTimeSheet(ActivityId, 0, LocalDate.now());
         }
@@ -170,7 +178,6 @@ public class Project {
         public void logHours(User user, int hours, LocalDate date) {
             LoggedTime += hours;
             user.updateTimeSheet(ActivityId, hours, date);
-            //activityTimeSheet.addHours(hours, date);
 
         }
 
@@ -194,6 +201,40 @@ public class Project {
             return isCompleted;
         }
 
+        public void setActivityId(String activityId) {
+            ActivityId = activityId;
+        }
+
+        public void setStartWeek(String text) {
+            this.StartWeek = text;
+        }
+
+        public void setEndWeek(String text) {
+            //Calculate the number of weeks based on the start week and the end week.
+            //Then change the number of weeks to the calculated number of weeks
+            this.Weeks = String.valueOf(Integer.parseInt(text) - Integer.parseInt(StartWeek) + 1);
+        }
+
+        public void setAllocatedTime(String text) {
+            this.TimeBudget = text;
+        }
+
+        public String getAllocatedTime() {
+            return TimeBudget;
+        }
+
+        public double getPercentTime() {
+            if (Integer.parseInt(TimeBudget) == 0) {
+                return 0;
+            }
+            return (double) LoggedTime / Integer.parseInt(TimeBudget) * 100;
+        }
+
+        public void updatePercentTime(String userId, int registeredTime) {
+            if (UserAssignedActivities.contains(SoftwareApp.getUserFromID(userId))) {
+                LoggedTime += registeredTime;
+            }
+        }
     }
 
 }

@@ -20,8 +20,6 @@ public class addProjectController {
         this.view = theView;
     }
 
-
-
     @FXML
     TextField projectNameField;
 
@@ -40,8 +38,8 @@ public class addProjectController {
     }
     @FXML
     protected void returnFrontPage() {
-        view.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
 
+        theModel.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
 
 
     }

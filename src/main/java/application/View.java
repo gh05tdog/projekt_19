@@ -4,6 +4,7 @@ import domain.UserAlreadyExistsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -23,6 +24,8 @@ public class View extends Application {
 
     private Stage projectPage;
     private Stage activityPage;
+
+    private Stage manageProject;
 
 
 
@@ -152,6 +155,9 @@ public class View extends Application {
             if (activityPage != null) {
                 activityPage.close();
             }
+            if (manageProject!= null) {
+                manageProject.close();
+            }
             projectPage.show();
 
         } catch (Exception e) {
@@ -161,6 +167,7 @@ public class View extends Application {
 
     public void showActivityPage(String activityId, String activityName, String projectID){
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Activity-Page.fxml"));
             AnchorPane root = loader.load();
             this.activityPage = new Stage();
@@ -170,14 +177,22 @@ public class View extends Application {
             // Set the model and view for the new controller instance
             activityPageController.setModelAndView(theModel, this);
             // Set the project for the new controller instance
-            activityPageController.setActvityName(activityName);
+            activityPageController.setActivityName(activityName);
             // Set the username label for the new controller instance
-            activityPageController.setActivityIDLabel(activityId
-            );
+            activityPageController.setActivityIDLabel(activityId);
+            
             activityPageController.setProjectIDLabel(projectID);
+
+            activityPageController.setProcents();
             // Close the login window
 
-            projectPage.close();
+            if (frontpage != null) {
+                frontpage.close();
+            }
+
+            if (projectPage != null) {
+                projectPage.close();
+            }
             activityPage.show();
 
 
@@ -187,22 +202,24 @@ public class View extends Application {
 
     }
 
-    public void manageProjectPage () {
+    public void manageProjectPage (String projectID, String projectName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Manage-Project.fxml"));
             AnchorPane root = loader.load();
-            this.projectPage = new Stage();
-            projectPage.setScene(new Scene(root));
+            this.manageProject = new Stage();
+            manageProject.setScene(new Scene(root));
 
             // Get the new controller instance for the Front-page.fxml file
-            projectPageController projectPageController = loader.getController();
+            manageProjectController manageProjectPageController = loader.getController();
             // Set the model and view for the new controller instance
-            projectPageController.setModelAndView(theModel, this);
+            manageProjectPageController.setModelAndView(theModel, this);
             // Set the project for the new controller instance
+            manageProjectPageController.setProjectID(projectID);
+            manageProjectPageController.setProjectName(projectName);
 
-            frontpage.close();
+            projectPage.close();
 
-            projectPage.show();
+            manageProject.show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -225,4 +242,11 @@ public class View extends Application {
         launch(args);
     }
 
+    public void showAlert(String s) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(s);
+        alert.showAndWait();
+    }
 }

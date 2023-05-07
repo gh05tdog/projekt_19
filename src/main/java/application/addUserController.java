@@ -18,8 +18,6 @@ public class addUserController {
 
 
 
-
-
     public void setModelAndView(Model theModel, View theView) {
         this.theModel = theModel;
         this.view = theView;
@@ -49,7 +47,7 @@ public class addUserController {
             }
         }
         else {
-            setUserNameLabel("Please enter a name and ID");
+            setUserNameLabel("Please enter a valid name and ID");
         }
     }
     @FXML

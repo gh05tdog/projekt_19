@@ -1,6 +1,7 @@
 package domain;
 
 import app.SoftwareApp;
+import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,9 +11,8 @@ import java.util.List;
 public class User {
 
     private final String name;
-    private String userId;
+    private final String userId;
 
-    // public static List<Project.Activities> UserActivityList = new ArrayList<>();
     private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
     private final List<Project.Activities> UserActivityList;
     public ArrayList<Date> UnAvailableDates = new ArrayList<>();
@@ -34,13 +34,15 @@ public class User {
             }
         User newUser = new User(name, userId);
         SoftwareApp.UserList.add(newUser);
-        System.out.println("User " + name + " created");
+        
         return newUser;
     }
 
     public static void addActivityToUser(Project.Activities activities, User user) {
         user.UserActivityList.add(activities);
     }
+
+
 
     public String getName() {
         return name;
@@ -98,5 +100,23 @@ public class User {
             }
         }
         return false;
+    }
+
+    public void editTimeSpent(Text activityID, int oldTimeSpent, int newTimeSpent) {
+        for (ActivityTimeSheet activity : timeSheet) {
+            if (activity.getActivityId().equals(activityID.getText())) {
+                activity.editHours(oldTimeSpent, newTimeSpent);
+                return;
+            }
+        }
+    }
+
+    public void removeTimeSpent(Text activityID, int timeSpent) {
+        for (ActivityTimeSheet activity : timeSheet) {
+            if (activity.getActivityId().equals(activityID.getText())) {
+                activity.editHours(timeSpent, 0);
+                return;
+            }
+        }
     }
 }

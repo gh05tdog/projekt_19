@@ -15,8 +15,11 @@ import javafx.scene.layout.VBox;
 public class frontPageController {
 
     public Button logOutButton;
+    public VBox projectVboxActivity;
+    public ScrollPane scroolPaneActivity;
     @FXML
     private ScrollPane scrollPaneUser;
+
 
     @FXML
     private ScrollPane scrollPaneGlobal;
@@ -56,6 +59,17 @@ public class frontPageController {
                 scrollPaneGlobal.widthProperty().removeListener(this);
             }
         });
+
+        scroolPaneActivity.widthProperty().addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                // Call initializeComponents() when the ScrollPane's width changes
+                initializeComponentsActivity();
+
+                // Remove the listener after the first layout pass to avoid multiple calls
+                scrollPaneGlobal.widthProperty().removeListener(this);
+            }
+        });
     }
 
 // The code seen below is created by chatGPT our lord and saviour
@@ -63,11 +77,11 @@ public class frontPageController {
 
         //Loop through all projects and add a button for each project
         for (Project project : theModel.getProjects()) {
-            System.out.println(project.getWorkersList(project.getProjectId()));
-            System.out.println(theModel.getCurrentUserID());
+            
+            
             if (project.userInProject(SoftwareApp.getUserFromID(theModel.getCurrentUserID()))) {
 
-                System.out.println(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getUserId());
+                
 
                 {
                     Button projectButtonUser = new Button(project.getProjectName() + " - " + project.getProjectId());
@@ -88,7 +102,7 @@ public class frontPageController {
         }
     }
     public void initializeComponentsGlobal () {
-     for(Project project : theModel.getProjects()) {
+        for(Project project : theModel.getProjects()) {
          // Stack all buttons in the global scrollpane
 
          Button projectButtonGlobal = new Button(project.getProjectName() + " - " + project.getProjectId());
@@ -101,7 +115,7 @@ public class frontPageController {
              String buttonText2 = projectButtonGlobal.getText();
 
              String IDExtract2 = buttonText2.substring(buttonText2.length() - 5);
-             System.out.println(IDExtract2);
+
              String nameExtract2 = buttonText2.substring(0, buttonText2.length() - 8);
              theModel.projectPagePage(IDExtract2, nameExtract2);
 
@@ -111,8 +125,25 @@ public class frontPageController {
          projectVboxGlobal.getChildren().add(projectButtonGlobal);
 
 
-     }
+        }
     }
+
+    public void initializeComponentsActivity() {
+        // Add all activities to the activity scrollpane that the user is assigned to
+        for (Project project : theModel.getProjects()) {
+            // Check all activities in the project and add them to the activity scrollpane if the user is assigned to them
+            for (Project.Activities activity : project.getActivityList()) {
+                if (activity.getUserAssignedActivities().contains(SoftwareApp.getUserFromID(theModel.getCurrentUserID()))) {
+                    Button activityButton = new Button(activity.getActivityName() + " - " + activity.getActivityId());
+                    activityButton.setMinWidth(scroolPaneActivity.getWidth());
+                    activityButton.maxWidthProperty().bind(scroolPaneActivity.widthProperty());
+                    activityButton.setOnAction(event -> theModel.activityPagePage(activity.getActivityId(), activity.getActivityName(), project.getProjectId()));
+                    projectVboxActivity.getChildren().add(activityButton);
+                }
+            }
+        }
+    }
+
 
     @FXML
     private Label nameLabel;
