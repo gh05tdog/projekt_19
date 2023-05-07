@@ -17,22 +17,16 @@ public class Project {
     public List<User> workersList = new ArrayList<>();
     public final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
-    public static final List<Activities> SpecialActivityList = new ArrayList<>();
 
     public Project(String projectName) {
         this.ProjectName = projectName;
         int Year = Calendar.getInstance().get(Calendar.YEAR) % 100;
-        if(projectList.size() == 1){
-            this.ProjectId = Year + "001";
-        }
-        else {
             if (SoftwareApp.getNumberOfProject() < 10) {
                 this.ProjectId = Year + "00" + (SoftwareApp.getNumberOfProject() + 1);
             } else if (SoftwareApp.getNumberOfProject() < 100) {
                 this.ProjectId = Year + "0" + (SoftwareApp.getNumberOfProject() + 1);
             } else {
                 this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
-            }
         }
     }
 
@@ -154,6 +148,9 @@ public class Project {
             UserAssignedActivities.add(user);
             //Add the activity to the list of activities assigned to the user
             User.addActivityToUser(this, user);
+
+            SoftwareApp.getProject(ProjectId).addWorker(user);
+
         }
 
         public List<Activities> getActivityList() {

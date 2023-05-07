@@ -10,6 +10,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class SoftwareApp {
+
+    public SoftwareApp() {
+        addProject("Off work Activities");
+        addActivity("Sick days", "0", "0", "1", "23001");
+        addActivity("Vacation days", "0", "0", "1", "23001");
+        addActivity("Other", "0", "0", "1", "23001");
+    }
     public static List<Project> projectList = new ArrayList<>();
     public static List<User> UserList = new ArrayList<>();
     public static String CurrentUser;
@@ -17,7 +24,6 @@ public class SoftwareApp {
     public static void addProject(String projectName) {
         Project project = new Project(projectName);
         projectList.add(project);
-        //
     }
 
     public static int getNumberOfProject() {

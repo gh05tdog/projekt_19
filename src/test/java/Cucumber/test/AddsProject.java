@@ -27,9 +27,6 @@ public class AddsProject {
             //Check if the user with the id is in UserList
             assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
         }
-
-
-
             //Check if the user with the id is in UserList
             assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
     }
