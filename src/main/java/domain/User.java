@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
+import static app.SoftwareApp.projectList;
 
 public class User {
 
@@ -15,8 +18,9 @@ public class User {
 
     private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
     private final List<Project.Activities> UserActivityList;
-    public ArrayList<Date> UnAvailableDates = new ArrayList<>();
-
+    public static final ArrayList<LocalDate> VacationDaysList = new ArrayList<>();
+    private static boolean isCreated = false;
+    private static boolean isCreated2 = false;
 
 
 
@@ -27,14 +31,30 @@ public class User {
     }
 
     public static User createUser(String name, String userId) throws UserAlreadyExistsException {
-        //Check if username is already in use
-        //If it is, throw an exception
-            if (SoftwareApp.getUserFromID(userId) != null) {
-                throw new UserAlreadyExistsException("User already exists");
-            }
+//        //Check if username is already in use
+//        //If it is, throw an exception
+//        if (!isCreated) {
+//            SoftwareApp.addProject("OffProjectActivities");
+//            Objects.requireNonNull(SoftwareApp.getProject("23001")).changeProjectId("11111");
+//            SoftwareApp.getProject("23001").changeProjectName(SoftwareApp.getProject("11111").getProjectName());
+//            Objects.requireNonNull(SoftwareApp.getProject("11111")).changeProjectName("OffProjectActivities");
+//        if(!isCreated2) {
+//            Objects.requireNonNull(SoftwareApp.getProject("11111")).addActivity("Sick days", "0", "0", "1");
+//            Objects.requireNonNull(SoftwareApp.getProject("11111")).addActivity("Vacation days", "0", "0", "1");
+//            Objects.requireNonNull(SoftwareApp.getProject("11111")).addActivity("Other", "0", "0", "1");
+//            isCreated2 = true;
+//            //add the 3 activites to the special activity list
+//           // Project.SpecialActivityList.add(Objects.requireNonNull(SoftwareApp.getProject("11111")).getActivity("Other"));
+//        }
+//            isCreated = true;
+//        }
+        if (SoftwareApp.getUserFromID(userId) != null) {
+            return SoftwareApp.getUserFromID(userId);
+        }
+
         User newUser = new User(name, userId);
         SoftwareApp.UserList.add(newUser);
-        
+
         return newUser;
     }
 
@@ -56,7 +76,6 @@ public class User {
         return UserActivityList.size();
     }
 
-
     public int getTimeSpentOnActivity(String activityId) {
         // Search for the activity in the timesheet
         for (ActivityTimeSheet activityTimeSheet : timeSheet) {
@@ -69,15 +88,10 @@ public class User {
         return 0;
     }
 
-    public ArrayList<Date> getUnAvailableDates() {
-        return UnAvailableDates;
-    }
+    public static void addVacationDays(LocalDate start, LocalDate end) {
 
-    public void setVacation(String startDate, String endDate) {
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = LocalDate.parse(endDate);
         for (LocalDate date = start; date.isBefore(end); date = date.plusDays(1)) {
-            UnAvailableDates.add(java.sql.Date.valueOf(date));
+            VacationDaysList.add(date);
         }
     }
 
@@ -93,14 +107,6 @@ public class User {
         timeSheet.add(newActivity);
     }
 
-    public boolean isOnVacation(Date date) {
-        for (Date vacationDate : UnAvailableDates) {
-            if (vacationDate.equals(date)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void editTimeSpent(Text activityID, int oldTimeSpent, int newTimeSpent) {
         for (ActivityTimeSheet activity : timeSheet) {

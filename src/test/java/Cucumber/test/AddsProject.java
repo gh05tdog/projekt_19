@@ -12,12 +12,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.Objects;
+
 import static org.junit.Assert.*;
 
 public class AddsProject {
     private User user;
-
-
     @Given("that there is a user with the id {string}")
     public void that_there_is_a_user_with_the_id(String userId) {
         //If there is a user with the id, do nothing, else create new user
@@ -44,31 +44,27 @@ public class AddsProject {
     @When("the user adds a project with the name {string}")
     public void theUserAddsAProjectWithTheName(String projectName) {
         SoftwareApp.addProject(projectName);
-
     }
 
 
     @Then("there is a project named {string} the project has an id {string}")
     public void thereIsAProjectNamedTheProjectHasAnId(String name, String ProjectID) {
-        // Check that the project is added to the list of projects
-        //assertEquals(SoftwareApp.getNumberOfProject(), 1);
-        assertEquals(SoftwareApp.projectList.get(0).getProjectName(), name);
-        assertEquals(SoftwareApp.projectList.get(0).getProjectId(), ProjectID);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject(ProjectID)).getProjectId(), ProjectID);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject(ProjectID)).getProjectName(), name);
 
     }
 
     @Given("there is a project with the id {string}")
     public void thereIsAProjectWithTheId(String ProjectID) {
         SoftwareApp.addProject("Lommeregner");
-        assertEquals(SoftwareApp.projectList.get(0).getProjectId(), ProjectID);
-
+        assertEquals((Objects.requireNonNull(SoftwareApp.getProject(ProjectID))).getProjectId(), ProjectID);
     }
 
     @When("user adds a co-worker with the id {string} to the project with the id {string}")
     public void userAddsACoWorkerWithTheIdToTheProjectWithTheId(String username, String projectId) throws UserAlreadyExistsException {
         User.createUser("john",username);
         SoftwareApp.addCoWorker(username, projectId);
-        assertEquals(SoftwareApp.projectList.get(0).getWorkersList(username).getUserId(), username);
+        assertEquals(SoftwareApp.getProject(projectId).getWorkersList(username).getUserId(), username);
 
     }
 

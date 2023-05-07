@@ -1,5 +1,6 @@
 package domain;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ public class ActivityTimeSheet {
     private int totalHours;
     private final List<TimeLogEntry> timeLog;
 
-    public ActivityTimeSheet(String activityId,int hours, LocalDate date) {
+    public ActivityTimeSheet(String activityId, int hours, LocalDate date) {
         this.activityId = activityId;
         this.totalHours = 0;
         this.timeLog = new ArrayList<>();
@@ -29,6 +30,10 @@ public class ActivityTimeSheet {
         return totalHours;
     }
 
+    public List<TimeLogEntry> getTimeLog() {
+        return this.timeLog;
+    }
+
     public String getDateAndHours() {
         StringBuilder dateAndHours = new StringBuilder();
         for (TimeLogEntry entry : this.timeLog) {
@@ -36,6 +41,7 @@ public class ActivityTimeSheet {
         }
         return dateAndHours.toString();
     }
+
 
 
     public void editHours(int oldTimeSpent, int newTimeSpent) {

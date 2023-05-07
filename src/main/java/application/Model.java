@@ -39,7 +39,7 @@ public class Model {
         SoftwareApp.addActivity("FourthActivity","50","10","4","23001");
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
         SoftwareApp.assignActivityToUser("test","23001","23001A2");
-        System.out.println(Objects.requireNonNull(SoftwareApp.getProject("23002")).getActivity("23002A1").getActivityName());
+        //System.out.println(Objects.requireNonNull(SoftwareApp.getProject("23002")).getActivity("23002A1").getActivityName());
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
 
