@@ -20,8 +20,6 @@ public class addProjectController {
         this.view = theView;
     }
 
-
-
     @FXML
     TextField projectNameField;
 

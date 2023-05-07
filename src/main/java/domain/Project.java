@@ -12,8 +12,8 @@ import java.util.List;
 public class Project {
     private final String ProjectName;
     private final String ProjectId;
-    public List<User> workersList = new ArrayList<>(); // removed 'static'
-    public final List<Activities> ActivityList = new ArrayList<>(); // removed 'static'
+    public List<User> workersList = new ArrayList<>();
+    public final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
 
     public Project(String projectName) {

@@ -174,9 +174,9 @@ public class View extends Application {
 
             activityPageController activityPageController = loader.getController();
             // Set the model and view for the new controller instance
-            activityPageController.setModelAndView(this);
+            activityPageController.setModelAndView(theModel, this);
             // Set the project for the new controller instance
-            activityPageController.setActvityName(activityName);
+            activityPageController.setActivityName(activityName);
             // Set the username label for the new controller instance
             activityPageController.setActivityIDLabel(activityId);
             
