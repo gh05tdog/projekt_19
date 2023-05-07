@@ -18,8 +18,6 @@ public class addUserController {
 
 
 
-
-
     public void setModelAndView(Model theModel, View theView) {
         this.theModel = theModel;
         this.view = theView;

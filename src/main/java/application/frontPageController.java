@@ -63,11 +63,11 @@ public class frontPageController {
 
         //Loop through all projects and add a button for each project
         for (Project project : theModel.getProjects()) {
-            System.out.println(project.getWorkersList(project.getProjectId()));
-            System.out.println(theModel.getCurrentUserID());
+            
+            
             if (project.userInProject(SoftwareApp.getUserFromID(theModel.getCurrentUserID()))) {
 
-                System.out.println(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getUserId());
+                
 
                 {
                     Button projectButtonUser = new Button(project.getProjectName() + " - " + project.getProjectId());
@@ -101,7 +101,7 @@ public class frontPageController {
              String buttonText2 = projectButtonGlobal.getText();
 
              String IDExtract2 = buttonText2.substring(buttonText2.length() - 5);
-             System.out.println(IDExtract2);
+             
              String nameExtract2 = buttonText2.substring(0, buttonText2.length() - 8);
              theModel.projectPagePage(IDExtract2, nameExtract2);
 

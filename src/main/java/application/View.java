@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javafx.scene.control.Label;
 
 public class View extends Application {
 
@@ -167,6 +166,7 @@ public class View extends Application {
 
     public void showActivityPage(String activityId, String activityName, String projectID){
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Activity-Page.fxml"));
             AnchorPane root = loader.load();
             this.activityPage = new Stage();
@@ -174,11 +174,12 @@ public class View extends Application {
 
             activityPageController activityPageController = loader.getController();
             // Set the model and view for the new controller instance
-            activityPageController.setModelAndView(theModel, this);
+            activityPageController.setModelAndView(this);
             // Set the project for the new controller instance
             activityPageController.setActvityName(activityName);
             // Set the username label for the new controller instance
             activityPageController.setActivityIDLabel(activityId);
+            
             activityPageController.setProjectIDLabel(projectID);
             // Close the login window
 

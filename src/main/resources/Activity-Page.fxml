@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="application.activityPageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.activityPageController">
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="148.0" layoutX="308.0" layoutY="166.0"
               stroke="BLACK" strokeType="INSIDE" width="287.0"/>
-   <Text fx:id="activityID" layoutX="28.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID">
+   <Text fx:id="projectIDLabel" layoutX="28.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ProjectID">
       <font>
          <Font size="20.0"/>
       </font>
    </Text>
-   <Text fx:id="activityName" layoutX="142.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="Activity name">
+   <Text fx:id="activityIDLabel" layoutX="203.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Activity id">
       <font>
          <Font size="20.0"/>
       </font>
@@ -45,9 +40,9 @@
    <ScrollPane layoutX="50.0" layoutY="168.0" prefHeight="200.0" prefWidth="247.0">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
          <HBox prefHeight="200.0" prefWidth="200.0">
+            <VBox fx:id="vBoxButtons" prefHeight="200.0" prefWidth="100.0"/>
             <VBox fx:id="vBoxUserID" prefHeight="200.0" prefWidth="100.0"/>
             <VBox fx:id="vBoxTimeSpent" prefHeight="200.0" prefWidth="100.0"/>
-            <VBox fx:id="vBoxButtons" prefHeight="200.0" prefWidth="100.0"/>
          </HBox>
       </AnchorPane>
    </ScrollPane>
@@ -96,12 +91,13 @@
    <TextField fx:id="startWeek" layoutX="142.0" layoutY="89.0" prefHeight="25.0" prefWidth="72.0"/>
    <TextField fx:id="endWeek" layoutX="308.0" layoutY="89.0" prefHeight="25.0" prefWidth="63.0"/>
    <TextField fx:id="allocatedTime" layoutX="515.0" layoutY="89.0" prefHeight="25.0" prefWidth="72.0"/>
-   <Text fx:id="projectIDLabel" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID">
+   <Text fx:id="projectNameLabel" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Project Name">
       <font>
          <Font size="20.0"/>
       </font>
    </Text>
-   <Text fx:id="projectNameLabel" layoutX="142.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0"
+   <Text fx:id="activityNameLabel" layoutX="203.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0"
          text="Activity name">
       <font>
          <Font size="20.0"/>

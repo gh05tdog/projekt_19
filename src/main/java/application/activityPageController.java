@@ -15,13 +15,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 
 public class activityPageController {
 
-    public Text activityID;
-    public Text activityName;
+    public Text activityIDLabel;
+    public Text activityNameLabel;
+
+    public Text projectNameLabel;
+    public Text projectIDLabel;
     public Button returnToFrontPage;
     public VBox vBoxUserID;
     public VBox vBoxTimeSpent;
@@ -35,13 +39,8 @@ public class activityPageController {
 
     public View view;
 
-    public Text projectNameLabel;
-    public Text projectIDLabel;
 
-    private Model theModel;
-
-    public void setModelAndView(Model theModel, View view) {
-        this.theModel = theModel;
+    public void setModelAndView(View view) {
         this.view = view;
 
         // Add a ChangeListener to the ScrollPane's widthProperty
@@ -65,7 +64,7 @@ public class activityPageController {
         vBoxTimeSpent.getChildren().clear();
 
         for (User user : SoftwareApp.UserList) {
-            int timeSpent = user.getTimeSpentOnActivity(activityID.getText());
+            int timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
             if (timeSpent > 0) {
                 addUserTimeToVBox(user.getUserId(), timeSpent, user);
             }
@@ -77,15 +76,15 @@ public class activityPageController {
         vBoxTimeSpent.getChildren().clear();
         vBoxButtons.getChildren().clear();
 
-        Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityID.getText());
-        activityID.setText(String.valueOf(activity.getActivityId()));
-        activityName.setText(activity.getActivityName());
+        Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
+        activityIDLabel.setText(String.valueOf(activity.getActivityId()));
+        activityNameLabel.setText(activity.getActivityName());
         startWeek.setText(String.valueOf(activity.getStartWeek()));
         endWeek.setText(String.valueOf(activity.getEndWeek()));
         allocatedTime.setText(String.valueOf(activity.getWeeks()));
 
         for (User user : SoftwareApp.UserList) {
-            int timeSpent = user.getTimeSpentOnActivity(activityID.getText());
+            int timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
             if (timeSpent > 0) {
                 addUserTimeToVBox(user.getUserId(), timeSpent, user);
             }
@@ -96,8 +95,9 @@ public class activityPageController {
 
     private void addUserTimeToVBox(String userId, int timeSpent, User user) {
         Text userIdText = new Text(userId);
-        String timeLogString = ActivityTimeSheet.getDateAndHours();
-        Text timeSpentText = new Text(timeSpent + " hours\n" + timeLogString);
+        ActivityTimeSheet activity = new ActivityTimeSheet("activityId", 5, LocalDate.now());
+        String dateAndHours = activity.getDateAndHours();
+        Text timeSpentText = new Text(timeSpent + " hours\n" + dateAndHours);
 
         Button editButton = new Button("Edit");
         editButton.setOnAction(e -> editTimeEntry(user, timeSpent));
@@ -121,7 +121,7 @@ public class activityPageController {
         result.ifPresent(timeString -> {
             try {
                 int newTimeSpent = Integer.parseInt(timeString);
-                user.editTimeSpent(activityID, oldTimeSpent, newTimeSpent);
+                user.editTimeSpent(activityIDLabel, oldTimeSpent, newTimeSpent);
                 update();
             } catch (NumberFormatException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -141,27 +141,27 @@ public class activityPageController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            user.removeTimeSpent(activityID, timeSpent);
+            user.removeTimeSpent(activityIDLabel, timeSpent);
             update();
         }
     }
 
 
     public void setActvityName(String name) {
-        activityName.setText(name);
+        activityNameLabel.setText(name);
     }
 
     public void setActivityIDLabel(String name) {
-        activityID.setText(name);
+        activityIDLabel.setText(name);
     }
 
     public void setProjectIDLabel(String projectID) {
         projectIDLabel.setText(projectID);
         projectNameLabel.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getProjectName());
 
-        endWeek.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityID.getText()).getEndWeek());
-        startWeek.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityID.getText()).getStartWeek());
-        allocatedTime.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityID.getText()).getWeeks());
+        endWeek.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getEndWeek());
+        startWeek.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getStartWeek());
+        allocatedTime.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getWeeks());
     }
 
     @FXML

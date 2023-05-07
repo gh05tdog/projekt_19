@@ -33,9 +33,6 @@ public class loginController {
             theModel.setCurrentUser(SoftwareApp.getUserFromID(passwordField.getText().toLowerCase()).getUserId());
             theModel.setCurrentUserID(passwordField.getText().toLowerCase());
             theModel.frontPagePage();
-        }else
-        {
-            System.out.println("User does not exist");
         }
         return SoftwareApp.getUserFromID(passwordField.getText().toLowerCase()).getName();
     }

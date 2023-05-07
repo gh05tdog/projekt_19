@@ -32,7 +32,6 @@ public class Project {
         } else {
             this.ProjectId = String.valueOf(Year + (SoftwareApp.getNumberOfProject() + 1));
         }
-
     }
 
     public String getProjectName() {
@@ -66,14 +65,14 @@ public class Project {
     public void addActivity(String name, String timebudget, String weeks, String startWeek) {
         Activities activity = new Activities(name, timebudget, weeks, startWeek);
         ActivityList.add(activity);
+        // Generate a new ActivityId for the added activity
+        String activityId = ProjectId + "A" + ActivityList.size();
+        activity.setActivityId(activityId);
     }
 
 
     public List<Activities> getActivityList() {
         return ActivityList; // this line should also be changed to: return this.ActivityList;
-    }
-    public int getNumberOfActivities() {
-        return getActivityList().size(); // this line should also be changed to: return this.getActivityList().size();
     }
 
     public void assignActivityToUser(String userID, String activityID) {
@@ -117,7 +116,7 @@ public class Project {
         public List<Activities> ActivityList = new ArrayList<>();
         private final List<User> UserAssignedActivities = new ArrayList<>();
         private final String ActivityName;
-        private final String ActivityId;
+        private String ActivityId;
         private final String TimeBudget;
         private final String Weeks;
         private final String StartWeek;
@@ -132,6 +131,7 @@ public class Project {
             this.Weeks = Weeks;
             this.StartWeek = StartWeek;
             this.ActivityId = ProjectId + "A" + (ActivityList.size() + 1);
+            
             this.isCompleted = false;
             this.activityTimeSheet = new ActivityTimeSheet(ActivityId, 0, LocalDate.now());
         }
@@ -170,7 +170,6 @@ public class Project {
         public void logHours(User user, int hours, LocalDate date) {
             LoggedTime += hours;
             user.updateTimeSheet(ActivityId, hours, date);
-            //activityTimeSheet.addHours(hours, date);
 
         }
 
@@ -192,6 +191,10 @@ public class Project {
         }
         public boolean isCompleted() {
             return isCompleted;
+        }
+
+        public void setActivityId(String activityId) {
+            ActivityId = activityId;
         }
 
     }

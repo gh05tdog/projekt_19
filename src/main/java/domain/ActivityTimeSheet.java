@@ -7,12 +7,12 @@ import java.util.List;
 public class ActivityTimeSheet {
     private final String activityId;
     private int totalHours;
-    private static List<TimeLogEntry> timeLog = new ArrayList<>();
+    private final List<TimeLogEntry> timeLog;
 
     public ActivityTimeSheet(String activityId,int hours, LocalDate date) {
         this.activityId = activityId;
         this.totalHours = 0;
-        timeLog = new ArrayList<>();
+        this.timeLog = new ArrayList<>();
         addHours(hours, date);
     }
 
@@ -29,18 +29,20 @@ public class ActivityTimeSheet {
         return totalHours;
     }
 
-    public static String getDateAndHours() {
+    public String getDateAndHours() {
         StringBuilder dateAndHours = new StringBuilder();
-        for (TimeLogEntry entry : timeLog) {
+        for (TimeLogEntry entry : this.timeLog) {
             dateAndHours.append(entry.getDate()).append(" ").append(entry.getHours()).append("\n");
         }
         return dateAndHours.toString();
     }
 
+
     public void editHours(int oldTimeSpent, int newTimeSpent) {
         totalHours -= oldTimeSpent;
         totalHours += newTimeSpent;
     }
+
 
     public static class TimeLogEntry {
         private final int hours;
