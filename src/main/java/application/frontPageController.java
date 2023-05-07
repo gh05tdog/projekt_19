@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 
 public class frontPageController {
 
+
     public Button logOutButton;
     public VBox projectVboxActivity;
     public ScrollPane scroolPaneActivity;
@@ -81,7 +82,6 @@ public class frontPageController {
             
             if (project.userInProject(SoftwareApp.getUserFromID(theModel.getCurrentUserID()))) {
 
-                
 
                 {
                     Button projectButtonUser = new Button(project.getProjectName() + " - " + project.getProjectId());

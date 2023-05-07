@@ -17,6 +17,8 @@ public class CSVgenerator {
     public CSVgenerator(Project project) {
         this.project = project;
     }
+
+
     private String makeReportName(){
         LocalDate date = LocalDate.now();
         int Week = Integer.parseInt(String.valueOf(date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR)));
@@ -40,8 +42,8 @@ public class CSVgenerator {
                 reportBuilder.append("Is completed: ").append(activity.isCompleted()).append("\n");
                 reportBuilder.append("Assigned User ID: ").append(user.getUserId()).append("\n");
                 reportBuilder.append("Assigned User Name: ").append(user.getName()).append("\n");
-//                reportBuilder.append("Time Spent on Activity: ").append(ActivityTimeSheet.getDateAndHours());
-//                reportBuilder.append("Time Left for activity: ").append(Integer.parseInt(activity.getTimeBudget())-activity.LoggedTime).append("\n");
+                //add how much time the user has spent on the activity
+                reportBuilder.append("Time Spent on Activity: ").append(user.getTimeSpentOnActivity(activity.getActivityId())).append("\n");
                 reportBuilder.append("\n");
             }
         }

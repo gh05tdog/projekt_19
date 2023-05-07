@@ -59,7 +59,9 @@ public class manageProjectController {
     public Button checkUsers;
 
 
+
     public void setModelAndView(Model theModel, View view) {
+
 
         this.model = theModel;
         this.view = view;

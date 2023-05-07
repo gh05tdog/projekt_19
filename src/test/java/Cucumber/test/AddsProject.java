@@ -17,25 +17,12 @@ import java.util.Objects;
 import static org.junit.Assert.*;
 
 public class AddsProject {
-    private User user;
-    @Given("that there is a user with the id {string}")
-    public void that_there_is_a_user_with_the_id(String userId) {
-        //If there is a user with the id, do nothing, else create new user
-        try {
-            User.createUser("abcd", userId);
-        } catch (UserAlreadyExistsException e){
-            //Check if the user with the id is in UserList
-            assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
-        }
-            //Check if the user with the id is in UserList
-            assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
-    }
 
-    @And("that the user with the id {string} is logged in")
-    public void thatTheUserWithTheIdIsLoggedIn(String userID) {
-        user = SoftwareApp.getUserFromID(userID);
-        SoftwareApp.CurrentUser = user.getUserId();
-        assertEquals(SoftwareApp.CurrentUser, userID);
+    private User user;
+    @Given("that there is a user with the id {string} and the name {string}")
+    public void thatThereIsAUserWithTheIdAndTheName(String userId, String Name) throws UserAlreadyExistsException {
+        //If there is a user with the id, do nothing, else create new user
+        User.createUser(Name, userId);
     }
 
     @When("the user adds a project with the name {string}")
@@ -53,15 +40,23 @@ public class AddsProject {
 
     @Given("there is a project with the id {string}")
     public void thereIsAProjectWithTheId(String ProjectID) {
+        //Check if there is a project with the id, if not create a new project
+        for (Project project : SoftwareApp.projectList) {
+            if (project.getProjectId().equals(ProjectID)) {
+                return;
+            }
+        }
         SoftwareApp.addProject("Lommeregner");
-        assertEquals((Objects.requireNonNull(SoftwareApp.getProject(ProjectID))).getProjectId(), ProjectID);
+        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject(ProjectID)))).getProjectId(), ProjectID);
+        //Print all projects
+
     }
 
     @When("user adds a co-worker with the id {string} to the project with the id {string}")
     public void userAddsACoWorkerWithTheIdToTheProjectWithTheId(String username, String projectId) throws UserAlreadyExistsException {
-        User.createUser("john",username);
+        User.createUser("john", username);
         SoftwareApp.addCoWorker(username, projectId);
-        assertEquals(SoftwareApp.getProject(projectId).getWorkersList(username).getUserId(), username);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject(projectId)).getWorkersList(username).getUserId(), username);
 
     }
 
@@ -72,7 +67,6 @@ public class AddsProject {
         SoftwareApp.projectList.get(0).setProjectManager(user);
         Project project = SoftwareApp.getProject(ProjectID);
         assert project != null;
-
         assertEquals(project.getProjectManager().getUserId(), projectManID);
     }
 
@@ -130,6 +124,9 @@ public class AddsProject {
         assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(0).getUserId(), User1);
         assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(1).getUserId(), User2);
     }
+
+
+
 }
 
 
