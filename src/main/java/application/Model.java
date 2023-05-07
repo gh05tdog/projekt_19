@@ -24,10 +24,10 @@ public class Model {
         SoftwareApp.addProject("Project102");
         SoftwareApp.addProject("Project103");
         SoftwareApp.addCoWorker(currentUser,"23001"); // Assign the user to a specific project
-        SoftwareApp.addActivity("FirstActivity","100","10","02/02/2024","23001");
-        SoftwareApp.addActivity("secondtActivity","100","10","02/02/2024","23001");
-        SoftwareApp.addActivity("thirdActivity","100","10","02/02/2024","23001");
-        SoftwareApp.addActivity("FourthActivity","100","10","02/02/2024","23001");
+        SoftwareApp.addActivity("FirstActivity","100","10","4","23001");
+        SoftwareApp.addActivity("secondtActivity","100","10","4","23001");
+        SoftwareApp.addActivity("thirdActivity","100","10","4","23001");
+        SoftwareApp.addActivity("FourthActivity","100","10","4","23001");
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
         SoftwareApp.assignActivityToUser("test","23002","23001A2");
     }

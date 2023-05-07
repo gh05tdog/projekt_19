@@ -10,53 +10,52 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.projectPageController">
-   <children>
-      <Label fx:id="projectIDLabel" layoutX="44.0" layoutY="39.0" text="23001">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Label fx:id="projectNameLabel" layoutX="129.0" layoutY="39.0" prefHeight="36.0" prefWidth="191.0" text="Label">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Button layoutX="331.0" layoutY="39.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" text="Manage Project" />
-      <Button layoutX="452.0" layoutY="39.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="101.0" text="Generate report" />
-      <Button layoutX="431.0" layoutY="288.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
-      <Label layoutX="436.0" layoutY="75.0" prefHeight="36.0" prefWidth="134.0" text="Report has been created" />
-      <ScrollPane fx:id="projectScrollPane" layoutX="60.0" layoutY="106.0" prefHeight="200.0" prefWidth="300.0">
-         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <HBox prefHeight="200.0" prefWidth="285.0">
-                     <children>
-                        <VBox fx:id="vBoxName" prefHeight="200.0" prefWidth="100.0" />
-                        <VBox fx:id="vBoxID" prefHeight="200.0" prefWidth="100.0" />
-                        <VBox fx:id="vBoxTime" prefHeight="200.0" prefWidth="100.0" />
-                     </children></HBox>
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <Text layoutX="396.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register activity time" wrappingWidth="191.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="433.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter activity ID">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <TextField layoutX="418.0" layoutY="181.0" />
-      <Text layoutX="404.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter time allocated">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <TextField layoutX="418.0" layoutY="247.0" />
-      <Text layoutX="431.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID not found" wrappingWidth="122.0" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="application.projectPageController">
+   <Label fx:id="projectIDLabel" layoutX="44.0" layoutY="39.0" text="23001">
+      <font>
+         <Font size="25.0"/>
+      </font>
+   </Label>
+   <Label fx:id="projectNameLabel" layoutX="129.0" layoutY="39.0" prefHeight="36.0" prefWidth="191.0" text="Label">
+      <font>
+         <Font size="25.0"/>
+      </font>
+   </Label>
+   <Button layoutX="331.0" layoutY="39.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0"
+           text="Manage Project"/>
+   <Button layoutX="452.0" layoutY="39.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="101.0"
+           text="Generate report"/>
+   <Button layoutX="431.0" layoutY="288.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0"
+           prefWidth="122.0" text="Return to frontpage"/>
+   <Label layoutX="436.0" layoutY="75.0" prefHeight="36.0" prefWidth="134.0" text="Report has been created"/>
+   <ScrollPane fx:id="projectScrollPane" layoutX="60.0" layoutY="106.0" prefHeight="200.0" prefWidth="300.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+         <HBox prefHeight="200.0" prefWidth="285.0">
+            <VBox fx:id="vBoxName" prefHeight="200.0" prefWidth="100.0"/>
+            <VBox fx:id="vBoxID" prefHeight="200.0" prefWidth="100.0"/>
+            <VBox fx:id="vBoxTime" prefHeight="200.0" prefWidth="100.0"/>
+         </HBox>
+      </AnchorPane>
+   </ScrollPane>
+   <Text layoutX="396.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register activity time"
+         wrappingWidth="191.0">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Text layoutX="433.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter activity ID">
+      <font>
+         <Font size="17.0"/>
+      </font>
+   </Text>
+   <TextField layoutX="418.0" layoutY="181.0"/>
+   <Text layoutX="404.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter time allocated">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <TextField layoutX="418.0" layoutY="247.0"/>
+   <Text layoutX="431.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID not found"
+         wrappingWidth="122.0"/>
 </AnchorPane>

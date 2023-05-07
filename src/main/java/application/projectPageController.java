@@ -65,6 +65,9 @@ public class projectPageController {
             activityButtonName.setMinWidth(vBoxName.getWidth());
             activityButtonName.maxWidthProperty().bind(vBoxName.widthProperty());
             activityButtonName.setText(activity.getActivityName());
+            activityButtonName.setOnAction(e -> {
+                view.showActivityPage(activity.getActivityId(), activity.getActivityName(), projectIDLabel.getText());
+            });
 
             Button activityButtonId = new Button();
             activityButtonId.setMinWidth(vBoxName.getWidth());

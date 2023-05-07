@@ -22,6 +22,7 @@ public class View extends Application {
     private Stage addProject;
 
     private Stage projectPage;
+    private Stage activityPage;
 
 
 
@@ -152,6 +153,34 @@ public class View extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void showActivityPage(String activityId, String activityName, String projectID){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Activity-Page.fxml"));
+            AnchorPane root = loader.load();
+            this.activityPage = new Stage();
+            activityPage.setScene(new Scene(root));
+
+            activityPageController activityPageController = loader.getController();
+            // Set the model and view for the new controller instance
+            activityPageController.setModelAndView(theModel, this);
+            // Set the project for the new controller instance
+            activityPageController.setActvityName(activityName);
+            // Set the username label for the new controller instance
+            activityPageController.setActivityIDLabel(activityId
+            );
+            activityPageController.setProjectIDLabel(projectID);
+            // Close the login window
+
+            projectPage.close();
+            activityPage.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void manageProjectPage () {

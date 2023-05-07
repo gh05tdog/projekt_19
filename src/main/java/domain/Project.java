@@ -181,8 +181,12 @@ public class Project {
         public void setCompleted() {
             //set the activity to completed
             isCompleted = true;
-
         }
+
+        public String getEndWeek() {
+            return String.valueOf(Integer.parseInt(StartWeek) + Integer.parseInt(Weeks) - 1);
+        }
+
         public ActivityTimeSheet getActivityTimeSheet() {
             return activityTimeSheet;
         }
