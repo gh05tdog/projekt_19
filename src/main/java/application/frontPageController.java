@@ -3,15 +3,13 @@ package application;
 
 import app.SoftwareApp;
 import domain.Project;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class frontPageController {
@@ -47,8 +45,7 @@ public class frontPageController {
                 scrollPaneUser.widthProperty().removeListener(this);
             }
         });
-
-      scrollPaneGlobal.widthProperty().addListener(new ChangeListener<>() {
+        scrollPaneGlobal.widthProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 // Call initializeComponents() when the ScrollPane's width changes
@@ -56,9 +53,8 @@ public class frontPageController {
 
                 // Remove the listener after the first layout pass to avoid multiple calls
                 scrollPaneGlobal.widthProperty().removeListener(this);
-
-                    }
-                });
+            }
+        });
     }
 
 // The code seen below is created by chatGPT our lord and saviour
