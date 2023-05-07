@@ -115,11 +115,11 @@ public class Project {
     public class Activities extends Project {
         public List<Activities> ActivityList = new ArrayList<>();
         private final List<User> UserAssignedActivities = new ArrayList<>();
-        private final String ActivityName;
+        private String ActivityName;
         private String ActivityId;
         private final String TimeBudget;
-        private final String Weeks;
-        private final String StartWeek;
+        private String Weeks;
+        private String StartWeek;
         private int LoggedTime;
         private Boolean isCompleted;
         private final ActivityTimeSheet activityTimeSheet;
@@ -197,6 +197,19 @@ public class Project {
             ActivityId = activityId;
         }
 
+        public void setActivityName(String text) {
+            this.ActivityName = text;
+        }
+
+        public void setStartWeek(String text) {
+            this.StartWeek = text;
+        }
+
+        public void setEndWeek(String text) {
+            //Calculate the number of weeks based on the start week and the end week.
+            //Then change the number of weeks to the calculated number of weeks
+            this.Weeks = String.valueOf(Integer.parseInt(text) - Integer.parseInt(StartWeek) + 1);
+        }
     }
 
 }

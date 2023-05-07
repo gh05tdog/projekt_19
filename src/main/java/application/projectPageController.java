@@ -84,8 +84,6 @@ public class projectPageController {
     }
 
 
-
-
     public void setProjectIDLabel(String name) {
         projectIDLabel.setText(name);
     }

@@ -168,4 +168,25 @@ public class activityPageController {
     protected void returnProjectPage() {
         view.showProjectPage(projectIDLabel.getText(),projectNameLabel.getText());
     }
+
+    public void updateActivityInfoAction() {
+        Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
+        //Check if the inputs are empty
+        if (activityNameLabel.getText().isEmpty() || startWeek.getText().isEmpty() || endWeek.getText().isEmpty() || allocatedTime.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
+            alert.setContentText("Please fill in all the fields.");
+            alert.showAndWait();
+            return;
+        }
+        activity.setStartWeek(startWeek.getText());
+        activity.setEndWeek(endWeek.getText());
+        update();
+
+        //Check if the data is correct
+        System.out.println(activity.getStartWeek());
+        System.out.println(activity.getEndWeek());
+        System.out.println(activity.getWeeks());
+    }
 }
