@@ -115,6 +115,9 @@ public class Project {
         this.ProjectName = newProjectName;
     }
 
+    public User getManager() {
+        return ProjectManager;
+    }
 
 
     public class Activities extends Project {

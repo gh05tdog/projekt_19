@@ -4,6 +4,7 @@ package application;
 import app.CSVgenerator;
 import app.SoftwareApp;
 import domain.Project;
+import domain.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class projectPageController {
 
@@ -115,7 +117,12 @@ public class projectPageController {
 
     @FXML
     protected void manageProjectPagePressed() {
-        theModel.manageProject(projectIDLabel.getText(), projectNameField.getText());
+        User manger = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getManager();
+        if(manger == null || manger.getUserId().equals(theModel.getCurrentUserID())) {
+            theModel.manageProject(projectIDLabel.getText(), projectNameField.getText());
+        }else {
+            view.showAlert("You are not the manager of this project");
+        }
 
     }
 
@@ -129,10 +136,5 @@ public class projectPageController {
       csVgenerator.saveCSVReportToFile(week);
       
 
-    }
-
-
-    public void changeProjectNameAction() {
-        theModel.changeProjectName(projectNameField.getText(), projectIDLabel.getText());
     }
 }

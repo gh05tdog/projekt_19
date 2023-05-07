@@ -145,8 +145,6 @@ public class frontPageController {
     }
 
 
-
-
     @FXML
     private Label nameLabel;
     public void setNameLabel(String name) {

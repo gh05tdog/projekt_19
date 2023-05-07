@@ -8,6 +8,7 @@ import domain.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -38,6 +39,7 @@ public class manageProjectController {
 
     @FXML
     public TextField enterWeekAmount;
+    public TextField userIDManager;
     @FXML
     private TextField activityUserID;
 
@@ -78,5 +80,19 @@ public class manageProjectController {
     public void addActivityToUser () throws TooManyActivities {
         SoftwareApp.assignActivityToUser(activityUserID.getText(),manageProjectID.getText(),activityActivityID.getText());
 
+    }
+
+    public void assignProjectManAction() {
+        User user = SoftwareApp.getUserFromID(userIDManager.getText());
+
+        if (user != null) {
+            Objects.requireNonNull(SoftwareApp.getProject(manageProjectID.getText())).setProjectManager(user);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("User not found");
+            alert.setContentText("Please enter a valid user ID");
+            alert.showAndWait();
+        }
     }
 }

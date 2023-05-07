@@ -4,6 +4,7 @@ import domain.UserAlreadyExistsException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -241,4 +242,11 @@ public class View extends Application {
         launch(args);
     }
 
+    public void showAlert(String s) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(s);
+        alert.showAndWait();
+    }
 }
