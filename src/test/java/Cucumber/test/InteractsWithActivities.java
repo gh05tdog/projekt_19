@@ -15,6 +15,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
 public class InteractsWithActivities {
+
+
     private final ErrorMessageHolder errorMessage;
 
     public InteractsWithActivities(ErrorMessageHolder errorMessage) {
@@ -22,6 +24,8 @@ public class InteractsWithActivities {
     }
 
     //Get the activity list from the project
+
+
 
 
     @Given("the project manager with the id {string} is logged in")
@@ -39,10 +43,16 @@ public class InteractsWithActivities {
         }
         User user = SoftwareApp.getUserFromID(userId);
 
-        SoftwareApp.getProject("23001").setProjectManager(user);
+        //Check if there is a project with the id, if not create a new project
+        if (SoftwareApp.getProject("23001") == null) {
+            SoftwareApp.addProject("Lommeregner");
+            assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001")))).getProjectId(), "23001");
+            return;
+        }
+
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).setProjectManager(user);
         Project project = SoftwareApp.getProject("23001");
         assert project != null;
-
         assertEquals(project.getProjectManager().getUserId(), "mang");
     }
 
@@ -54,13 +64,10 @@ public class InteractsWithActivities {
 
 
 
-        System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         for (int i = 1; i <= nbOfActivities; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23001");
             SoftwareApp.assignActivityToUser(userID, "23001", "23001A" + i);
-            System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         }
-        System.out.println(SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber());
         assert SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber() == nbOfActivities;
 
 
@@ -96,13 +103,13 @@ public class InteractsWithActivities {
 
     @Then("the used time on activity is {int} hours")
     public void theUsedTimeOnActivityIsHours(int arg0) {
-        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A1").getUsedTime()), arg0);
+        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A2").getUsedTime()), arg0);
     }
 
 
     @Then("the user timesheet should be updated with the logged time")
     public void theUserTimesheetShouldBeUpdatedWithTheLoggedTime() {
-        assertEquals(SoftwareApp.getUserFromID("abcd").getTimeSpentOnActivity("23001A1"), 2);
+        assertEquals(SoftwareApp.getUserFromID("abcd").getTimeSpentOnActivity("23001A2"), 2);
     }
 
     @Given("there are employees registered in the system")

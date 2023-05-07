@@ -52,7 +52,9 @@ public class manageProjectController {
 
 
 
+
     public void setModelAndView(Model theModel, View view) {
+
 
         this.model = theModel;
         this.view = view;

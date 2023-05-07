@@ -13,15 +13,22 @@ public class SoftwareApp {
 
     public SoftwareApp() {
         addProject("Off work Activities");
+        Objects.requireNonNull(getProject("23001")).changeProjectId("11111");
+        System.out.println("This should work:" + Objects.requireNonNull(getProject("11111")).getProjectId());
         addActivity("Sick days", "0", "0", "1", "23001");
         addActivity("Vacation days", "0", "0", "1", "23001");
         addActivity("Other", "0", "0", "1", "23001");
+
+        //Print all projects
+        for (Project project : projectList) {
+            System.out.println(project.getProjectName());
+        }
     }
     public static List<Project> projectList = new ArrayList<>();
     public static List<User> UserList = new ArrayList<>();
-    public static String CurrentUser;
 
     public static void addProject(String projectName) {
+        System.out.println("Project added");
         Project project = new Project(projectName);
         projectList.add(project);
     }
@@ -49,8 +56,12 @@ public class SoftwareApp {
     }
 
     public static Project getProject(String projectId) {
-        //use a stream filter to get the project from an id
-        return projectList.stream().filter(project -> project.getProjectId().equals(projectId)).findFirst().orElse(null);
+        for (Project project : projectList) {
+            if (project.getProjectId().equals(projectId)) {
+                return project;
+            }
+        }
+        return null;
     }
 
     public static void addActivity(String name, String timebudget, String weeks, String startWeek, String projectId) {
@@ -76,9 +87,8 @@ public class SoftwareApp {
         UserList.add(user);
     }
 
-    public static String getCurrentWeek() {
+    public static int getCurrentWeek() {
         LocalDate date = LocalDate.now();
-        return String.valueOf(date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR));
+        return date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
     }
-
 }

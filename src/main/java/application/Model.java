@@ -24,7 +24,6 @@ public class Model {
         User newUser = User.createUser("Roberto", "test");
         User.createUser("Tom", "toom");
         currentUser = newUser.getUserId(); // Set the currentUser variable to the created user's userId
-
         SoftwareApp.addProject("Lommeregner");
         SoftwareApp.addProject("Project102");
         SoftwareApp.addProject("Project103");
@@ -39,9 +38,11 @@ public class Model {
         SoftwareApp.addActivity("secondtActivity","100","10","4","23001");
         SoftwareApp.addActivity("thirdActivity","70","10","4","23001");
         SoftwareApp.addActivity("FourthActivity","50","10","4","23001");
-
         SoftwareApp.assignActivityToUser("test","23001","23001A1");
         SoftwareApp.assignActivityToUser("test","23001","23001A2");
+        //System.out.println(Objects.requireNonNull(SoftwareApp.getProject("23002")).getActivity("23002A1").getActivityName());
+        SoftwareApp.assignActivityToUser("test","23002","23002A1");
+        SoftwareApp.assignActivityToUser("test","23002","23002A1");
 
     }
 

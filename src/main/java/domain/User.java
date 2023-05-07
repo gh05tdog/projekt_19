@@ -3,17 +3,19 @@ package domain;
 import app.SoftwareApp;
 import javafx.scene.text.Text;
 
+
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import static app.SoftwareApp.projectList;
 
 public class User {
 
     private final String name;
+
     private final String userId;
 
     private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
@@ -24,30 +26,16 @@ public class User {
 
 
 
+
     public User(String name, String userId) {
         this.name = name;
         this.userId = userId;
         this.UserActivityList = new ArrayList<>();
+
     }
 
     public static User createUser(String name, String userId) throws UserAlreadyExistsException {
-//        //Check if username is already in use
-//        //If it is, throw an exception
-//        if (!isCreated) {
-//            SoftwareApp.addProject("OffProjectActivities");
-//            Objects.requireNonNull(SoftwareApp.getProject("23001")).changeProjectId("11111");
-//            SoftwareApp.getProject("23001").changeProjectName(SoftwareApp.getProject("11111").getProjectName());
-//            Objects.requireNonNull(SoftwareApp.getProject("11111")).changeProjectName("OffProjectActivities");
-//        if(!isCreated2) {
-//            Objects.requireNonNull(SoftwareApp.getProject("11111")).addActivity("Sick days", "0", "0", "1");
-//            Objects.requireNonNull(SoftwareApp.getProject("11111")).addActivity("Vacation days", "0", "0", "1");
-//            Objects.requireNonNull(SoftwareApp.getProject("11111")).addActivity("Other", "0", "0", "1");
-//            isCreated2 = true;
-//            //add the 3 activites to the special activity list
-//           // Project.SpecialActivityList.add(Objects.requireNonNull(SoftwareApp.getProject("11111")).getActivity("Other"));
-//        }
-//            isCreated = true;
-//        }
+
         if (SoftwareApp.getUserFromID(userId) != null) {
             return SoftwareApp.getUserFromID(userId);
         }

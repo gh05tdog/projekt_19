@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static app.SoftwareApp.projectList;
 
 
 public class Project {
+
     private String ProjectName;
     private String ProjectId;
     public List<User> workersList = new ArrayList<>();
@@ -129,7 +129,7 @@ public class Project {
         private String TimeBudget;
         private String Weeks;
         private String StartWeek;
-        private int LoggedTime;
+        private int LoggedTime = 0;
         private Boolean isCompleted;
         private final ActivityTimeSheet activityTimeSheet;
 

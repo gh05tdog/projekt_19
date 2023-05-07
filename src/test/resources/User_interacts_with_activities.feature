@@ -9,4 +9,3 @@ Feature: User interacts with activities
     When the user with an id "tejs" is assigned the activity
     Then the user will get a warning "This user has more than 10 activities assigned"
     And the user is assigned the activity
-
