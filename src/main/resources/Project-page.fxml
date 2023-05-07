@@ -25,7 +25,7 @@
       </font>
    </Label>
    <Button fx:id="manageProject" layoutX="185.0" layoutY="319.0" mnemonicParsing="false" onAction="#manageProjectPagePressed" prefHeight="36.0" prefWidth="100.0" text="Manage Project" />
-   <Button layoutX="413.0" layoutY="328.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Generate report" />
+   <Button layoutX="413.0" layoutY="328.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Generate report" onAction="#generateReportPressed" />
    <Button layoutX="34.0" layoutY="319.0" mnemonicParsing="false" onAction="#returnFrontPage" prefHeight="36.0" prefWidth="122.0" text="Return to frontpage" />
    <Label layoutX="397.0" layoutY="355.0" prefHeight="25.0" prefWidth="134.0" text="Report has been created" />
    <ScrollPane fx:id="projectScrollPane" layoutX="19.0" layoutY="80.0" prefHeight="200.0" prefWidth="305.0">
@@ -61,7 +61,7 @@
    <Text layoutX="30.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID" textAlignment="CENTER" wrappingWidth="78.13671875" />
    <Text layoutX="124.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" textAlignment="CENTER" wrappingWidth="78.13671875" />
    <Text layoutX="218.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timebudget" textAlignment="CENTER" wrappingWidth="78.13671875" />
-   <TextField layoutX="473.0" layoutY="293.0" prefHeight="25.0" prefWidth="108.0" text="dd-mm-yyyy" />
+   <TextField fx:id="getDate" layoutX="473.0" layoutY="293.0" prefHeight="25.0" prefWidth="108.0" promptText="yyyy-mm-dd" />
    <Text layoutX="353.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter report date">
       <font>
          <Font size="15.0" />

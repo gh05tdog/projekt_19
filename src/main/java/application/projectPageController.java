@@ -8,11 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class projectPageController {
@@ -37,6 +41,8 @@ public class projectPageController {
     private View view;
 
     public CSVgenerator csVgenerator;
+    @FXML
+    private TextField getDate;
 
     public void setModelAndView(Model theModel, View view) {
         this.theModel = theModel;
@@ -115,9 +121,15 @@ public class projectPageController {
 
     }
 
-    public void generateReportPressed() {
-        
+    public void generateReportPressed() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+      Date date = dateFormat.parse(getDate.getText());
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(date);
+      int week = calendar.get(Calendar.WEEK_OF_YEAR);
       csVgenerator = new CSVgenerator(SoftwareApp.getProject(projectIDLabel.getText()));
+      csVgenerator.saveCSVReportToFile(week);
+      System.out.println("din mor");
 
     }
 
