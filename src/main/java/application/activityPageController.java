@@ -8,6 +8,7 @@ import domain.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -38,10 +39,12 @@ public class activityPageController {
     public Text percentTime;
 
     public View view;
+    public Model model;
 
 
-    public void setModelAndView(View view) {
+    public void setModelAndView(Model model, View view) {
         this.view = view;
+        this.model = model;
 
         // Add a ChangeListener to the ScrollPane's widthProperty
         // This code was created with the help of https://stackoverflow.com/questions/16606162/javafx-how-to-get-the-scrollbars-of-a-scrollpane
@@ -147,7 +150,7 @@ public class activityPageController {
     }
 
 
-    public void setActvityName(String name) {
+    public void setActivityName(String name) {
         activityNameLabel.setText(name);
     }
 
@@ -189,4 +192,27 @@ public class activityPageController {
         System.out.println(activity.getEndWeek());
         System.out.println(activity.getWeeks());
     }
+
+    public void registerTimeAction() {
+        //Check if the input is a valid number
+        if (!model.isNumeric(enterTime.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
+            alert.setContentText("Please enter a valid number of hours.");
+            alert.showAndWait();
+        }else{
+
+        int registeredTime = enterTime.getText().isEmpty() ? 0 : Integer.parseInt(enterTime.getText());
+        if (registeredTime > 0) {
+            SoftwareApp.getUserFromID(model.getCurrentUserID()).updateTimeSheet(activityIDLabel.getText(), registeredTime, LocalDate.now());
+            update();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
+            alert.setContentText("Please enter a valid number of hours.");
+            alert.showAndWait();
+        }
+    }}
 }

@@ -13,7 +13,6 @@ public class User {
     private final String name;
     private final String userId;
 
-    // public static List<Project.Activities> UserActivityList = new ArrayList<>();
     private final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
     private final List<Project.Activities> UserActivityList;
     public ArrayList<Date> UnAvailableDates = new ArrayList<>();

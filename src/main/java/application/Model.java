@@ -6,6 +6,8 @@ import domain.Project;
 import domain.User;
 import domain.UserAlreadyExistsException;
 
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -90,5 +92,11 @@ public class Model {
 
     public void showMainPage(String name) {
         view.showMainPage(name);
+    }
+
+    public boolean isNumeric(String str) {
+        ParsePosition pos = new ParsePosition(0);
+        NumberFormat.getInstance().parse(str, pos);
+        return str.length() == pos.getIndex();
     }
 }

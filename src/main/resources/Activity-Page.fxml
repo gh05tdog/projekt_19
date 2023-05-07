@@ -73,7 +73,7 @@
          <Font size="15.0" />
       </font>
    </TextField>
-   <Button fx:id="addToActivity" layoutX="388.0" layoutY="295.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Add to activity" />
+   <Button fx:id="addToActivity" layoutX="388.0" layoutY="295.0" mnemonicParsing="false" onAction="#registerTimeAction" prefHeight="40.0" prefWidth="102.0" text="Add to activity" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="484.0" layoutY="183.0" stroke="BLACK" strokeType="INSIDE" width="84.0" />
    <Text fx:id="percentTime" layoutX="490.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="percent" textAlignment="CENTER" wrappingWidth="71.99999999999989">
       <font>
