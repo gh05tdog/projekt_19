@@ -58,6 +58,8 @@ public class manageProjectController {
     @FXML
     public Button checkUsers;
 
+    @FXML
+    public TextField activityField;
 
 
     public void setModelAndView(Model theModel, View view) {
@@ -69,12 +71,27 @@ public class manageProjectController {
     }
     public void checkAvailableUsers() {
         vBoxUserList.getChildren().clear();
+
+        int Startweek = Integer.parseInt(SoftwareApp.getProject(manageProjectID.getText()).getActivity(activityField.getText()).getStartWeek());
+        int endweek = Integer.parseInt(SoftwareApp.getProject(manageProjectID.getText()).getActivity(activityField.getText()).getEndWeek());
+
+
         for (User user : SoftwareApp.UserList) {
+            int activities_in_week = 0;
+
+
             for (Project.Activities activities : user.getUserActivityList()) {
+
+
                 System.out.println(activities.getActivityName());
 
 
-                if (user.getAssignedActivitiesNumber() < 10) {
+                if (Integer.parseInt(activities.getStartWeek()) >= Startweek && Integer.parseInt(activities.getStartWeek()) <= endweek) {
+                    activities_in_week += 1;
+                }
+            }
+
+                if (activities_in_week < 10) {
                     {
                         Button projectButtonUser = new Button(user.getName());
                         projectButtonUser.setMinWidth(vBoxUserList.getWidth());
@@ -85,7 +102,7 @@ public class manageProjectController {
                 }
             }
         }
-    }
+
     public void setProjectID(String projectID) {
         manageProjectID.setText(projectID);
 

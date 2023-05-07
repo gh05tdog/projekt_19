@@ -25,10 +25,10 @@
    <Label layoutX="394.0" layoutY="174.0" prefHeight="25.0" prefWidth="134.0" text="Report has been created" />
    <ScrollPane fx:id="projectScrollPane" layoutX="22.0" layoutY="168.0" prefHeight="200.0" prefWidth="305.0">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-         <HBox prefHeight="200.0" prefWidth="285.0">
-            <VBox fx:id="vBoxName" prefHeight="200.0" prefWidth="174.0" />
-            <VBox fx:id="vBoxID" prefHeight="200.0" prefWidth="73.0" />
-            <VBox fx:id="vBoxTime" prefHeight="200.0" prefWidth="66.0" />
+         <HBox prefWidth="285.0">
+            <VBox fx:id="vBoxName"  prefWidth="174.0" />
+            <VBox fx:id="vBoxID"  prefWidth="73.0" />
+            <VBox fx:id="vBoxTime"  prefWidth="66.0" />
          </HBox>
       </AnchorPane>
    </ScrollPane>

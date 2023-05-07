@@ -23,6 +23,7 @@ public class Model {
         // Add a user to the database
         User newUser = User.createUser("Roberto", "test");
         User.createUser("Tom", "toom");
+        User.createUser("Ruben", "rubn");
         currentUser = newUser.getUserId(); // Set the currentUser variable to the created user's userId
         SoftwareApp.addProject("Lommeregner");
         SoftwareApp.addProject("Project102");
@@ -43,6 +44,11 @@ public class Model {
         //System.out.println(Objects.requireNonNull(SoftwareApp.getProject("23002")).getActivity("23002A1").getActivityName());
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
+
+        for (int i = 1; i <= 10; i++) {
+            SoftwareApp.addActivity("name" + i, "10", "1", "1", "23003");
+            SoftwareApp.assignActivityToUser("rubn", "23003", "23003A" + i);
+        }
 
     }
 
