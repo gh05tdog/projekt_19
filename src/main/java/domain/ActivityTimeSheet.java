@@ -28,15 +28,18 @@ public class ActivityTimeSheet {
     public int getTotalHours() {
         return totalHours;
     }
-    public static List<TimeLogEntry> getTimeLog() {
-        return timeLog;
-    }
+
     public static String getDateAndHours() {
         StringBuilder dateAndHours = new StringBuilder();
         for (TimeLogEntry entry : timeLog) {
             dateAndHours.append(entry.getDate()).append(" ").append(entry.getHours()).append("\n");
         }
         return dateAndHours.toString();
+    }
+
+    public void editHours(int oldTimeSpent, int newTimeSpent) {
+        totalHours -= oldTimeSpent;
+        totalHours += newTimeSpent;
     }
 
     public static class TimeLogEntry {

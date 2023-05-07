@@ -10,92 +10,101 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.activityPageController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="148.0" layoutX="308.0" layoutY="166.0" stroke="BLACK" strokeType="INSIDE" width="287.0" />
-      <Text fx:id="activityID" layoutX="28.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="activityName" layoutX="142.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity name">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="44.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start week">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="221.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="378.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Allocated time">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Button fx:id="returnToFrontPage" layoutX="383.0" layoutY="337.0" mnemonicParsing="false" onAction="#returnProjectPage" prefHeight="40.0" prefWidth="142.0" text="Return to project page" />
-      <ScrollPane layoutX="50.0" layoutY="168.0" prefHeight="200.0" prefWidth="247.0">
-         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-            <HBox prefHeight="200.0" prefWidth="200.0">
-               <VBox fx:id="vBoxUserID" prefHeight="200.0" prefWidth="100.0" />
-               <VBox fx:id="vBoxTimeSpent" prefHeight="200.0" prefWidth="100.0" />
-            </HBox>
-         </AnchorPane>
-      </ScrollPane>
-      <Text layoutX="50.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID" textAlignment="CENTER" wrappingWidth="92.099609375">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="142.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time logged" textAlignment="CENTER" wrappingWidth="92.099609375">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="314.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Allocated time spent">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="339.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register time on activity">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="350.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter time">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <TextField fx:id="enterTime" layoutX="461.0" layoutY="206.0" prefHeight="25.0" prefWidth="63.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <Button fx:id="addToActivity" layoutX="394.0" layoutY="257.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Add to activity" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="503.0" layoutY="132.0" stroke="BLACK" strokeType="INSIDE" width="84.0" />
-      <Text fx:id="percentTime" layoutX="509.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="percent" textAlignment="CENTER" wrappingWidth="71.99999999999989">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <TextField fx:id="startWeek" layoutX="142.0" layoutY="89.0" prefHeight="25.0" prefWidth="72.0" />
-      <TextField fx:id="endWeek" layoutX="308.0" layoutY="89.0" prefHeight="25.0" prefWidth="63.0" />
-      <TextField fx:id="allocatedTime" layoutX="515.0" layoutY="89.0" prefHeight="25.0" prefWidth="72.0" />
-      <Text fx:id="projectIDLabel" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="projectNameLabel" layoutX="142.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity name">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="application.activityPageController">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="148.0" layoutX="308.0" layoutY="166.0"
+              stroke="BLACK" strokeType="INSIDE" width="287.0"/>
+   <Text fx:id="activityID" layoutX="28.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Text fx:id="activityName" layoutX="142.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Activity name">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Text layoutX="44.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start week">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Text layoutX="221.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Text layoutX="378.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Allocated time">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Button fx:id="returnToFrontPage" layoutX="383.0" layoutY="337.0" mnemonicParsing="false"
+           onAction="#returnProjectPage" prefHeight="40.0" prefWidth="142.0" text="Return to project page"/>
+   <ScrollPane layoutX="50.0" layoutY="168.0" prefHeight="200.0" prefWidth="247.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+         <HBox prefHeight="200.0" prefWidth="200.0">
+            <VBox fx:id="vBoxUserID" prefHeight="200.0" prefWidth="100.0"/>
+            <VBox fx:id="vBoxTimeSpent" prefHeight="200.0" prefWidth="100.0"/>
+            <VBox fx:id="vBoxButtons" prefHeight="200.0" prefWidth="100.0"/>
+         </HBox>
+      </AnchorPane>
+   </ScrollPane>
+   <Text layoutX="50.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID" textAlignment="CENTER"
+         wrappingWidth="92.099609375">
+      <font>
+         <Font size="15.0"/>
+      </font>
+   </Text>
+   <Text layoutX="142.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time logged"
+         textAlignment="CENTER" wrappingWidth="92.099609375">
+      <font>
+         <Font size="15.0"/>
+      </font>
+   </Text>
+   <Text layoutX="314.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Allocated time spent">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Text layoutX="339.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register time on activity">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Text layoutX="350.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter time">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <TextField fx:id="enterTime" layoutX="461.0" layoutY="206.0" prefHeight="25.0" prefWidth="63.0">
+      <font>
+         <Font size="15.0"/>
+      </font>
+   </TextField>
+   <Button fx:id="addToActivity" layoutX="394.0" layoutY="257.0" mnemonicParsing="false" prefHeight="40.0"
+           prefWidth="102.0" text="Add to activity"/>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="503.0" layoutY="132.0" stroke="BLACK"
+              strokeType="INSIDE" width="84.0"/>
+   <Text fx:id="percentTime" layoutX="509.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="percent"
+         textAlignment="CENTER" wrappingWidth="71.99999999999989">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <TextField fx:id="startWeek" layoutX="142.0" layoutY="89.0" prefHeight="25.0" prefWidth="72.0"/>
+   <TextField fx:id="endWeek" layoutX="308.0" layoutY="89.0" prefHeight="25.0" prefWidth="63.0"/>
+   <TextField fx:id="allocatedTime" layoutX="515.0" layoutY="89.0" prefHeight="25.0" prefWidth="72.0"/>
+   <Text fx:id="projectIDLabel" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity ID">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
+   <Text fx:id="projectNameLabel" layoutX="142.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="Activity name">
+      <font>
+         <Font size="20.0"/>
+      </font>
+   </Text>
 </AnchorPane>

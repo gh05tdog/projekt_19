@@ -174,8 +174,7 @@ public class View extends Application {
             // Set the project for the new controller instance
             activityPageController.setActvityName(activityName);
             // Set the username label for the new controller instance
-            activityPageController.setActivityIDLabel(activityId
-            );
+            activityPageController.setActivityIDLabel(activityId);
             activityPageController.setProjectIDLabel(projectID);
             // Close the login window
 
