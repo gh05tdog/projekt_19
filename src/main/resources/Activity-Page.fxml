@@ -27,12 +27,12 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="215.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week">
+      <Text layoutX="221.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End week">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="378.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Allocated timer">
+      <Text layoutX="378.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Allocated time">
          <font>
             <Font size="20.0" />
          </font>
@@ -83,29 +83,14 @@
          </font>
       </TextField>
       <Button fx:id="addToActivity" layoutX="390.0" layoutY="295.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Add to activity" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="143.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Text fx:id="startWeek" layoutX="143.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="week" textAlignment="CENTER" wrappingWidth="62.999999999999886">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="31.0" layoutX="308.0" layoutY="86.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Text fx:id="endWeek" layoutX="308.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="week" textAlignment="CENTER" wrappingWidth="62.999999999999886">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="520.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Text fx:id="allocatedTime" layoutX="520.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="time" textAlignment="CENTER" wrappingWidth="62.999999999999886">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="503.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="84.0" />
       <Text fx:id="percentTime" layoutX="509.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="percent" textAlignment="CENTER" wrappingWidth="71.99999999999989">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
+      <TextField fx:id="startWeek" layoutX="142.0" layoutY="89.0" prefHeight="25.0" prefWidth="72.0" />
+      <TextField fx:id="endWeek" layoutX="308.0" layoutY="89.0" prefHeight="25.0" prefWidth="63.0" />
+      <TextField fx:id="allocatedTime" layoutX="515.0" layoutY="89.0" prefHeight="25.0" prefWidth="72.0" />
    </children>
 </AnchorPane>
