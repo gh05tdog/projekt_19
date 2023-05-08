@@ -117,6 +117,15 @@ public class Project {
         return ProjectManager;
     }
 
+    public User[] getUserAssignedActivities(String activityId) {
+        for (Activities activity : ActivityList) {
+            if (activity.getActivityId().equals(activityId)) {
+                return activity.getUserAssignedActivities().toArray(new User[0]);
+            }
+        }
+        return null;
+    }
+
 
     public class Activities extends Project {
         public List<Activities> ActivityList = new ArrayList<>();

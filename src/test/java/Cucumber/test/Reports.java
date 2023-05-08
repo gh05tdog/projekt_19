@@ -51,7 +51,7 @@ public class Reports {
             Objects.requireNonNull(SoftwareApp.getProject(arg0)).getActivity("23001A1").logHours(SoftwareApp.getUserFromID("mang"), 10, LocalDate.now());
             assert(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUsedTime() > 0);
         }
-
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).assignActivityToUser("mang", "23001A1");
     }
     @When("I generate a report for the project")
     public void iGenerateAReportForTheProject() {

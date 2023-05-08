@@ -30,7 +30,6 @@ public class ActivityTimeSheet {
         return totalHours;
     }
 
-
     public String getDateAndHours() {
         StringBuilder dateAndHours = new StringBuilder();
         for (TimeLogEntry entry : this.timeLog) {
@@ -38,7 +37,6 @@ public class ActivityTimeSheet {
         }
         return dateAndHours.toString();
     }
-
 
     public void editHours(float oldTimeSpent, float newTimeSpent) {
         totalHours -= oldTimeSpent;

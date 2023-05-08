@@ -53,8 +53,8 @@ public class Model {
         SoftwareApp.assignActivityToUser("test","23002","23002A1");
         Objects.requireNonNull(SoftwareApp.getProject("23002")).getActivity("23002A1").logHours(SoftwareApp.getUserFromID("toom"),1, LocalDate.parse("2021-05-01"));
 
-        for (int i = 1; i <= 20; i++) {
-            SoftwareApp.addActivity("name" + i, "10", "1", "1", "23003");
+        for (int i = 1; i <= 10; i++) {
+            SoftwareApp.addActivity("name" + i, "10", "", "1", "23003");
 
             Objects.requireNonNull(SoftwareApp.getProject("23003")).assignActivityToUser("rubn", "23003A" + i);
         }

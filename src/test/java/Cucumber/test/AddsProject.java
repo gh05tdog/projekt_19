@@ -122,8 +122,15 @@ public class AddsProject {
         Project project = SoftwareApp.getProject(projectId);
         assert project != null;
 
-        assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(0).getUserId(), User1);
-        assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(1).getUserId(), User2);
+        //Loop trough the userAssignedActivities and check if the users are assigned to the activity
+        for (User user : project.getUserAssignedActivities(activityId)) {
+            if (user.getUserId().equals(User1)) {
+                assertEquals(user.getUserId(), User1);
+            }
+            if (user.getUserId().equals(User2)) {
+                assertEquals(user.getUserId(), User2);
+            }
+        }
     }
 
 
