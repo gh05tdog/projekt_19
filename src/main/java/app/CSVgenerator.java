@@ -32,9 +32,9 @@ public class CSVgenerator {
         reportBuilder.append("Project Name: ").append(project.getProjectName()).append("\n");
         reportBuilder.append("Project ID: ").append(project.getProjectId()).append("\n");
         reportBuilder.append("\n");
-        List<Activities> activityList = project.getActivityList();
-        for (Project.Activities activity : activityList) {
-            for (User user : activity.getUserAssignedActivities()) {
+        List<Activities> activityList = project.getActivityList(); //1
+        for (Project.Activities activity : activityList) { //2
+            for (User user : activity.getUserAssignedActivities()) { //3
                 reportBuilder.append("Activity Name: ").append(activity.getActivityName()).append("\n");
                 reportBuilder.append("Activity ID: ").append(activity.getActivityId()).append("\n");
                 reportBuilder.append("Time Budget: ").append(activity.getTimeBudget()).append("\n");
