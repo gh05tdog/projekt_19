@@ -18,6 +18,8 @@ public class Project {
     public final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
 
+    private SoftwareApp SoftwareApp;
+
     public Project(String projectName) {
         this.ProjectName = projectName;
         int Year = Calendar.getInstance().get(Calendar.YEAR) % 100;

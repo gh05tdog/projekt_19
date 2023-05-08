@@ -7,9 +7,7 @@ import javafx.scene.text.Text;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 
 public class User {
@@ -20,9 +18,6 @@ public class User {
 
     public final List<ActivityTimeSheet> timeSheet = new ArrayList<>();
     private final List<Project.Activities> UserActivityList;
-    public static final ArrayList<LocalDate> VacationDaysList = new ArrayList<>();
-    private static boolean isCreated = false;
-    private static boolean isCreated2 = false;
 
 
 

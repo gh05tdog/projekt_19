@@ -249,14 +249,15 @@ public class activityPageController {
             if (registeredTime > 0) {
                 User currentUser = SoftwareApp.getUserFromID(model.getCurrentUserID());
 
-
                 //currentUser.updateTimeSheet(activityIDLabel.getText(), registeredTime, LocalDate.now());
 
                 // Update the percentTime in the corresponding Project.Activities object
                 Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
                 activity.logHours(currentUser, registeredTime, LocalDate.parse(date.getText()));
                 setProcents();
-                update();
+
+                // Call initializeComponents method to update the UI
+                initializeComponents();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -266,6 +267,7 @@ public class activityPageController {
             }
         }
     }
+
 
     public void setProcents() {
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());

@@ -34,6 +34,12 @@ import java.util.regex.Pattern;
 
 public class Reports {
 
+    private final app.SoftwareApp SoftwareApp;
+
+    public Reports(app.SoftwareApp softwareApp, ErrorMessageHolder errorMessage) {
+        this.SoftwareApp = softwareApp;
+    }
+
     @Given("there is an activity with a name {string}, timebudget {string}, weeks {string}, start week {string}")
     public void thereIsAnActivityWithANameTimebudgetWeeksStartWeek(String Name, String timebudget, String weeks, String startweek) {
         // Write code here that turns the phrase above into concrete actions

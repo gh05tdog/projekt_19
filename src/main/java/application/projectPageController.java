@@ -130,14 +130,12 @@ public class projectPageController {
 
     public void generateReportPressed() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-      Date date = dateFormat.parse(getDate.getText());
-      Calendar calendar = Calendar.getInstance();
-      calendar.setTime(date);
-      int week = calendar.get(Calendar.WEEK_OF_YEAR);
-      csVgenerator = new CSVgenerator(SoftwareApp.getProject(projectIDLabel.getText()));
-      csVgenerator.saveCSVReportToFile(week);
-      
-
+        Date date = dateFormat.parse(getDate.getText());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int week = calendar.get(Calendar.WEEK_OF_YEAR);
+        csVgenerator = new CSVgenerator(SoftwareApp.getProject(projectIDLabel.getText()));
+        csVgenerator.saveCSVReportToFile(week);
     }
 
     public void changeProjectNameAction(ActionEvent actionEvent) {

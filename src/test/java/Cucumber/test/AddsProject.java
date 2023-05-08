@@ -19,6 +19,12 @@ import static org.junit.Assert.*;
 
 public class AddsProject {
 
+    private final app.SoftwareApp SoftwareApp;
+
+    public AddsProject(SoftwareApp SoftwareApp) {
+        this.SoftwareApp = SoftwareApp;
+    }
+
     private User user;
     @Given("that there is a user with the id {string} and the name {string}")
     public void thatThereIsAUserWithTheIdAndTheName(String userId, String Name) throws UserAlreadyExistsException {

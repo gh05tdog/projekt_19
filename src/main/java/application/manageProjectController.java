@@ -62,10 +62,14 @@ public class manageProjectController {
     @FXML
     public TextField activityField;
 
+    private SoftwareApp SoftwareApp;
 
-    public void setModelAndView(Model theModel, View view) {
 
 
+
+    public void setModelAndView(Model theModel, View view, SoftwareApp SoftwareApp) {
+
+        this.SoftwareApp = SoftwareApp;
         this.model = theModel;
         this.view = view;
 

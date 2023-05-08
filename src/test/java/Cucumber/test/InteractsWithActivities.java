@@ -17,10 +17,16 @@ import static org.junit.Assert.assertSame;
 
 public class InteractsWithActivities {
 
+    private final app.SoftwareApp SoftwareApp;
 
     private final ErrorMessageHolder errorMessage;
 
-    public InteractsWithActivities(ErrorMessageHolder errorMessage) {
+
+
+
+
+    public InteractsWithActivities(app.SoftwareApp softwareApp, ErrorMessageHolder errorMessage) {
+        SoftwareApp = softwareApp;
         this.errorMessage = errorMessage;
     }
 

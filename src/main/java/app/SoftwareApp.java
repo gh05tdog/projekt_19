@@ -11,8 +11,8 @@ import java.util.Objects;
 
 public class SoftwareApp {
 
-    public SoftwareApp() {
 
+    public SoftwareApp() {
 
         //Print all projects
         for (Project project : projectList) {
@@ -22,7 +22,7 @@ public class SoftwareApp {
     public static List<Project> projectList = new ArrayList<>();
     public static List<User> UserList = new ArrayList<>();
 
-    public static void addProject(String projectName) {
+    public void addProject(String projectName) {
         System.out.println("Project added");
         Project project = new Project(projectName);
         projectList.add(project);
@@ -59,7 +59,7 @@ public class SoftwareApp {
         return null;
     }
 
-    public static void addActivity(String name, String timebudget, String weeks, String startWeek, String projectId) {
+    public void addActivity(String name, String timebudget, String weeks, String startWeek, String projectId) {
         Project project = getProject(projectId);
         if (project != null) {
             project.addActivity(name, timebudget, weeks, startWeek);
@@ -67,7 +67,7 @@ public class SoftwareApp {
     }
 
 
-    public static void assignActivityToUser(String userID, String projectID, String activityID) throws TooManyActivities, WayTooManyActivities {
+    public void assignActivityToUser(String userID, String projectID, String activityID) throws TooManyActivities, WayTooManyActivities {
         Project project = getProject(projectID);
         if (project != null) {
             if (getUserFromID(userID).getAssignedActivitiesNumber() >= 10 && getUserFromID(userID).getAssignedActivitiesNumber() < 20){

@@ -3,6 +3,7 @@ package domain;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ActivityTimeSheet {
@@ -57,6 +58,8 @@ public class ActivityTimeSheet {
         public float getHours() {
             return hours;
         }
+
+
 
         public LocalDate getDate() {
             return date;
