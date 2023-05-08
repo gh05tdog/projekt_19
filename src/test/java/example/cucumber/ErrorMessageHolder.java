@@ -1,4 +1,4 @@
-package Cucumber.test;
+package example.cucumber;
 
 public class ErrorMessageHolder {
     private String errorMessage = "";

@@ -1,65 +1,32 @@
 package domain;
 
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ActivityTimeSheet {
     private final String activityId;
-    private float totalHours;
-    private final List<TimeLogEntry> timeLog;
+    private int totalHours;
 
-    public ActivityTimeSheet(String activityId, float hours, LocalDate date) {
+    public ActivityTimeSheet(String activityId, int initialHours) {
         this.activityId = activityId;
-        this.totalHours = 0;
-        this.timeLog = new ArrayList<>();
-        addHours(hours, date);
+        this.totalHours = initialHours;
     }
 
-    public void addHours(float hours, LocalDate date) {
+    public void addHours(int hours) {
         totalHours += hours;
-        timeLog.add(new TimeLogEntry(hours, date));
     }
 
     public String getActivityId() {
         return activityId;
     }
 
-    public float getTotalHours() {
+    public int getTotalHours() {
         return totalHours;
     }
 
-
-    public String getDateAndHours() {
-        StringBuilder dateAndHours = new StringBuilder();
-        for (TimeLogEntry entry : this.timeLog) {
-            dateAndHours.append(entry.getDate()).append("\n");
+    public Project.Activities getActivity(String s) {
+        for (Project.Activities activity : Project.ActivityList) {
+            if (activity.getActivityId().equals(s)) {
+                return activity;
+            }
         }
-        return dateAndHours.toString();
-    }
-
-
-    public void editHours(float oldTimeSpent, float newTimeSpent) {
-        totalHours -= oldTimeSpent;
-        totalHours += newTimeSpent;
-    }
-
-
-    public static class TimeLogEntry {
-        private final float hours;
-        private final LocalDate date;
-
-        public TimeLogEntry(float hours, LocalDate date) {
-            this.hours = hours;
-            this.date = date;
-        }
-        public float getHours() {
-            return hours;
-        }
-
-        public LocalDate getDate() {
-            return date;
-        }
+        return null;
     }
 }
