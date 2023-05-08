@@ -67,9 +67,12 @@ public class Reports {
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("Activity ID:")) {
                     String activityId = line.split(": ")[1].trim();
-                    for(int i = 0; i<7;i++){
-                        br.readLine();
-                    }
+                    line = br.readLine(); // Skip Time Budget
+                    line = br.readLine(); // Skip Weeks
+                    line = br.readLine(); // Skip Start Week
+                    line = br.readLine(); // Skip Is completed
+                    line = br.readLine(); // Skip Assigned User ID
+                    line = br.readLine(); // Skip Assigned User Name
                     line = br.readLine(); // Read Time Spent on Activity
 
                     Pattern pattern = Pattern.compile("Time Spent on Activity: (\\d+)");
