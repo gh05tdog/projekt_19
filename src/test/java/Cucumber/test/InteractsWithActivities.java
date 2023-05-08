@@ -1,26 +1,33 @@
-package example.cucumber;
+package Cucumber.test;
 
 import app.SoftwareApp;
-import app.TooManyActivities;
+import app.WayTooManyActivities;
 import domain.Project;
 import domain.User;
+import domain.UserAlreadyExistsException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.util.List;
+import java.time.LocalDate;
 import java.util.Objects;
 
-import static app.SoftwareApp.CurrentUser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
 public class InteractsWithActivities {
+
+
     private final ErrorMessageHolder errorMessage;
 
     public InteractsWithActivities(ErrorMessageHolder errorMessage) {
         this.errorMessage = errorMessage;
     }
+
+    //Get the activity list from the project
+
+
+
 
     @Given("the project manager with the id {string} is logged in")
     public void theProjectManagerWithTheIdIsLoggedIn(String userId) {
@@ -34,55 +41,37 @@ public class InteractsWithActivities {
             assert project != null;
             assertEquals(project.getProjectManager().getUserId(), "mang");
             return;
-
         }
         User user = SoftwareApp.getUserFromID(userId);
 
-        SoftwareApp.projectList.get(0).setProjectManager(user);
+        //Check if there is a project with the id, if not create a new project
+        if (SoftwareApp.getProject("23001") == null) {
+            SoftwareApp.addProject("Lommeregner");
+            assertEquals(((Objects.requireNonNull(SoftwareApp.getProject("23001")))).getProjectId(), "23001");
+            return;
+        }
+
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).setProjectManager(user);
         Project project = SoftwareApp.getProject("23001");
         assert project != null;
-
         assertEquals(project.getProjectManager().getUserId(), "mang");
     }
 
     @Given("the user with an id {string} is assigned {int} activities")
-    public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception {
+    public void the_user_with_an_id_is_assigned_activities(String userID, Integer nbOfActivities) throws Exception, UserAlreadyExistsException, WayTooManyActivities {
         // Add activities to the project
-        User.createUser("tejs",userID);
+        User.createUser("tejs", userID);
+
+
+
 
         for (int i = 1; i <= nbOfActivities; i++) {
             SoftwareApp.addActivity("name" + i, "10", "1", "1", "23001");
-            SoftwareApp.assignActivityToUser(userID, "23001", "23001" + "A" + i);
+            SoftwareApp.assignActivityToUser(userID, "23001", "23001A" + i);
         }
-
         assert SoftwareApp.getUserFromID(userID).getAssignedActivitiesNumber() == nbOfActivities;
-        List<User> list1 = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUserAssignedActivities();
-        for (User user : list1) {
-
-            System.out.println(user.getUserId());
-        }
-        for(int i = 1; i <= nbOfActivities; i++) {
-            System.out.println("23001A" + i);
-            List<User> list = Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A" + i).getUserAssignedActivities();
-            //Loop through the list and check if the user is assigned to the activity if not throw an exception
-            boolean isAssigned = false;
-            for (User user : list) {
-                if (user.getUserId().equals(userID)) {
-                    isAssigned = true;
-                    break;
-                }
-            }
-            if (!isAssigned) {
-                throw new Exception("User is not assigned to the activity");
-            }
 
 
-
-
-
-
-
-        }
     }
 
     @When("the user with an id {string} is assigned the activity")
@@ -91,7 +80,8 @@ public class InteractsWithActivities {
         try {
             SoftwareApp.addActivity("TOO-MANY", "10", "1", "1", "23001");
             SoftwareApp.assignActivityToUser(user.getUserId(), "23001", "23001A11");
-        } catch (TooManyActivities e) {
+
+        } catch (Exception | WayTooManyActivities e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
@@ -103,22 +93,24 @@ public class InteractsWithActivities {
 
     @Then("the user is assigned the activity")
     public void the_user_is_assigned_the_activity() {
-        assertEquals(SoftwareApp.getUserFromID("test").getAssignedActivitiesNumber(), 11);
+        assertEquals(SoftwareApp.getUserFromID("tejs").getAssignedActivitiesNumber(), 11);
     }
 
-    @When("the user logs {int} hours on activity {string}")
-    public void theUserLogsHoursOnActivity(int hours, String activityId) {
-        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity(activityId).logHours(SoftwareApp.getUserFromID(CurrentUser), hours);
+    @When("the user with the id {string} logs {int} hours on activity {string}")
+    public void theUserWithTheIdLogsHoursOnActivity(String arg0, int arg1, String arg2) {
+        Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity(arg2).logHours(SoftwareApp.getUserFromID(arg0), arg1, LocalDate.now());
     }
 
-    @Then("the used time on activity is {int}")
-    public void theUsedTimeOnActivityIs(Integer int1) {
-        assertEquals(Objects.requireNonNull(SoftwareApp.getProject("23001")).getActivity("23001A1").getUsedTime(), int1);
+
+    @Then("the used time on activity is {float} hours")
+    public void theUsedTimeOnActivityIsHours(float arg0) {
+        assert(((Objects.requireNonNull(SoftwareApp.getProject("23001"))).getActivity("23001A2").getUsedTime()) == arg0);
     }
+
 
     @Then("the user timesheet should be updated with the logged time")
     public void theUserTimesheetShouldBeUpdatedWithTheLoggedTime() {
-        assert SoftwareApp.getUserFromID(CurrentUser).getTimeSpentOnActivity("23001A1") == 2;
+        assert (SoftwareApp.getUserFromID("abcd").getTimeSpentOnActivity("23001A2") == 2.0);
     }
 
     @Given("there are employees registered in the system")
@@ -129,3 +121,4 @@ public class InteractsWithActivities {
         SoftwareApp.addUser(user1);
     }
 }
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
+   <Label fx:id="nameLabel" layoutX="171.0" layoutY="33.0" prefHeight="48.0" prefWidth="233.0" text="name">
+      <font>
+         <Font size="30.0" />
+      </font>
+   </Label>
+   <Text layoutX="39.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="133.24187850952148">
+      <font>
+         <Font size="30.0" />
+      </font>
+   </Text>
+   <Button layoutX="228.0" layoutY="349.0" mnemonicParsing="false" onAction="#createUserPressed" text="Add User to system" />
+   <Button layoutX="408.0" layoutY="349.0" mnemonicParsing="false" onAction="#createProjectPressed" prefHeight="25.0" prefWidth="120.0" text="Create project" />
+   <ScrollPane fx:id="scrollPaneUser" layoutX="39.0" layoutY="125.0" prefHeight="200.0" prefWidth="151.0">
+      <VBox fx:id="projectVBoxUser" prefHeight="200.0" prefWidth="100.0" />
+   </ScrollPane>
+   <ScrollPane fx:id="scrollPaneGlobal" layoutX="214.0" layoutY="125.0"  prefWidth="151.0">
+      <VBox fx:id="projectVBox1" prefHeight="200.0" prefWidth="100.0">
+         <VBox fx:id="projectVboxGlobal" prefHeight="200.0" prefWidth="161.0"/>
+      </VBox>
+   </ScrollPane>
+   <Label alignment="CENTER" layoutX="39.0" layoutY="100.0" prefHeight="25.0" prefWidth="151.0" text="Personal Projects" />
+   <Label alignment="CENTER" layoutX="212.0" layoutY="104.0" prefHeight="16.0" prefWidth="151.0" text="Global Projects" />
+   <Button fx:id="logOutButton" layoutX="39.0" layoutY="349.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
+   <ScrollPane fx:id="scroolPaneActivity" layoutX="386.0" layoutY="125.0" prefHeight="200.0" prefWidth="164.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+         <VBox fx:id="projectVboxActivity" prefHeight="200.0" prefWidth="100.0"/>
+      </AnchorPane>
+   </ScrollPane>
+   <Text layoutX="421.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal activities" />
+</AnchorPane>
