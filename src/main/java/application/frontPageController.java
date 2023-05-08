@@ -71,7 +71,7 @@ public class frontPageController {
         });
     }
 
-// The code seen below is created by chatGPT our lord and saviour
+    // The code below was created with assistance from chatGPT
     private void initializeComponentsUser() {
 
         //Loop through all projects and add a button for each project

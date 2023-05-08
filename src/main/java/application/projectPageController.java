@@ -5,15 +5,14 @@ import app.CSVgenerator;
 import app.SoftwareApp;
 import domain.Project;
 import domain.User;
-import javafx.event.ActionEvent;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -130,18 +129,16 @@ public class projectPageController {
     }
     //Lavet af Oliver
     public void generateReportPressed() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
       Date date = dateFormat.parse(getDate.getText());
       Calendar calendar = Calendar.getInstance();
       calendar.setTime(date);
       int week = calendar.get(Calendar.WEEK_OF_YEAR);
       csVgenerator = new CSVgenerator(SoftwareApp.getProject(projectIDLabel.getText()));
       csVgenerator.saveCSVReportToFile(week);
-      
-
     }
     //Lavet af Oliver
-    public void changeProjectNameAction(ActionEvent actionEvent) {
+    public void changeProjectNameAction() {
         Project currentProject = SoftwareApp.getProject(projectIDLabel.getText());
         assert currentProject != null;
         currentProject.setProjectName(projectNameField.getText());
