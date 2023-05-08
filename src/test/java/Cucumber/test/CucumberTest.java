@@ -1,4 +1,4 @@
-package example.cucumber;
+package Cucumber.test;
 
 
 import org.junit.runner.RunWith;
@@ -17,8 +17,9 @@ For example, the class name CucumberTests (Test with an s) will be ignored by Ma
 @CucumberOptions(
 		 plugin = { "html:target/cucumber/wikipedia.html"}
 		 ,monochrome=true
-		 ,features={"features"}
+		 ,features={"src/test/resources"}
 		 ,snippets = SnippetType.CAMELCASE
 )
+
 public class CucumberTest {
 }

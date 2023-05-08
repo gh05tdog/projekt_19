@@ -1,37 +1,29 @@
-package example.cucumber;
+package Cucumber.test;
 
 import app.SoftwareApp;
 import app.TooManyActivities;
+import app.WayTooManyActivities;
 import domain.Project;
 import domain.User;
 
 
+import domain.UserAlreadyExistsException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.Objects;
+
 import static org.junit.Assert.*;
 
 public class AddsProject {
+
     private User user;
-
-
-    @Given("that there is a user with the id {string}")
-    public void that_there_is_a_user_with_the_id(String userId) {
+    @Given("that there is a user with the id {string} and the name {string}")
+    public void thatThereIsAUserWithTheIdAndTheName(String userId, String Name) throws UserAlreadyExistsException {
         //If there is a user with the id, do nothing, else create new user
-            User.createUser("abcd", userId);
-            //Check if the user with the id is in UserList
-            assertEquals(SoftwareApp.getUserFromID(userId).getUserId(), userId);
-
-
-    }
-
-    @And("that the user with the id {string} is logged in")
-    public void thatTheUserWithTheIdIsLoggedIn(String userID) {
-        user = SoftwareApp.getUserFromID(userID);
-        SoftwareApp.CurrentUser = user.getUserId();
-        assertEquals(SoftwareApp.CurrentUser, userID);
+        User.createUser(Name, userId);
     }
 
     @When("the user adds a project with the name {string}")
@@ -42,36 +34,40 @@ public class AddsProject {
 
     @Then("there is a project named {string} the project has an id {string}")
     public void thereIsAProjectNamedTheProjectHasAnId(String name, String ProjectID) {
-        // Check that the project is added to the list of projects
-        //assertEquals(SoftwareApp.getNumberOfProject(), 1);
-        assertEquals(SoftwareApp.projectList.get(0).getProjectName(), name);
-        assertEquals(SoftwareApp.projectList.get(0).getProjectId(), ProjectID);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject(ProjectID)).getProjectId(), ProjectID);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject(ProjectID)).getProjectName(), name);
 
     }
 
     @Given("there is a project with the id {string}")
     public void thereIsAProjectWithTheId(String ProjectID) {
+        //Check if there is a project with the id, if not create a new project
+        for (Project project : SoftwareApp.projectList) {
+            if (project.getProjectId().equals(ProjectID)) {
+                return;
+            }
+        }
         SoftwareApp.addProject("Lommeregner");
-        assertEquals(SoftwareApp.projectList.get(0).getProjectId(), ProjectID);
+        assertEquals(((Objects.requireNonNull(SoftwareApp.getProject(ProjectID)))).getProjectId(), ProjectID);
+        //Print all projects
 
     }
 
     @When("user adds a co-worker with the id {string} to the project with the id {string}")
-    public void userAddsACoWorkerWithTheIdToTheProjectWithTheId(String username, String projectId) {
-        User.createUser("john",username);
+    public void userAddsACoWorkerWithTheIdToTheProjectWithTheId(String username, String projectId) throws UserAlreadyExistsException {
+        User.createUser("john", username);
         SoftwareApp.addCoWorker(username, projectId);
-        assertEquals(SoftwareApp.projectList.get(0).getWorkersList(username).getUserId(), username);
+        assertEquals(Objects.requireNonNull(SoftwareApp.getProject(projectId)).getWorkersList(username).getUserId(), username);
 
     }
 
     @When("the users select a project manager with the id {string} for the project with the id {string}")
-    public void theUsersSelectAProjectManagerWithTheIdForTheProjectWithTheId(String projectManID, String ProjectID) {
+    public void theUsersSelectAProjectManagerWithTheIdForTheProjectWithTheId(String projectManID, String ProjectID) throws UserAlreadyExistsException {
         user = User.createUser("Manga", projectManID);
         // Write code here that turns the phrase above into concrete actions
         SoftwareApp.projectList.get(0).setProjectManager(user);
         Project project = SoftwareApp.getProject(ProjectID);
         assert project != null;
-
         assertEquals(project.getProjectManager().getUserId(), projectManID);
     }
 
@@ -81,13 +77,11 @@ public class AddsProject {
         assert project != null;
         assertEquals(project.getWorkersList(coWorkerId).getUserId(), coWorkerId);
         assertEquals(project.getProjectManager().getUserId(), MangID);
-
     }
 
     @When("the user adds an activity To the project with a name {string}, timebudget {string}, weeks {string}, start week {string} to the project with the id {string}")
     public void theUserAddsAnActivityToTheProjectWithANameTimebudgetWeeksStartWeekToTheProjectWithTheId(String name, String timebudget, String weeks, String startWeek, String projectId) {
         SoftwareApp.addActivity(name, timebudget, weeks, startWeek, projectId);
-
     }
 
     @Then("the project with the id {string} has an activity with the name {string}, timebudget {string}, weeks {string}, start week {string}")
@@ -104,16 +98,22 @@ public class AddsProject {
     @Given("there is a user with the id {string}")
     public void thereIsAUserWithTheId(String string) {
         // Write code here that turns the phrase above into concrete actions
-        User.createUser("emma", string);
+        try {
+            User.createUser("emma", string);
+        } catch (UserAlreadyExistsException e){
+            //Check if the user with the id is in UserList
+            assertEquals(SoftwareApp.getUserFromID(string).getUserId(), string);
+        }
         assertEquals(SoftwareApp.getUserFromID(string).getUserId(), string);
     }
 
     @When("The user assign employees {string} and {string} to activity {string} in project {string}")
-    public void theUserAssignEmployeesAndToActivityInProject(String user1, String user2, String activityID, String projectID) throws TooManyActivities {
+    public void theUserAssignEmployeesAndToActivityInProject(String user1, String user2, String activityID, String projectID) throws TooManyActivities, WayTooManyActivities {
         // Write code here that turns the phrase above into concrete actions
         //System.out.println(SoftwareApp.UserList);
-        SoftwareApp.assignActivityToUser(user1, projectID, activityID);
-        SoftwareApp.assignActivityToUser(user2, projectID, activityID);
+            SoftwareApp.assignActivityToUser(user1, projectID, activityID);
+            SoftwareApp.assignActivityToUser(user2, projectID, activityID);
+
     }
 
     @Then("employees {string} and {string} should be assigned to activity {string} in project {string}")
@@ -125,6 +125,9 @@ public class AddsProject {
         assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(0).getUserId(), User1);
         assertEquals(project.getActivity(activityId).getUserAssignedActivities().get(1).getUserId(), User2);
     }
+
+
+
 }
 
 

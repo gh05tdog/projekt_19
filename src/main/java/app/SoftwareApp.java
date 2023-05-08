@@ -3,22 +3,30 @@ package app;
 import domain.Project;
 import domain.User;
 
+import java.time.LocalDate;
+import java.time.temporal.IsoFields;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SoftwareApp {
 
+    public SoftwareApp() {
+
+
+        //Print all projects
+        for (Project project : projectList) {
+            System.out.println(project.getProjectName());
+        }
+    }
     public static List<Project> projectList = new ArrayList<>();
     public static List<User> UserList = new ArrayList<>();
 
-    public static String CurrentUser;
-
     public static void addProject(String projectName) {
+        System.out.println("Project added");
         Project project = new Project(projectName);
         projectList.add(project);
-        System.out.println(project.getProjectId());
     }
-
 
     public static int getNumberOfProject() {
         return projectList.size();
@@ -42,7 +50,6 @@ public class SoftwareApp {
         }
     }
 
-
     public static Project getProject(String projectId) {
         for (Project project : projectList) {
             if (project.getProjectId().equals(projectId)) {
@@ -60,21 +67,25 @@ public class SoftwareApp {
     }
 
 
-    public static void assignActivityToUser(String userID, String projectID, String activityID) throws TooManyActivities {
+    public static void assignActivityToUser(String userID, String projectID, String activityID) throws TooManyActivities, WayTooManyActivities {
         Project project = getProject(projectID);
-
         if (project != null) {
-            if (getUserFromID(userID).getAssignedActivitiesNumber() >= 10) {
+            if (getUserFromID(userID).getAssignedActivitiesNumber() >= 10 && getUserFromID(userID).getAssignedActivitiesNumber() < 20){
                 project.assignActivityToUser(userID, activityID);
                 throw new TooManyActivities("This user has more than 10 activities assigned");
+            } else if (getUserFromID(userID).getAssignedActivitiesNumber() == 20){
+                throw new WayTooManyActivities("This user has 20 activities assigned. Cannot assign more activities");
             }
-
             project.assignActivityToUser(userID, activityID);
         }
     }
 
-
     public static void addUser(User user) {
         UserList.add(user);
+    }
+
+    public static int getCurrentWeek() {
+        LocalDate date = LocalDate.now();
+        return date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
     }
 }

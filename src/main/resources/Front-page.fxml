@@ -1,65 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
-   <children>
-      <Label fx:id="userNameLabel" layoutX="128.0" layoutY="56.0" prefHeight="48.0" prefWidth="115.0" text="userName">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-      <Text layoutX="27.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User:" wrappingWidth="100.67046737670898">
-         <font>
-            <Font size="38.0" />
-         </font>
-      </Text>
-      <Text layoutX="379.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="General" wrappingWidth="133.24187850952148">
-         <font>
-            <Font size="38.0" />
-         </font>
-      </Text>
-      <Text layoutX="27.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projects:" wrappingWidth="100.67046737670898">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="27.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activities:" wrappingWidth="86.95611190795898">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="371.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projects" wrappingWidth="74.95623397827148">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Label fx:id="userProjectCount" layoutX="115.0" layoutY="181.0" prefHeight="48.0" prefWidth="115.0" text="number">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="userActivityCount" layoutX="115.0" layoutY="220.0" prefHeight="48.0" prefWidth="115.0" text="number">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="generalProjectCount" layoutX="454.0" layoutY="181.0" prefHeight="48.0" prefWidth="115.0" text="number">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="generalActivityCount" layoutX="454.0" layoutY="220.0" prefHeight="48.0" prefWidth="115.0" text="number">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Text layoutX="365.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activities:" wrappingWidth="86.95611190795898">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.frontPageController">
+   <Label fx:id="nameLabel" layoutX="171.0" layoutY="33.0" prefHeight="48.0" prefWidth="233.0" text="name">
+      <font>
+         <Font size="30.0" />
+      </font>
+   </Label>
+   <Text layoutX="39.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="133.24187850952148">
+      <font>
+         <Font size="30.0" />
+      </font>
+   </Text>
+   <Button layoutX="228.0" layoutY="349.0" mnemonicParsing="false" onAction="#createUserPressed" text="Add User to system" />
+   <Button layoutX="408.0" layoutY="349.0" mnemonicParsing="false" onAction="#createProjectPressed" prefHeight="25.0" prefWidth="120.0" text="Create project" />
+   <ScrollPane fx:id="scrollPaneUser" layoutX="39.0" layoutY="125.0" prefHeight="200.0" prefWidth="151.0">
+      <VBox fx:id="projectVBoxUser" prefHeight="200.0" prefWidth="100.0" />
+   </ScrollPane>
+   <ScrollPane fx:id="scrollPaneGlobal" layoutX="214.0" layoutY="125.0"  prefWidth="151.0">
+      <VBox fx:id="projectVBox1" prefHeight="200.0" prefWidth="100.0">
+         <VBox fx:id="projectVboxGlobal" prefHeight="200.0" prefWidth="161.0"/>
+      </VBox>
+   </ScrollPane>
+   <Label alignment="CENTER" layoutX="39.0" layoutY="100.0" prefHeight="25.0" prefWidth="151.0" text="Personal Projects" />
+   <Label alignment="CENTER" layoutX="212.0" layoutY="104.0" prefHeight="16.0" prefWidth="151.0" text="Global Projects" />
+   <Button fx:id="logOutButton" layoutX="39.0" layoutY="349.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
+   <ScrollPane fx:id="scroolPaneActivity" layoutX="386.0" layoutY="125.0" prefHeight="200.0" prefWidth="164.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+         <VBox fx:id="projectVboxActivity" prefHeight="200.0" prefWidth="100.0"/>
+      </AnchorPane>
+   </ScrollPane>
+   <Text layoutX="421.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal activities" />
 </AnchorPane>
