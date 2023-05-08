@@ -26,7 +26,7 @@ public class View extends Application {
 
     private Stage manageProject;
 
-
+    //public void start er Lavet af Oliver
     @Override
     public void start(Stage primaryStage) {
 
@@ -50,7 +50,7 @@ public class View extends Application {
         }
     }
 
-
+        //lavet af olvier
         public void showMainPage(String name) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front-page.fxml"));
@@ -86,6 +86,7 @@ public class View extends Application {
                 e.printStackTrace();
             }
         }
+        //Lavet af Marcus
     public void showAddUser (){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-User.fxml"));
@@ -107,7 +108,7 @@ public class View extends Application {
             e.printStackTrace();
         }
     }
-
+    //Lavet af Martin
     public void showAddProject() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add-Project.fxml"));
@@ -129,7 +130,7 @@ public class View extends Application {
             e.printStackTrace();
         }
     }
-
+    //Lavet af Oliver
     public void showProjectPage (String projectID, String projectName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Project-page.fxml"));
@@ -162,7 +163,7 @@ public class View extends Application {
             e.printStackTrace();
         }
     }
-
+    //Lavet af Martin
     public void showActivityPage(String activityId, String activityName, String projectID){
         try {
 
@@ -199,7 +200,7 @@ public class View extends Application {
         }
 
     }
-
+    //Lavet af Marcus
     public void manageProjectPage (String projectID, String projectName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Manage-Project.fxml"));
@@ -223,7 +224,7 @@ public class View extends Application {
             e.printStackTrace();
         }
     }
-
+    //Lavet af Oliver
     public void loginPage() {
         try {
             frontpage.close();
@@ -239,7 +240,7 @@ public class View extends Application {
     public static void main (String[]args){
         launch(args);
     }
-
+    //Alert lavet af Martin
     public void showAlert(String s) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");

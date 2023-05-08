@@ -47,6 +47,7 @@ public class projectPageController {
     @FXML
     private TextField getDate;
 
+    //Lavet af Oliver
     public void setModelAndView(Model theModel, View view) {
         this.theModel = theModel;
         this.view = view;
@@ -62,7 +63,7 @@ public class projectPageController {
             }
         });
     }
-
+    //Lavet af Oliver
     private void initializeComponents() {
         Project currentProject = SoftwareApp.getProject(projectIDLabel.getText());
         assert currentProject != null;
@@ -103,20 +104,20 @@ public class projectPageController {
     }
 
 
-
+    //Lavet af Martin
     public void setProjectIDLabel(String name) {
         projectIDLabel.setText(name);
     }
-
+    //Lavet af Martin
     public void setProjectNameLabel(String name) {
         projectNameField.setText(name);
     }
-
+    //Lavet af Martin
     @FXML
     protected void returnFrontPage() {
         view.showMainPage(SoftwareApp.getUserFromID(theModel.getCurrentUserID()).getName());
     }
-
+    //Lavet af Martin
     @FXML
     protected void manageProjectPagePressed() {
         User manger = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getManager();
@@ -127,7 +128,7 @@ public class projectPageController {
         }
 
     }
-
+    //Lavet af Oliver
     public void generateReportPressed() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
       Date date = dateFormat.parse(getDate.getText());
@@ -139,7 +140,7 @@ public class projectPageController {
       
 
     }
-
+    //Lavet af Oliver
     public void changeProjectNameAction(ActionEvent actionEvent) {
         Project currentProject = SoftwareApp.getProject(projectIDLabel.getText());
         assert currentProject != null;

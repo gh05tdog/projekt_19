@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.temporal.IsoFields;
 import java.util.List;
 
+//Hele denne Klasse er skrevet af Marcus Christoffersen
 public class CSVgenerator {
     private final Project project;
 
@@ -18,15 +19,16 @@ public class CSVgenerator {
     }
 
 
-    private String makeReportName(){
+    private String makeReportName() {
         LocalDate date = LocalDate.now();
         int Week = Integer.parseInt(String.valueOf(date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR)));
         return "Weekly Report - " + Week + ".csv";
     }
+
     public String generateCSVReport(int date) {
+        assert isValidValues(date) : "Prebetingelse: datoen skal være et positivt tal, og projektet skal findes og ikke være null";
         StringBuilder reportBuilder = new StringBuilder();
         reportBuilder.append("Week: ").append(date).append("\n");
-        //reportBuilder.append("Project Name,Project ID,Activity Name,Activity ID,Time Budget,Weeks,Start Week,Assigned User ID,Assigned User Name,Time Spent on Activity, Time Left for Project\n");
         reportBuilder.append("Project Name: ").append(project.getProjectName()).append("\n");
         reportBuilder.append("Project ID: ").append(project.getProjectId()).append("\n");
         reportBuilder.append("\n");
@@ -46,7 +48,16 @@ public class CSVgenerator {
                 reportBuilder.append("\n");
             }
         }
+        assert isReportGeneratedAndNotEmpty(reportBuilder.toString()) : "Postbetingelse: rapporten skal være genereret og ikke være tom";
         return reportBuilder.toString();
+    }
+
+    private boolean isValidValues(int date) {
+        return date > 0 && project != null;
+    }
+
+    private boolean isReportGeneratedAndNotEmpty(String csvReport) {
+        return csvReport != null && !csvReport.isEmpty();
     }
 
     public void saveCSVReportToFile(int date) {

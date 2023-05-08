@@ -17,7 +17,7 @@ public class Model {
     private final View view;
     private String currentUser;
 
-
+    // Public model er lavet af Oliver
     public Model(View view) throws TooManyActivities, UserAlreadyExistsException, WayTooManyActivities {
         this.view = view;
 
@@ -63,12 +63,11 @@ public class Model {
 
     }
 
+    //Fra denne linje(66) til 106 er lavet af Marcus
     public void frontPagePage() {
         view.showMainPage(SoftwareApp.getUserFromID(getCurrentUserID()).getName());
 
     }
-
-
     public void createUser(){
         view.showAddUser();
     }
@@ -105,6 +104,7 @@ public class Model {
 
     }
 
+    //de resterende metoder er lavet af Martin
     public void logout() {
         view.loginPage();
     }
@@ -121,10 +121,6 @@ public class Model {
         ParsePosition pos = new ParsePosition(0);
         NumberFormat.getInstance().parse(str, pos);
         return str.length() == pos.getIndex();
-    }
-
-    public void changeProjectName(String newProjectName, String projectID) {
-        Objects.requireNonNull(SoftwareApp.getProject(projectID)).setProjectName(newProjectName);
     }
 
     public void activityPagePage(String idExtract, String nameExtract, String projectId) {

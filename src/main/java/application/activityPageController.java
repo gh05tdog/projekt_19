@@ -17,13 +17,11 @@ import javafx.scene.text.Text;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 public class activityPageController {
-
+    //Fields og constructor af Martin
     public Text activityIDLabel;
     public Text activityNameLabel;
 
@@ -45,14 +43,10 @@ public class activityPageController {
     @FXML
     public TextField date;
 
-
-
-
     public void setModelAndView(Model model, View view) {
         this.view = view;
         this.model = model;
         date.setText(String.valueOf(LocalDate.now()));
-
 
         // Add a ChangeListener to the ScrollPane's widthProperty
         // This code was created with the help of https://stackoverflow.com/questions/16606162/javafx-how-to-get-the-scrollbars-of-a-scrollpane
@@ -69,7 +63,7 @@ public class activityPageController {
         });
 
     }
-
+    //Lavet af Marcus
     private void initializeComponents() {
         vBoxUserID.getChildren().clear();
         vBoxTimeSpent.getChildren().clear();
@@ -81,7 +75,7 @@ public class activityPageController {
             }
         }
     }
-
+    //Lavet af Oliver
     private void update() {
         vBoxUserID.getChildren().clear();
         vBoxTimeSpent.getChildren().clear();
@@ -102,8 +96,7 @@ public class activityPageController {
         }
     }
 
-
-
+    //Lavet af Oliver
     private void addUserTimeToVBox(String userId, float timeSpent, User user) {
 
         for (ActivityTimeSheet activityTimeSheet : user.timeSheet) {
@@ -157,8 +150,7 @@ public class activityPageController {
         vBoxTimeSpent.getChildren().add(timeSpentText);
     }
 
-
-
+    //Lavet af Oliver
     private void editTimeEntry(User user, float oldTimeSpent) {
         // Show a dialog to edit the time entry
         TextInputDialog dialog = new TextInputDialog(String.valueOf(oldTimeSpent));
@@ -181,7 +173,7 @@ public class activityPageController {
             }
         });
     }
-
+    //Lavet af Oliver
     private void removeTimeEntry(User user, float timeSpent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Remove Time Entry");
@@ -195,15 +187,15 @@ public class activityPageController {
         }
     }
 
-
+    //Lavet af Oliver
     public void setActivityName(String name) {
         activityNameLabel.setText(name);
     }
-
+    //Lavet af Oliver
     public void setActivityIDLabel(String name) {
         activityIDLabel.setText(name);
     }
-
+    //Lavet af Oliver
     public void setProjectIDLabel(String projectID) {
         projectIDLabel.setText(projectID);
         projectNameLabel.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getProjectName());
@@ -212,12 +204,12 @@ public class activityPageController {
         startWeek.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getStartWeek());
         allocatedTime.setText(Objects.requireNonNull(SoftwareApp.getProject(projectID)).getActivity(activityIDLabel.getText()).getAllocatedTime());
     }
-
+    //Lavet af Martin
     @FXML
     protected void returnProjectPage() {
         view.showProjectPage(projectIDLabel.getText(),projectNameLabel.getText());
     }
-
+    //Lavet af Martin
     public void updateActivityInfoAction() {
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
         //Check if the inputs are empty
@@ -235,7 +227,7 @@ public class activityPageController {
         setProcents();
         update();
     }
-
+    //Lavet af Martin
     public void registerTimeAction() {
         // Check if the input is a valid number
         if (!model.isNumeric(enterTime.getText())) {
@@ -266,7 +258,7 @@ public class activityPageController {
             }
         }
     }
-
+    //Lavet af Martin
     public void setProcents() {
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
         percentTime.setText(String.format("%.2f%%", activity.getPercentTime()));

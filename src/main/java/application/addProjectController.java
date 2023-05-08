@@ -4,13 +4,10 @@ import app.SoftwareApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
+//Hele klassen er lavet af Martin
 public class addProjectController {
     Model theModel;
-
     View view;
-
-
     public void initialize(){
         projectAddInfoLabel.setText("");
     }
@@ -19,10 +16,8 @@ public class addProjectController {
         this.theModel = theModel;
         this.view = theView;
     }
-
     @FXML
     TextField projectNameField;
-
     @FXML
     Label projectAddInfoLabel;
 

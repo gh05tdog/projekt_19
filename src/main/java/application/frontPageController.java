@@ -11,10 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
-
 public class frontPageController {
-
-
+    //fields og constructor er lavet af Marcus
     public Button logOutButton;
     public VBox projectVboxActivity;
     public ScrollPane scroolPaneActivity;
@@ -101,24 +99,19 @@ public class frontPageController {
             }
         }
     }
+    //Lavet af Oliver
     public void initializeComponentsGlobal () {
         for(Project project : theModel.getProjects()) {
          // Stack all buttons in the global scrollpane
-
          Button projectButtonGlobal = new Button(project.getProjectName() + " - " + project.getProjectId());
-
          projectButtonGlobal.setMinWidth(scrollPaneGlobal.getWidth());
          projectButtonGlobal.maxWidthProperty().bind(scrollPaneGlobal.widthProperty());
-
          projectButtonGlobal.setOnAction(event -> {
 
              String buttonText2 = projectButtonGlobal.getText();
-
              String IDExtract2 = buttonText2.substring(buttonText2.length() - 5);
-
              String nameExtract2 = buttonText2.substring(0, buttonText2.length() - 8);
              theModel.projectPagePage(IDExtract2, nameExtract2);
-
 
          });
 
@@ -127,7 +120,7 @@ public class frontPageController {
 
         }
     }
-
+    //Lavet af Oliver
     public void initializeComponentsActivity() {
         // Add all activities to the activity scrollpane that the user is assigned to
         for (Project project : theModel.getProjects()) {
@@ -144,7 +137,7 @@ public class frontPageController {
         }
     }
 
-
+    //resten er lavet af Martin
     @FXML
     private Label nameLabel;
     public void setNameLabel(String name) {

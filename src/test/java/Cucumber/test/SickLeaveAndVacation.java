@@ -10,7 +10,6 @@ public class SickLeaveAndVacation {
         throw new io.cucumber.java.PendingException();
     }
 
-
     @Given("the user with the id {string} registers vacation with start date {string} and end date {string}")
     public void theUserWithTheIdRegistersVacationWithStartDateAndEndDate(String string, String string2, String string3) {
         throw new io.cucumber.java.PendingException();
@@ -22,7 +21,6 @@ public class SickLeaveAndVacation {
         throw new io.cucumber.java.PendingException();
 
     }
-
     @Given("the user with the id {string} is not already sick")
     public void theUserWithTheIdIsNotAlreadySick(String string) {
         throw new io.cucumber.java.PendingException();

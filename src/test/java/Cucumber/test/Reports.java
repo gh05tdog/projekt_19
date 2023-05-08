@@ -4,8 +4,6 @@ import app.CSVgenerator;
 import app.SoftwareApp;
 
 import domain.Project;
-import domain.User;
-import domain.UserAlreadyExistsException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -28,10 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-
-
-
+//Denne feature er lavet af Marcus
 public class Reports {
 
     @Given("there is an activity with a name {string}, timebudget {string}, weeks {string}, start week {string}")
@@ -72,12 +67,9 @@ public class Reports {
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("Activity ID:")) {
                     String activityId = line.split(": ")[1].trim();
-                    line = br.readLine(); // Skip Time Budget
-                    line = br.readLine(); // Skip Weeks
-                    line = br.readLine(); // Skip Start Week
-                    line = br.readLine(); // Skip Is completed
-                    line = br.readLine(); // Skip Assigned User ID
-                    line = br.readLine(); // Skip Assigned User Name
+                    for(int i = 0; i<7;i++){
+                        br.readLine();
+                    }
                     line = br.readLine(); // Read Time Spent on Activity
 
                     Pattern pattern = Pattern.compile("Time Spent on Activity: (\\d+)");

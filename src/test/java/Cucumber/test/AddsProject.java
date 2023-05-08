@@ -8,7 +8,7 @@ import domain.User;
 
 
 import domain.UserAlreadyExistsException;
-import io.cucumber.java.en.And;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,7 +16,7 @@ import io.cucumber.java.en.When;
 import java.util.Objects;
 
 import static org.junit.Assert.*;
-
+//Denne feature er lavet af Oliver
 public class AddsProject {
 
     private User user;

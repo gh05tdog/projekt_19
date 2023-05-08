@@ -14,7 +14,7 @@ import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
-
+//Denne feature er lavet af Martin
 public class InteractsWithActivities {
 
 
@@ -25,8 +25,6 @@ public class InteractsWithActivities {
     }
 
     //Get the activity list from the project
-
-
 
 
     @Given("the project manager with the id {string} is logged in")

@@ -3,13 +3,8 @@ package application;
 import app.SoftwareApp;
 import app.TooManyActivities;
 import app.WayTooManyActivities;
-import domain.ActivityTimeSheet;
 import domain.Project;
 import domain.User;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -19,9 +14,8 @@ import javafx.scene.text.Text;
 
 import java.util.Objects;
 import java.util.Optional;
-
 public class manageProjectController {
-
+    //Fields og constructor af Marcus
     public Model model;
     public View view;
 
@@ -64,12 +58,11 @@ public class manageProjectController {
 
 
     public void setModelAndView(Model theModel, View view) {
-
-
         this.model = theModel;
         this.view = view;
 
     }
+    //Lavet af Oliver
     public void checkAvailableUsers() {
         vBoxUserList.getChildren().clear();
 
@@ -113,27 +106,28 @@ public class manageProjectController {
                 }
             }
         }
-
+        //Lavet af Marcus
     public void setProjectID(String projectID) {
         manageProjectID.setText(projectID);
 
     }
+    //Lavet af Marcus
     public void setProjectName(String projectName){
         manageProjectName.setText(projectName);
     }
-
+    //Lavet af Marcus
     public void returnProjectPagePressed() {
         view.showProjectPage(manageProjectID.getText(),manageProjectName.getText());
 
     }
-
+    //Lavet af Marcus
     public void addActivityToProject() {
         project = SoftwareApp.getProject(manageProjectID.getText());
         assert project != null;
         project.addActivity(addActivityName.getText(),addTimeBudget.getText(),enterWeekAmount.getText(),addStartWeek.getText());
 
     }
-
+    //Lavet af Martin
     public void addActivityToUser () {
         try {
             SoftwareApp.assignActivityToUser(activityUserID.getText(),manageProjectID.getText(),activityActivityID.getText());
@@ -156,6 +150,7 @@ public class manageProjectController {
         }
 
     }
+    //Lavet af Marcus
     public void assignProjectManAction() {
         User user = SoftwareApp.getUserFromID(userIDManager.getText());
 

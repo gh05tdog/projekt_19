@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-
+//Hele klassen er lavet af Marcus
 public class addUserController {
 
     public Button addUserButton;

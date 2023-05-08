@@ -4,7 +4,7 @@ import app.SoftwareApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-
+//Hele denne klasse er lavet af Martin
 public class loginController {
 
     public Button loginButton;
