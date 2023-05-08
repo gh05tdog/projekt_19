@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
+import java.util.Objects;
 
 
 public class Project {
@@ -17,8 +17,6 @@ public class Project {
     public List<User> workersList = new ArrayList<>();
     public final List<Activities> ActivityList = new ArrayList<>();
     private User ProjectManager;
-
-    private SoftwareApp SoftwareApp;
 
     public Project(String projectName) {
         this.ProjectName = projectName;
@@ -103,13 +101,6 @@ public class Project {
         return totalTimeSpentOnProject;
     }
 
-    public void changeProjectId(String newId) {
-        ProjectId = newId;
-    }
-
-    public void changeProjectName(String newName) {
-        ProjectName = newName;
-    }
 
     public void setProjectName(String newProjectName) {
         this.ProjectName = newProjectName;
@@ -129,8 +120,7 @@ public class Project {
         private String Weeks;
         private String StartWeek;
         private float LoggedTime = 0;
-        private Boolean isCompleted;
-        private final ActivityTimeSheet activityTimeSheet;
+        private final Boolean isCompleted;
 
         public Activities(String ActivityName, String TimeBudget, String Weeks, String StartWeek) {
             super(ProjectName);
@@ -140,7 +130,7 @@ public class Project {
             this.StartWeek = StartWeek;
             this.ActivityId = ProjectId + "A" + (ActivityList.size());
             this.isCompleted = false;
-            this.activityTimeSheet = new ActivityTimeSheet(ActivityId, 0, LocalDate.now());
+            new ActivityTimeSheet(ActivityId, 0, LocalDate.now());
         }
         public void addWorkerToActivity(User user) {
             //Add the user to the list of users assigned to the activity
@@ -148,7 +138,7 @@ public class Project {
             //Add the activity to the list of activities assigned to the user
             User.addActivityToUser(this, user);
 
-            SoftwareApp.getProject(ProjectId).addWorker(user);
+            Objects.requireNonNull(SoftwareApp.getProject(ProjectId)).addWorker(user);
 
         }
 
@@ -196,9 +186,6 @@ public class Project {
             return String.valueOf(Integer.parseInt(StartWeek) + Integer.parseInt(Weeks) - 1);
         }
 
-        public ActivityTimeSheet getActivityTimeSheet() {
-            return activityTimeSheet;
-        }
         public boolean isCompleted() {
             return isCompleted;
         }
@@ -225,10 +212,10 @@ public class Project {
             return (double) (LoggedTime) / Integer.parseInt(TimeBudget) * 100;
         }
 
-        public void setallocatedTime(String text) {
+        public void setAllocatedTime(String text) {
             this.TimeBudget = text;
         }
     }
-
 }
+
 

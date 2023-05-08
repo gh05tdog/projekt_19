@@ -3,13 +3,9 @@ package application;
 import app.SoftwareApp;
 import app.TooManyActivities;
 import app.WayTooManyActivities;
-import domain.ActivityTimeSheet;
 import domain.Project;
 import domain.User;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;

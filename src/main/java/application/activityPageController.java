@@ -17,8 +17,8 @@ import javafx.scene.text.Text;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -31,7 +31,7 @@ public class activityPageController {
     public Text projectIDLabel;
     public Button returnToFrontPage;
     public VBox vBoxUserID;
-    public VBox vBoxTimeSpent;
+    //public VBox vBoxTimeSpent;
     public TextField enterTime;
     public Button addToActivity;
     public TextField startWeek;
@@ -53,18 +53,15 @@ public class activityPageController {
         this.model = model;
         date.setText(String.valueOf(LocalDate.now()));
 
-
         // Add a ChangeListener to the ScrollPane's widthProperty
         // This code was created with the help of https://stackoverflow.com/questions/16606162/javafx-how-to-get-the-scrollbars-of-a-scrollpane
-        vBoxTimeSpent.widthProperty().addListener(new ChangeListener<>() {
+        vBoxUserID.widthProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 // Call initializeComponents() when the ScrollPane's width change
-
                 initializeComponents();
-
                 // Remove the listener after the first layout pass to avoid multiple calls
-                vBoxTimeSpent.widthProperty().removeListener(this);
+                vBoxUserID.widthProperty().removeListener(this);
             }
         });
 
@@ -72,7 +69,7 @@ public class activityPageController {
 
     private void initializeComponents() {
         vBoxUserID.getChildren().clear();
-        vBoxTimeSpent.getChildren().clear();
+        //vBoxTimeSpent.getChildren().clear();
 
         for (User user : SoftwareApp.UserList) {
             float timeSpent = user.getTimeSpentOnActivity(activityIDLabel.getText());
@@ -84,7 +81,7 @@ public class activityPageController {
 
     private void update() {
         vBoxUserID.getChildren().clear();
-        vBoxTimeSpent.getChildren().clear();
+        //vBoxTimeSpent.getChildren().clear();
 
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
         activityIDLabel.setText(String.valueOf(activity.getActivityId()));
@@ -105,57 +102,46 @@ public class activityPageController {
 
 
     private void addUserTimeToVBox(String userId, float timeSpent, User user) {
+        ActivityTimeSheet activityTimeSheet = user.getActivityTimeSheet(activityIDLabel.getText());
+        List<String> datesAndHours = activityTimeSheet.getAllDatesAndHours();
 
-        for (ActivityTimeSheet activityTimeSheet : user.timeSheet) {
-            if (activityTimeSheet.getActivityId().equals(activityIDLabel.getText())) {
-
-                String dateAndHours = activityTimeSheet.getDateAndHours();
-                activityTimeSheet.addHours(timeSpent, LocalDate.parse(date.getText()));
-                Text userIdText = new Text(userId);
-                Text timeSpentText = new Text(timeSpent + " hours\n" + dateAndHours);
-
-                Button editButton = new Button("Edit");
-                editButton.setOnAction(e -> editTimeEntry(user, timeSpent));
-                editButton.setMaxWidth(Double.MAX_VALUE);
-
-                Button removeButton = new Button("Remove");
-                removeButton.setOnAction(e -> removeTimeEntry(user, timeSpent));
-                removeButton.setMaxWidth(Double.MAX_VALUE);
-
-                VBox buttonsBox = new VBox(editButton, removeButton);
-                buttonsBox.setSpacing(5);
-
-                HBox userInfoRow = new HBox(buttonsBox, userIdText);
-                userInfoRow.setSpacing(10);
-
-                vBoxUserID.getChildren().add(userInfoRow);
-                vBoxTimeSpent.getChildren().add(timeSpentText);
-                return;
-            }
-        }
-        ActivityTimeSheet activity = new ActivityTimeSheet(activityIDLabel.getText(), 5, LocalDate.parse(date.getText()));
-        String dateAndHours = activity.getDateAndHours();
+        VBox userVBox = new VBox();
+        userVBox.setSpacing(5);
 
         Text userIdText = new Text(userId);
-        Text timeSpentText = new Text(timeSpent + " hours\n" + dateAndHours);
+        userVBox.getChildren().add(userIdText);
 
-        Button editButton = new Button("Edit");
-        editButton.setOnAction(e -> editTimeEntry(user, timeSpent));
-        editButton.setMaxWidth(Double.MAX_VALUE);
+        for (String dateAndHours : datesAndHours) {
+            Text timeSpentText = new Text(dateAndHours);
 
-        Button removeButton = new Button("Remove");
-        removeButton.setOnAction(e -> removeTimeEntry(user, timeSpent));
-        removeButton.setMaxWidth(Double.MAX_VALUE);
+            Button editButton = new Button("Edit");
+            editButton.setOnAction(e -> editTimeEntry(user, timeSpent));
+            editButton.setMaxWidth(Double.MAX_VALUE);
 
-        VBox buttonsBox = new VBox(editButton, removeButton);
-        buttonsBox.setSpacing(5);
+            Button removeButton = new Button("Remove");
+            removeButton.setOnAction(e -> {
+                String[] parts = dateAndHours.split(" - ");
+                Float hours = Float.parseFloat(parts[1].replace(" hours", ""));
+                LocalDate date = LocalDate.parse(parts[0]);
+                removeTimeEntry(user, hours);
+            });
+            removeButton.setMaxWidth(Double.MAX_VALUE);
 
-        HBox userInfoRow = new HBox(buttonsBox, userIdText);
+            VBox buttonsBox = new VBox(editButton, removeButton);
+            buttonsBox.setSpacing(5);
+
+            HBox timeEntryHBox = new HBox(timeSpentText, buttonsBox);
+            timeEntryHBox.setSpacing(10);
+
+            userVBox.getChildren().add(timeEntryHBox);
+        }
+
+        HBox userInfoRow = new HBox(userVBox);
         userInfoRow.setSpacing(10);
 
         vBoxUserID.getChildren().add(userInfoRow);
-        vBoxTimeSpent.getChildren().add(timeSpentText);
     }
+
 
 
 
@@ -190,10 +176,13 @@ public class activityPageController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            user.removeTimeSpent(activityIDLabel, timeSpent);
+            user.removeTimeSpent(activityIDLabel.getText(), timeSpent);
+            setProcents();
             update();
         }
     }
+
+
 
 
     public void setActivityName(String name) {
@@ -231,7 +220,7 @@ public class activityPageController {
         }
         activity.setStartWeek(startWeek.getText());
         activity.setEndWeek(endWeek.getText());
-        activity.setallocatedTime(allocatedTime.getText());
+        activity.setAllocatedTime(allocatedTime.getText());
         setProcents();
         update();
     }
@@ -273,5 +262,4 @@ public class activityPageController {
         Project.Activities activity = Objects.requireNonNull(SoftwareApp.getProject(projectIDLabel.getText())).getActivity(activityIDLabel.getText());
         percentTime.setText(String.format("%.2f%%", activity.getPercentTime()));
     }
-
 }

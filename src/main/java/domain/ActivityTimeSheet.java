@@ -46,6 +46,27 @@ public class ActivityTimeSheet {
         totalHours += newTimeSpent;
     }
 
+    public String getLastDateAndHours() {
+        if (timeLog.isEmpty()) {
+            return "No time log found";
+        }
+        TimeLogEntry lastEntry = timeLog.get(timeLog.size() - 1);
+        return lastEntry.getDate().toString() + " - " + lastEntry.getHours() + " hours";
+    }
+
+    public void removeHours(Float hours, LocalDate date) {
+        totalHours -= hours;
+        timeLog.remove(new TimeLogEntry(hours, date));
+    }
+
+    public List<String> getAllDatesAndHours() {
+        List<String> datesAndHours = new ArrayList<>();
+        for (TimeLogEntry entry : this.timeLog) {
+            datesAndHours.add(entry.getDate().toString() + " - " + entry.getHours() + " hours");
+        }
+        return datesAndHours;
+    }
+
 
     public static class TimeLogEntry {
         private final float hours;
@@ -58,6 +79,8 @@ public class ActivityTimeSheet {
         public float getHours() {
             return hours;
         }
+
+
 
 
 
